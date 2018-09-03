@@ -20,25 +20,25 @@
                 <form:form method="POST">                    
                 <div class="form-group">
                     <label path="asignatura" class="control-label col-xs-3">Asignatura</label>
-                        <div class="col-xs-9">
+                    <div class="col-xs-9">
                         <input path="asignatura" type="text" name="inputAsignatura" id="inputAsignatura" value="" placeholder="Asignatura.." autocomplete="off" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label path="tema" class="control-label col-xs-3">Tema</label>
-                        <div class="col-xs-9">
+                    <div class="col-xs-9">
                         <textarea path="tema" name="inputTema" rows="5" cols="70" maxlength="30" placeholder="Escribe aquí el tema..."></textarea>
-                        </div>
                     </div>
-                    <div class="form-group">
+                </div>
+                <div class="form-group">
                     <label path="descripcion" class="control-label col-xs-3">Descripción</label>
-                        <div class="col-xs-9">
+                    <div class="col-xs-9">
                         <textarea path="descripcion" name="inputDescripcion" rows="5" cols="70" maxlength="60" placeholder="Escribe aquí la descripción..."></textarea>
-                        </div>
                     </div>
-                    <div class="col-xs-offset-3 col-xs-9">
-                        <button type="submit" class="btn btn-danger" id="btnPublicarInquietud">Publicar<span class="glyphicon glyphicon-ok"></span></button>
-                        <a href="<c:url value="././WEB-INF/jsp/index.htm" />" class="btn btn-info">Cancelar <span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+                <div class="col-xs-offset-3 col-xs-9">
+                    <button type="submit" class="btn btn-danger" id="btnPublicarInquietud">Publicar<span class="glyphicon glyphicon-ok"></span></button>
+                    <a href="<c:url value="././WEB-INF/jsp/index.htm" />" class="btn btn-info">Cancelar <span class="glyphicon glyphicon-remove"></span></a>
                 </div>
             </form:form>
         </div>		

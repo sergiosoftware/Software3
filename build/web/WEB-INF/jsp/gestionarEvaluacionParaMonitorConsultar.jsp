@@ -19,8 +19,7 @@
             </header>
             <div class="panel panel-primary">                
                 <div class="panel-body">                                          
-                        <form:form method="post" commandName="gestionarevaluacion">                            
-                            <form:errors path="*" element="div" cssClass="alert alert-danger" />
+                        <form:form method="post" commandName="gestionarevaluacion">            
                                 <div class="col-xs-offset-2 col-xs-12 container">                                   
                                     <p> 
                                         <div class="col-xs-offset-0 col-xs-4">                                  
@@ -30,7 +29,7 @@
                                             <table class="table table-bordered table-striped table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th><form:label path="#">Asignatura</form:label></th>
+                                                        <th><label path="#">Asignatura</label></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

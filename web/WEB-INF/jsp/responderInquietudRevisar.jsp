@@ -21,8 +21,7 @@
             </header>
             <div class="panel panel-primary">                
                 <div class="panel-body">                                          
-                    <form:form method="GET">                            
-                        <form:errors path="*" element="div" cssClass="alert alert-danger" />
+                    <form:form method="GET">                 
                         <div class="col-xs-offset-2 col-xs-12 container">                                   
                             <p> 
                             <div class="col-xs-offset-0 col-xs-4">                                  
@@ -57,7 +56,6 @@
                                         <td>
                                             <button href="<c:url value="generarReporteInquietudesFrecuentes.htm"></c:url>"class="btn boxed-action" id="responder-inquietud"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                                             <a href="responderInquietud.htm?codigo=${respuestas.idInquietud}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-
                                             </a>
                                         </td>
                                     </tr>

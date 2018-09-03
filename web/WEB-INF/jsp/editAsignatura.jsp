@@ -26,24 +26,24 @@
                         <form:form method="post" commandName="asignatura">
                             <h1>Complete el formulario</h1>
                             
-                            <form:errors path="*" element="div" cssClass="alert alert-danger" />
+                            
                             
                             
                             <p>
-                                <form:label path="codigo">Codigo:</form:label>
-                                <form:input path="codigo" cssClass="form-control" />
+                                <label path="codigo">Codigo:</label>
+                                <input path="codigo" cssClass="form-control" />
                                 
                             </p>
                             
                             <p>
-                                <form:label path="nombre">Nombre:</form:label>
-                                <form:input path="nombre" cssClass="form-control" />
+                                <label path="nombre">Nombre:</label>
+                                <input path="nombre" cssClass="form-control" />
                                 
                             </p>
                             
                             <p>
-                                <form:label path="creditos">Creditos:</form:label>
-                                <form:input path="creditos" cssClass="form-control" />
+                                <label path="creditos">Creditos:</label>
+                                <input path="creditos" cssClass="form-control" />
                             </p>
                             <hr />
                             <input type="submit" value="Enviar" class="btn btn-danger" />

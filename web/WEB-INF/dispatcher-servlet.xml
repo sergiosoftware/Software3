@@ -20,6 +20,7 @@
         <property name="mappings">
             <props>
                 <prop key="index.htm">indexController</prop>
+                <prop key="indexEstudiante.htm">controladoraEstudiante</prop>
                 <prop key="Login.htm">homeController</prop>
                 <!--
                 Acciones del CRUD asignatura
@@ -29,6 +30,10 @@
                 <prop key="editAsignatura.htm">controladoraAdmin</prop>
                 <prop key="listAsignatura.htm">controladoraAdmin</prop>
                 <prop key="deleteAsignatura.htm">controladoraAdmin</prop> 
+                <!--
+                Presentar Evaluacion para Monitor
+                --> 
+                <prop key="PresentarEvaluacionParaMonitor.htm">controladoraPresentarEvaluacionParaMonitor</prop>
                 <!--
                 Publicar inquietud
                 -->               
@@ -61,6 +66,8 @@
     <bean name="controladoraPublicarInquietud" class="Controladoras.ControladoraEstudiante.controladoraPublicarInquietud" />
     <bean name="controladoraResponderInquietud" class="Controladoras.ControladoraMonitor.controladoraResponderInquietud" />
     <bean name="controladoraGenerarReporteInquietudesFrecuentes" class="Controladoras.ControladoraDocente.controladoraGenerarReporteInquietudesFrecuentes" />
+    <bean name="controladoraEstudiante" class="Controladoras.ControladoraEstudiante.controladoraEstudiante" />
+    <bean name="controladoraPresentarEvaluacionParaMonitor" class="Controladoras.ControladoraEstudiante.controladoraPresentarEvaluacionParaMonitor" />
     
     <bean name="indexController" class="org.springframework.web.servlet.mvc.ParameterizableViewController" p:viewName="index" />
 

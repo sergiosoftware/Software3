@@ -56,7 +56,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#home" class="page-scroll">Home</a></li>
+          <li><a href="indexEstudiante.htm" class="page-scroll">Home</a></li>
         <li><a href="#services-section" class="page-scroll">Servicios</a></li>
         <li><a href="#works-section" class="page-scroll">Funciones</a></li>
         <li><a href="#about-section" class="page-scroll">Sobre nosotros</a></li>
@@ -109,121 +109,6 @@
   </div>
 </div>
 <!-- Portfolio Section -->
-<div id="works-section">
-  <div class="container"> <!-- Container -->
-    <div class="section-title text-center center">
-      <h2>Nuestros servicios</h2>
-      <hr>
-      <div class="clearfix"></div>
-      <p>Diferentes funcionalidades dadas en el sistema para tu.</p>
-    </div>
-    <div class="categories">
-      <ul class="cat">
-        <li>
-          <ol class="type">
-            <li><a href="#" data-filter="*" class="active">All</a></li>
-            <li><a href="#" data-filter=".web">Web Design</a></li>
-            <li><a href="#" data-filter=".app">App Development</a></li>
-            <li><a href="#" data-filter=".branding">Branding</a></li>
-          </ol>
-        </li>
-      </ul>
-      <div class="clearfix"></div>
-    </div>
-    <div class="row">
-      <div class="portfolio-items">
-        <div class="col-sm-6 col-md-3 col-lg-3 web">
-          <div class="portfolio-item">
-              <div class="hover-bg"> <a  href="publicarInquietud.htm">Publicar Inquietud</a><br>
-              <div class="hover-text">
-                <h4>Publicar inquietud</h4>
-                <small>Web Design</small>
-                <div class="clearfix"></div>
-              </div>
-              <img src="<c:url value="/assets/img/portfolio/01.jpg"/>" class="img-responsive" alt="Publicar Inquietud"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 app">
-          <div class="portfolio-item">
-              <div class="hover-bg"> <a href="../VistasEstudiante/VisualizarNota.jsp">Ver Nota</a>
-              <div class="hover-text">
-                <h4>Ver Nota</h4>
-                <small>App Development</small>
-                <div class="clearfix"></div>
-              </div>
-              <img src="<c:url value="/assets/img/portfolio/02.jpg"/>" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 web">
-          <div class="portfolio-item">
-              <div class="hover-bg"> <a  href="responderInquietudRevisar.htm">Responder Inquietud</a><br>
-              <div class="hover-text">
-                <h4>Publicar inquietud</h4>
-                <small>Web Design</small>
-                <div class="clearfix"></div>
-              </div>
-              <img src="<c:url value="/assets/img/portfolio/09.jpg"/>" class="img-responsive" alt="Publicar Inquietud"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 web">
-          <div class="portfolio-item">
-              <div class="hover-bg"> <a href="generarReporteInquietudesFrecuentes.htm">Generar Reporte Inquietudes frecuentes</a><br>
-              <div class="hover-text">
-                <h4>Reporte inquietudes Frecuentes</h4>
-                <small>Web Design</small>
-                <div class="clearfix"></div>
-              </div>
-              <img src="<c:url value="/assets/img/portfolio/04.jpg"/>" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 app">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="<c:url value="/assets/img/portfolio/05.jpg"/>" rel="prettyPhoto">
-              <div class="hover-text">
-                <h4>Project Title</h4>
-                <small>App Development</small>
-                <div class="clearfix"></div>
-              </div>
-              <img src="<c:url value="/assets/img/portfolio/05.jpg"/>" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 branding">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="<c:url value="/assets/img/portfolio/06.jpg"/>" rel="prettyPhoto">
-              <div class="hover-text">
-                <h4>Project Title</h4>
-                <small>Branding</small>
-                <div class="clearfix"></div>
-              </div>
-              <img src="<c:url value="/assets/img/portfolio/06.jpg"/>" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 branding app">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="<c:url value="/assets/img/portfolio/07.jpg"/>" rel="prettyPhoto">
-              <div class="hover-text">
-                <h4>Project Title</h4>
-                <small>App Development, Branding</small>
-                <div class="clearfix"></div>
-              </div>
-              <img src="<c:url value="/assets/img/portfolio/07.jpg"/>" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-lg-3 web">
-          <div class="portfolio-item">
-            <div class="hover-bg"> <a href="<c:url value="/assets/img/portfolio/08.jpg"/>" rel="prettyPhoto">
-              <div class="hover-text">
-                <h4>Project Title</h4>
-                <small>Web Design</small>
-                <div class="clearfix"></div>
-              </div>
-              <img src="<c:url value="/assets/img/portfolio/08.jpg"/>" class="img-responsive" alt="Project Title"> </a> </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <!-- About Section -->
 <div id="about-section">
   <div class="container">

@@ -5,10 +5,27 @@
  */
 package Controladoras.ControladoraEstudiante;
 
+import Modelos.Entidades.Estudiante;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 /**
  *
  * @author sergioandres
  */
 public class controladoraEstudiante {
+    
+
+   
+
+    @RequestMapping(value = "indexEstudiante.htm", method = RequestMethod.GET)
+    public ModelAndView form() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("indexEstudiante");
+        //mav.addObject("usuarios", new Estudiante());
+        return mav;
+    }
     
 }

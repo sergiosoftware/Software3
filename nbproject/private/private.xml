@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/sergioandres/Desktop/ProyectoIngenieriaSoftwareII/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/sergioandres/Desktop/ProyectoIngenieriaSoftwareII/web/WEB-INF/jsp/indexEstudiante.jsp</file>
+            <file>file:/C:/Users/sergioandres/Desktop/ProyectoIngenieriaSoftwareII/web/WEB-INF/dispatcher-servlet.xml</file>
+            <file>file:/C:/Users/sergioandres/Desktop/ProyectoIngenieriaSoftwareII/src/java/Controladoras/ControladoraEstudiante/controladoraEstudiante.java</file>
+            <file>file:/C:/Users/sergioandres/Desktop/ProyectoIngenieriaSoftwareII/src/java/Controladoras/ControladoraEstudiante/controladoraPresentarEvaluacionParaMonitor.java</file>
+            <file>file:/C:/Users/sergioandres/Desktop/ProyectoIngenieriaSoftwareII/web/redirect.jsp</file>
+            <file>file:/C:/Users/sergioandres/Desktop/ProyectoIngenieriaSoftwareII/web/WEB-INF/jsp/PresentarEvaluacionParaMonitor.jsp</file>
+        </group>
     </open-files>
 </project-private>

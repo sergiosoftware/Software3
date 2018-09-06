@@ -165,7 +165,7 @@
                                     <img src="<c:url value="/assets/img/portfolio/09.jpg"/>" class="img-responsive" alt="Visualizar Nota"> </a> </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-3 col-lg-3 web">
+                        <!--<div class="col-sm-6 col-md-3 col-lg-3 web">
                             <div class="portfolio-item">
                                 <div class="hover-bg"> <a href="publicarInquietudRespuesta.htm">Publicar Inquietud Respuesta</a><br>
                                     <div class="hover-text">
@@ -175,7 +175,7 @@
                                     </div>
                                     <img src="<c:url value="/assets/img/portfolio/04.jpg"/>" class="img-responsive" alt="Publicar Inquietud Respuesta"> </a> </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-sm-6 col-md-3 col-lg-3 web">
                             <div class="portfolio-item">
                                 <div class="hover-bg"> <a href="publicarInquietud.htm">Publicar Inquietud</a><br>

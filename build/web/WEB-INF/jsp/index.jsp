@@ -56,7 +56,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-          <li><a href="indexEstudiante.htm" class="page-scroll">Home</a></li>
+          <li><a href="indexEstudiante.htm" class="page-scroll">Home(estudiante)</a></li>
+          <li><a href="indexMonitor.htm" class="page-scroll">Home(monitor)</a></li>
         <li><a href="#services-section" class="page-scroll">Servicios</a></li>
         <li><a href="#works-section" class="page-scroll">Funciones</a></li>
         <li><a href="#about-section" class="page-scroll">Sobre nosotros</a></li>

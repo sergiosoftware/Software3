@@ -22,10 +22,13 @@
                 <prop key="index.htm">indexController</prop>
                 <prop key="indexEstudiante.htm">controladoraEstudiante</prop>
                 <prop key="indexMonitor.htm">controladoraMonitor</prop>
+                <prop key="indexDocente.htm">controladoraDocente</prop>
+                <prop key="indexAdmin.htm">controladoraAdmin</prop>
                 <prop key="Login.htm">homeController</prop>
                 <!--
                 Acciones del CRUD asignatura
                 -->
+                <prop key="gestionarAsignatura.htm">controladoraGestionarAsignatura</prop>
                 <prop key="asignatura.htm">controladoraAdmin</prop>
                 <prop key="addAsignatura.htm">controladoraAdmin</prop>
                 <prop key="editAsignatura.htm">controladoraAdmin</prop>
@@ -70,6 +73,8 @@
     <bean name="controladoraEstudiante" class="Controladoras.ControladoraEstudiante.controladoraEstudiante" />
     <bean name="controladoraPresentarEvaluacionParaMonitor" class="Controladoras.ControladoraEstudiante.controladoraPresentarEvaluacionParaMonitor" />
     <bean name="controladoraMonitor" class="Controladoras.ControladoraMonitor.controladoraMonitor"/>
+    <bean name="controladoraDocente" class="Controladoras.ControladoraDocente.controladoraDocente"/>
+    <bean name="controladoraGestionarAsignatura" class="Controladoras.ControladoraAdmin.controladoraGestionarAsignatura"/>
     
     <bean name="indexController" class="org.springframework.web.servlet.mvc.ParameterizableViewController" p:viewName="index" />
 

@@ -26,24 +26,35 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class controladoraAdmin {
+
+    @RequestMapping(value = "indexAdmin.htm", method = RequestMethod.GET)
+    public ModelAndView form() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("indexAdmin");
+        //mav.addObject("usuarios", new Estudiante());
+        return mav;
+    }
+
     private JdbcTemplate jdbcTemplate;
     private CRUDAsignatura dao;
     ValidacionesAsignatura AsignaturaValidar;
-    
-    public controladoraAdmin(){
+
+    public controladoraAdmin() {
         conexion con = new conexion();
         this.jdbcTemplate = new JdbcTemplate(con.conectar());
         this.dao = new CRUDAsignatura();
         this.AsignaturaValidar = new ValidacionesAsignatura();
     }
-    
+
     /**
      * Metodo para agregar una asignatura
+     *
      * @return a la vista asignatura
      */
-    @RequestMapping(value = "gestionarAsignatura.htm", method = RequestMethod.GET)
-    public ModelAndView form() {
-        Asignatura asig = dao.seleccionarAsignatura("123");
+    @RequestMapping(value = "gestionarAsignatura.htm", method = RequestMethod.POST)
+    public ModelAndView form(HttpServletRequest request) {
+        String codigo = request.getParameter("codigo");
+        Asignatura asig = dao.seleccionarAsignatura(codigo);
         System.out.println(asig.getNombre());
         ModelAndView mav = new ModelAndView();
         mav.setViewName("gestionarAsignatura");
@@ -52,12 +63,13 @@ public class controladoraAdmin {
     }
 
     /**
-       valida los datos de una asignatura y si no hay errores añade una mediante
+     * valida los datos de una asignatura y si no hay errores añade una mediante
      * la clase CRUDAsignatura
+     *
      * @param a la asignatura a añadir
      * @param result
      * @param status
-     * 
+     *
      * @return retorna a la vista index luego de registrar la asignatura
      */
     @RequestMapping(value = "addAsignatura.htm", method = RequestMethod.GET)
@@ -77,13 +89,13 @@ public class controladoraAdmin {
             return new ModelAndView("redirect:/gestionarAsignatura.htm");
         }
     }
-    
+
     /**
      * Borra una asignatura selecionada
+     *
      * @param request codigo de la asignatura que se desea borrar
      * @return a la vista que tiene todas las asignaturas
      */
-
     @RequestMapping("deleteAsignatura.htm")
     public ModelAndView home(HttpServletRequest request) {
         String codigo = request.getParameter("codigo");
@@ -91,14 +103,16 @@ public class controladoraAdmin {
         return new ModelAndView("redirect:/listAsignatura.htm");
     }
 
-    
     /**
      * Metodo para editar una asignatura selecionada
-     * @param request codigo de la asignatura que desea editar junto a todos sus parametros
-     * @return a la vista editar asignatura con los datos nuevos de la asignatura modificada
+     *
+     * @param request codigo de la asignatura que desea editar junto a todos sus
+     * parametros
+     * @return a la vista editar asignatura con los datos nuevos de la
+     * asignatura modificada
      */
     @RequestMapping(value = "editAsignatura", method = RequestMethod.GET)
-    public ModelAndView form(HttpServletRequest request) {
+    public ModelAndView edit(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         String codigo = request.getParameter("codigo");
         Asignatura datos = this.selectAsignatura(codigo);
@@ -109,11 +123,13 @@ public class controladoraAdmin {
     }
 
     /**
-     * valida los datos de una asignatura y si no hay errores edita  mediante
-     * la clase CRUDAsignatura
-     * @param a asignatura a editar 
-     * 
-     * @return un objeto de la clase ModelAndView redireccionando a la vista correspondiente
+     * valida los datos de una asignatura y si no hay errores edita mediante la
+     * clase CRUDAsignatura
+     *
+     * @param a asignatura a editar
+     *
+     * @return un objeto de la clase ModelAndView redireccionando a la vista
+     * correspondiente
      */
     @RequestMapping(value = "editAsignatura", method = RequestMethod.POST)
     public ModelAndView form(
@@ -138,17 +154,14 @@ public class controladoraAdmin {
 
     }
 
-    
     /**
      * Metodo simple para selecionar una asignatura
+     *
      * @param codigo de la asignatura
      * @return la asignatura deseada
      */
     public Asignatura selectAsignatura(String codigo) {
         return this.dao.seleccionarAsignatura(codigo);
     }
-    
-    
-    
-    
+
 }

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : indexDocente
-    Created on : 6/09/2018, 08:51:54 AM
+    Document   : indexAdmin
+    Created on : 6/09/2018, 09:21:28 AM
     Author     : sergioandres
 --%>
 
@@ -135,16 +135,16 @@
                     <div class="portfolio-items">
                         <div class="col-sm-6 col-md-3 col-lg-3 web">
                             <div class="portfolio-item">
-                                <div class="hover-bg"> <a  href="ReporteDudasFrecuentes.htm">Reportar dudas frecuentes</a><br>
+                                <div class="hover-bg"> <a  href="gestionarAsignatura.htm">Gestionar Asignatura</a><br>
                                     <div class="hover-text">
-                                        <h4>Reportar dudas frecuentes</h4>
-                                        <small>Reportar</small>
+                                        <h4>Gestionar Asignatura</h4>
+                                        <small>Gestionar</small>
                                         <div class="clearfix"></div>
                                     </div>
                                     <img src="<c:url value="/assets/img/portfolio/01.jpg"/>" class="img-responsive" alt="Presentar Evaluación para Monitor"> </a> </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-3 col-lg-3 app">
+                        <!--<div class="col-sm-6 col-md-3 col-lg-3 app">
                             <div class="portfolio-item">
                                 <div class="hover-bg"> <a href="gestionarEvaluacionParaMonitorConsultar.htm">Gestionar evaluación para monitor (Consultar)</a>
                                     <div class="hover-text">
@@ -176,7 +176,7 @@
                                     </div>
                                     <img src="<c:url value="/assets/img/portfolio/04.jpg"/>" class="img-responsive" alt="Publicar Inquietud Respuesta"> </a> </div>
                             </div>
-                        </div>
+                        </div>-->
                         <!--<div class="col-sm-6 col-md-3 col-lg-3 web">
                             <div class="portfolio-item">
                                 <div class="hover-bg"> <a href="publicarInquietud.htm">Publicar Inquietud</a><br>
@@ -394,3 +394,4 @@
 <script type="text/javascript" src="<c:url value="/assets/js/main.js"/>"></script>
 </body>
 </html>
+

@@ -5,19 +5,14 @@
  */
 package Controladoras.ControladoraEstudiante;
 
-import Conexión.conexion;
 import Modelos.CRUDEntidades.CRUDInquietud;
 import Modelos.Entidades.*;
-import java.sql.Timestamp;
-import java.util.Date;
+import Modelos.OperacionesEstudianteMonitor.OperacionInquietud;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -28,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class controladoraPublicarInquietud
 {
     private JdbcTemplate jdbcTemplate;
-    private CRUDInquietud inquietud;
+    private OperacionInquietud inquietud;
     
     
     /**
@@ -60,8 +55,8 @@ public class controladoraPublicarInquietud
      */
    @RequestMapping(method = RequestMethod.POST)
     public ModelAndView form(HttpServletRequest request) {
-       inquietud = new CRUDInquietud();
-       inquietud.IngresarInquietud(1701311587, request.getParameter("inputAsignatura"), request.getParameter("inputTema"), request.getParameter("inputDescripcion"));
+       inquietud = new OperacionInquietud();
+       inquietud.crearinquietud(1701311587, request.getParameter("inputAsignatura"), request.getParameter("inputTema"), request.getParameter("inputDescripcion"));
        ModelAndView mav = new ModelAndView();
        mav.setViewName("publicarInquietud");
        mav.addObject("inquietud", new Inquietud());

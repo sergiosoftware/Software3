@@ -46,5 +46,11 @@ public class OperacionInquietud {
         int result=nuevainquietud.editarInquietud(idinquietud,codigoestudiante, codigoasignatura, tema, descp);
         return result;
     }
+
+    public List<Inquietud> consultarTodas() {
+        CRUDInquietud verinquietud= new CRUDInquietud();
+        List<Inquietud> inquietudes= verinquietud.consultarTodas();
+        return inquietudes;
+    }
     
 }

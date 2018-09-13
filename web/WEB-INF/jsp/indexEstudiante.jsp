@@ -134,34 +134,40 @@
                     <div class="portfolio-items">
                         <div class="col-sm-6 col-md-3 col-lg-3 web">
                             <div class="portfolio-item">
-                                <div class="hover-bg"> <a  href="PresentarEvaluacionParaMonitor.htm">Presentar Evaluación para Monitor</a><br>
+                                <div class="hover-bg"> Presentar Evaluación para Monitor<br>
+                                    <a  href="PresentarEvaluacionParaMonitor.htm">
                                     <div class="hover-text">
                                         <h4>Presentar Evaluación para Monitor</h4>
                                         <small>Presentar</small>
                                         <div class="clearfix"></div>
                                     </div>
+                                    </a>
                                     <img src="<c:url value="/assets/img/portfolio/01.jpg"/>" class="img-responsive" alt="Presentar Evaluación para Monitor"> </a> </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-3 col-lg-3 app">
                             <div class="portfolio-item">
-                                <div class="hover-bg"> <a href="VistaCalificarMonitor.htm">Calificar Monitor</a>
+                                <div class="hover-bg"> Calificar Monitor
+                                <a href="VistaCalificarMonitor.htm">
                                     <div class="hover-text">
                                         <h4>Calificar Monitor</h4>
                                         <small>Calificar</small>
                                         <div class="clearfix"></div>
                                     </div>
+                                </a>
                                     <img src="<c:url value="/assets/img/portfolio/02.jpg"/>" class="img-responsive" alt="Calificar Monitor"> </a> </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-3 col-lg-3 web">
                             <div class="portfolio-item">
-                                <div class="hover-bg"> <a  href="VisualizarNota.htm">Visualizar Nota</a><br>
+                                <div class="hover-bg"> Visualizar Nota<br>
+                                <a  href="VisualizarNota.htm">
                                     <div class="hover-text">
                                         <h4>Visualizar Nota</h4>
                                         <small>Visualizar</small>
                                         <div class="clearfix"></div>
                                     </div>
+                                </a>
                                     <img src="<c:url value="/assets/img/portfolio/09.jpg"/>" class="img-responsive" alt="Visualizar Nota"> </a> </div>
                             </div>
                         </div>
@@ -178,23 +184,27 @@
                         </div>-->
                         <div class="col-sm-6 col-md-3 col-lg-3 web">
                             <div class="portfolio-item">
-                                <div class="hover-bg"> <a href="publicarInquietud.htm">Publicar Inquietud</a><br>
+                                <div class="hover-bg"> Publicar Inquietud</a><br>
+                                <a href="publicarInquietud.htm">
                                     <div class="hover-text">
                                         <h4>Publicar Inquietud</h4>
                                         <small>Publicar</small>
                                         <div class="clearfix"></div>
                                     </div>
+                                </a>
                                     <img src="<c:url value="/assets/img/portfolio/05.jpg"/>" class="img-responsive" alt="Publicar Inquietud"> </a> </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-3 col-lg-3 web">
                             <div class="portfolio-item">
-                                <div class="hover-bg"> <a href="visualizarNotaInforme.jsp">Visualizar Nota Informe</a><br>
+                                <div class="hover-bg"> Visualizar Nota Informe</a><br>
+                                <a href="visualizarNotaInforme.jsp">
                                     <div class="hover-text">
                                         <h4>Visualizar Nota Informe</h4>
                                         <small>Visualizar</small>
                                         <div class="clearfix"></div>
                                     </div>
+                                </a>
                                     <img src="<c:url value="/assets/img/portfolio/06.jpg"/>" class="img-responsive" alt="Visualizar Nota Informe"> </a> </div>
                             </div>
                         </div>

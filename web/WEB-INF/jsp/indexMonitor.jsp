@@ -134,23 +134,27 @@
                     <div class="portfolio-items">
                         <div class="col-sm-6 col-md-3 col-lg-3 web">
                             <div class="portfolio-item">
-                                <div class="hover-bg"> <a  href="responderInquietudRevisar.htm">Responder Inquietud</a><br>
+                                <div class="hover-bg"> Responder Inquietud<br>
+                                <a  href="responderInquietudRevisar.htm">
                                     <div class="hover-text">
                                         <h4>Responder Inquietud</h4>
                                         <small>Responder</small>
                                         <div class="clearfix"></div>
                                     </div>
+                                </a>
                                     <img src="<c:url value="/assets/img/portfolio/01.jpg"/>" class="img-responsive" alt="Presentar Evaluación para Monitor"> </a> </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-3 col-lg-3 app">
                             <div class="portfolio-item">
-                                <div class="hover-bg"> <a href="publicarInquietud.htm">Publicar Inquietud</a>
+                                <div class="hover-bg"> Publicar Inquietud
+                                    <a href="publicarInquietud.htm">
                                     <div class="hover-text">
                                         <h4>Publicar Inquietud</h4>
                                         <small>Publicar</small>
                                         <div class="clearfix"></div>
                                     </div>
+                                    </a>
                                     <img src="<c:url value="/assets/img/portfolio/02.jpg"/>" class="img-responsive" alt="Calificar Monitor"> </a> </div>
                             </div>
                         </div>

@@ -46,6 +46,11 @@ public class Inquietud
         //this.fechaPublicacion =fechaPublicacion;
     }
 
+    public Inquietud(int idInquietud) {
+        //To change body of generated methods, choose Tools | Templates.
+        this.idInquietud=idInquietud;
+    }
+
     /**
      * @return the idInquietud
      */

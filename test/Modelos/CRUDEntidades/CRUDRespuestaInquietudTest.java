@@ -37,38 +37,6 @@ public class CRUDRespuestaInquietudTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of guardar method, of class CRUDRespuestaInquietud.
-     */
-    @Test
-    public void testGuardarFallido() {
-        System.out.println("guardar");
-        int idInquietud = 1234;
-        int codigoEstudiante = 4321;
-        int idRespuesta = 1;
-        String respuesta = "Martes 10 pm";
-        CRUDRespuestaInquietud instance = new CRUDRespuestaInquietud();
-        boolean expResult = false;
-        boolean result = instance.guardar(idInquietud, codigoEstudiante, idRespuesta, respuesta);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of actualizar method, of class CRUDRespuestaInquietud.
-     */
-    @Test
-    public void testActualizarCorrecto() {
-        System.out.println("actualizar");
-        int idInquietud = 1234;
-        boolean cambiadoA = true;
-        CRUDRespuestaInquietud instance = new CRUDRespuestaInquietud();
-        boolean expResult = true;
-        boolean result = instance.actualizar(idInquietud, cambiadoA);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
+    
     
 }

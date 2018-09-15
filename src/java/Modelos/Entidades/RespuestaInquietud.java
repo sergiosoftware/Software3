@@ -5,6 +5,9 @@
  */
 package Modelos.Entidades;
 
+import java.sql.Time;
+import java.util.Date;
+
 /**
  *
  * @author JulianCamilo
@@ -12,18 +15,17 @@ package Modelos.Entidades;
 public class RespuestaInquietud {
 
     private int idInquetud,codigoEstudiante,idRespuesta;
-    private String respuesta;
-    private boolean estado;
+    private Date fechaRespuesta;
+    private Time horaRespuesta;
     
     public RespuestaInquietud() {
     }
 
-    public RespuestaInquietud(int idInquetud, int codigoEstudiante, int idRespuesta, String respuesta) {
+    public RespuestaInquietud(int idInquetud, int codigoEstudiante, Date fecha, Time hora) {
         this.idInquetud = idInquetud;
         this.codigoEstudiante = codigoEstudiante;
-        this.idRespuesta = idRespuesta;
-        this.respuesta = respuesta;
-        this.estado=false;
+        this.fechaRespuesta = fecha;
+        this.horaRespuesta=hora;
     }
 
     /**
@@ -69,31 +71,31 @@ public class RespuestaInquietud {
     }
 
     /**
-     * @return the respuesta
+     * @return the fechaRespuesta
      */
-    public String getRespuesta() {
-        return respuesta;
+    public Date getFechaRespuesta() {
+        return fechaRespuesta;
     }
 
     /**
-     * @param respuesta the respuesta to set
+     * @param fechaRespuesta the fechaRespuesta to set
      */
-    public void setRespuesta(String respuesta) {
-        this.respuesta = respuesta;
+    public void setFechaRespuesta(Date fechaRespuesta) {
+        this.fechaRespuesta = fechaRespuesta;
     }
 
     /**
-     * @return the estado
+     * @return the horaRespuesta
      */
-    public boolean isEstado() {
-        return estado;
+    public Time getHoraRespuesta() {
+        return horaRespuesta;
     }
 
     /**
-     * @param estado the estado to set
+     * @param horaRespuesta the horaRespuesta to set
      */
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public void setHoraRespuesta(Time horaRespuesta) {
+        this.horaRespuesta = horaRespuesta;
     }
     
     

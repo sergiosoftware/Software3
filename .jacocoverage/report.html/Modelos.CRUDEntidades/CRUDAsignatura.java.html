@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CRUDAsignatura.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProyectoIngenieriaSoftwareII&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Modelos.CRUDEntidades</a> &gt; <span class="el_source">CRUDAsignatura.java</span></div><h1>CRUDAsignatura.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelos.CRUDEntidades;
+
+import Conexión.conexion;
+import Modelos.Entidades.Asignatura;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+
+/**
+ *
+ * @author sergioandres
+ */
+public class CRUDAsignatura {
+    private JdbcTemplate jdbcTemplate;
+
+<span class="nc" id="L23">    public CRUDAsignatura() {</span>
+<span class="nc" id="L24">        conexion con = new conexion();</span>
+<span class="nc" id="L25">        this.jdbcTemplate = new JdbcTemplate(con.conectar());</span>
+<span class="nc" id="L26">    }</span>
+    
+    /**
+     * Funcion para registrar asignatura en la base de datos
+     * @param a Asignatura que se quiere registrar
+     * @return 
+     */
+    public int registrarAsignatura(Asignatura a){
+<span class="nc" id="L34">        return jdbcTemplate.update(&quot;INSERT INTO asignatura(codigo, nombre, creditos) &quot;</span>
+<span class="nc" id="L35">                + &quot;VALUES (?,?,?)&quot;, a.getCodigo(), a.getNombre(), a.getCreditos());</span>
+    }
+    /**
+     * elimina una asignatura de la base de datos
+     * @param codigo de la asignatura que se quiere eliminar
+     * @return 
+     */
+    public int eliminarAsignatura(String codigo) {
+<span class="nc" id="L43">        return jdbcTemplate.update(&quot;delete from asignatura &quot;</span>
+                + &quot;where &quot;
+                + &quot;codigo=?;&quot;, codigo);
+    }
+    /**
+     * edita los datos de una asignatura en la base de datos
+     * @param a asignatura a modificar con los datos que se quieren cambiar
+     * @param codigo de la asignatura que se quiere cambiar
+     * @return 
+     */
+    public int editarAsignatura(Asignatura a, String codigo) {
+<span class="nc" id="L54">        return jdbcTemplate.update(&quot;update asignatura&quot;</span>
+                + &quot;nombre =?,&quot;
+                + &quot;creditos=?,&quot;
+<span class="nc" id="L57">                + &quot;where codigo=?&quot;, a.getNombre(), a.getCreditos(), a.getCodigo());</span>
+    }
+     /**
+     * captura los datos de una asignatura de la base de datos
+     * @param Codigo de la asignatura que es requerida
+     * @return retorna una asignatura
+     */
+    public Asignatura seleccionarAsignatura(String Codigo) {
+<span class="nc" id="L65">        final Asignatura asig = new Asignatura();</span>
+<span class="nc" id="L66">        String quer = &quot;SELECT * FROM asignatura WHERE codigo=&quot; + Codigo+&quot;;&quot;;</span>
+<span class="nc" id="L67">        return (Asignatura) jdbcTemplate.query(quer, new ResultSetExtractor&lt;Asignatura&gt;() {</span>
+            public Asignatura extractData(ResultSet rs) throws SQLException, DataAccessException {
+<span class="nc bnc" id="L69" title="All 2 branches missed.">                if (rs.next()) {</span>
+<span class="nc" id="L70">                    asig.setCodigo(rs.getString(&quot;codigo&quot;));</span>
+<span class="nc" id="L71">                    asig.setNombre(rs.getString(&quot;nombre&quot;));</span>
+<span class="nc" id="L72">                    asig.setCreditos (Integer.parseInt(rs.getString(&quot;creditos&quot;)));</span>
+                }
+<span class="nc" id="L74">                return asig;</span>
+            }
+
+        }
+        );
+    }   
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

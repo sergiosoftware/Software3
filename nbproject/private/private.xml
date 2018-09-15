@@ -3,13 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/sergioandres/Desktop/ProyectoIngenieriaSoftwareII/src/java/Modelos/Entidades/Inquietud.java</file>
-            <file>file:/C:/Users/sergioandres/Desktop/ProyectoIngenieriaSoftwareII/web/WEB-INF/jsp/indexAdmin.jsp</file>
-            <file>file:/C:/Users/sergioandres/Desktop/ProyectoIngenieriaSoftwareII/src/java/Modelos/CRUDEntidades/CRUDInquietud.java</file>
-            <file>file:/C:/Users/sergioandres/Desktop/ProyectoIngenieriaSoftwareII/web/WEB-INF/jsp/responderInquietud.jsp</file>
-            <file>file:/C:/Users/sergioandres/Desktop/ProyectoIngenieriaSoftwareII/src/java/Controladoras/ControladoraEstudiante/controladoraPublicarInquietud.java</file>
-            <file>file:/C:/Users/sergioandres/Desktop/ProyectoIngenieriaSoftwareII/src/java/Modelos/Entidades/RespuestaInquietud.java</file>
-            <file>file:/C:/Users/sergioandres/Desktop/ProyectoIngenieriaSoftwareII/src/java/Controladoras/ControladoraMonitor/controladoraResponderInquietud.java</file>
+            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Modelos/CRUDEntidades/CRUDInquietud.java</file>
+            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/test/Modelos/OperacionesEstudianteMonitor/OperacionInquietudTest.java</file>
+            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/test/Modelos/OperacionesEstudianteMonitor/OperacionResponderInquietudTest.java</file>
+            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Conexión/conexion.java</file>
+            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Modelos/OperacionesEstudianteMonitor/OperacionInquietud.java</file>
+            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Modelos/CRUDEntidades/CRUDRespuestaInquietud.java</file>
+            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Controladoras/ControladoraEstudiante/controladoraPublicarInquietud.java</file>
+            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Controladoras/ControladoraMonitor/controladoraResponderInquietud.java</file>
+            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Modelos/OperacionesEstudianteMonitor/OperacionResponderInquietud.java</file>
         </group>
     </open-files>
 </project-private>

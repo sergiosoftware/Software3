@@ -17,7 +17,7 @@
     </head>
     <body>
         <div class="col-xs-12 container">                                        
-            <form:form method="get" commandName="responderInquietud">
+            <form:form method="post" commandName="responderInquietud">
                 <cemter>
                     <div class="modal-dialog container"> 
                         <h1>Responder Inquietud</h1> 

@@ -5,10 +5,15 @@
  */
 package Controladoras.ControladoraMonitor;
 
-import Modelos.CRUDEntidades.CRUDInquietud;
 import Modelos.Entidades.Inquietud;
 import Modelos.Entidades.RespuestaInquietud;
 import Modelos.OperacionesEstudianteMonitor.OperacionInquietud;
+import Modelos.OperacionesEstudianteMonitor.OperacionResponderInquietud;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -21,10 +26,22 @@ import org.springframework.web.servlet.ModelAndView;
  * @author SALDARRIAGA VILLADA
  */
 @Controller
-<span class="nc" id="L24">public class controladoraResponderInquietud</span>
+<span class="nc" id="L29">public class controladoraResponderInquietud</span>
 {
     
     OperacionInquietud inquietud;
+    OperacionResponderInquietud respuestaInquietud;
+    
+    @RequestMapping(value = &quot;responderInquietudRevisar.htm&quot;, method = RequestMethod.GET)
+    public ModelAndView home(){
+        
+<span class="nc" id="L38">        this.inquietud= new OperacionInquietud();</span>
+<span class="nc" id="L39">        ModelAndView mav = new ModelAndView();</span>
+<span class="nc" id="L40">        List&lt;Inquietud&gt; inquietudes = inquietud.consultarTodas();</span>
+<span class="nc" id="L41">        mav.setViewName(&quot;responderInquietudRevisar&quot;);</span>
+<span class="nc" id="L42">        mav.addObject(&quot;respuestas&quot;, inquietudes);</span>
+<span class="nc" id="L43">        return mav;</span>
+    }
     
     /**
      * 
@@ -32,26 +49,29 @@ import org.springframework.web.servlet.ModelAndView;
      * @return 
      */
     @RequestMapping(value = &quot;responderInquietud.htm&quot;, method = RequestMethod.GET)
-    public ModelAndView form(HttpServletRequest request)
+    public ModelAndView form()
     {
-        
-<span class="nc" id="L38">        ModelAndView mav = new ModelAndView();</span>
-<span class="nc" id="L39">        String fechaRespuesta = request.getParameter(&quot;fechaRespuesta&quot;);</span>
-<span class="nc" id="L40">        String horaRespuesta = request.getParameter(&quot;horaInicioRespuesta&quot;); </span>
-<span class="nc" id="L41">        mav.setViewName(&quot;responderInquietud&quot;);</span>
-<span class="nc" id="L42">        mav.addObject(&quot;respuestas&quot;, new RespuestaInquietud());</span>
-<span class="nc" id="L43">        return mav;</span>
+<span class="nc" id="L54">        ModelAndView mav = new ModelAndView();</span>
+<span class="nc" id="L55">        mav.setViewName(&quot;responderInquietud&quot;);</span>
+<span class="nc" id="L56">        mav.addObject(&quot;respuestas&quot;, new RespuestaInquietud());</span>
+<span class="nc" id="L57">        return mav;</span>
     }
     
-    @RequestMapping(value = &quot;responderInquietudRevisar.htm&quot;, method = RequestMethod.GET)
-    public ModelAndView form(){
-        
-<span class="nc" id="L49">        this.inquietud= new OperacionInquietud();</span>
-<span class="nc" id="L50">        ModelAndView mav = new ModelAndView();</span>
-<span class="nc" id="L51">        List&lt;Inquietud&gt; inquietudes = inquietud.consultarTodas();</span>
-<span class="nc" id="L52">        mav.setViewName(&quot;responderInquietudRevisar&quot;);</span>
-<span class="nc" id="L53">        mav.addObject(&quot;respuestas&quot;, inquietudes);</span>
-<span class="nc" id="L54">        return mav;</span>
+    @RequestMapping(value = &quot;responderInquietud.htm&quot;, method = RequestMethod.POST)
+    public ModelAndView form(HttpServletRequest request) {
+<span class="nc" id="L62">        String fecha = request.getParameter(&quot;fechaRespuesta&quot;);</span>
+<span class="nc" id="L63">        String hora = request.getParameter(&quot;horaInicioRespuesta&quot;);</span>
+<span class="nc" id="L64">        System.out.println(Integer.parseInt(fecha.substring(0, 4)));</span>
+<span class="nc" id="L65">        LocalDate fechaR = LocalDate.of(Integer.parseInt(fecha.substring(0, 4)), Integer.parseInt(fecha.substring(5, 7)),Integer.parseInt(fecha.substring(8, 10)));</span>
+<span class="nc" id="L66">        Date fechaRespuesta= new Date(fechaR.getYear()-1900, fechaR.getMonthValue()+1, fechaR.getDayOfMonth());</span>
+<span class="nc" id="L67">        System.out.println(fechaRespuesta);</span>
+<span class="nc" id="L68">        Time horaRespuesta = new Time(Integer.parseInt(hora.substring(0, 2)), Integer.parseInt(hora.substring(3, 5)), 0);</span>
+<span class="nc" id="L69">        this.respuestaInquietud = new OperacionResponderInquietud();</span>
+<span class="nc" id="L70">        this.respuestaInquietud.guardarRespuestaInquietud(Integer.parseInt(request.getParameter(&quot;codigo&quot;)), 1701310061, fechaRespuesta, horaRespuesta);</span>
+<span class="nc" id="L71">        ModelAndView mav = new ModelAndView();</span>
+<span class="nc" id="L72">        mav.setViewName(&quot;responderInquietud&quot;);</span>
+<span class="nc" id="L73">        mav.addObject(&quot;respuestas&quot;, new RespuestaInquietud());</span>
+<span class="nc" id="L74">        return mav;</span>
     }
     
 }

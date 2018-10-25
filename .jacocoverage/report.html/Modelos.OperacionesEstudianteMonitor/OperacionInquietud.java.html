@@ -16,41 +16,49 @@ import java.util.List;
  *
  * @author JulianCamilo
  */
-<span class="nc" id="L19">public class OperacionInquietud {</span>
+<span class="fc" id="L19">public class OperacionInquietud {</span>
     
     
+    /**
+     * Método que registra una nueva inquietud
+     * Validando asignatura y estudiante existentes
+     * @param codigoestudiante el estudiante que publica la inquietud
+     * @param codigoasignatura la asignatura de la que se va a preguntar
+     * @param tema el tema en el que el estudiante tiene inquietud
+     * @param descp detalles simples y concretos de su inquietud
+     * @return 
+     */
     public int crearinquietud(int codigoestudiante,String codigoasignatura,String tema, String descp){
-<span class="nc" id="L23">        CRUDInquietud nuevainquietud= new CRUDInquietud();</span>
-<span class="nc" id="L24">        int result=nuevainquietud.IngresarInquietud(codigoestudiante, codigoasignatura, tema, descp);</span>
-<span class="nc" id="L25">        return result;</span>
+<span class="fc" id="L32">        CRUDInquietud nuevainquietud= new CRUDInquietud();</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        if(codigoasignatura==null){</span>
+<span class="fc" id="L34">            return 0;</span>
+        }
+<span class="fc" id="L36">        int result=nuevainquietud.IngresarInquietud(codigoestudiante, codigoasignatura, tema, descp);</span>
+<span class="fc" id="L37">        return result;</span>
     }
     
     public Inquietud verinquietud(int codigoinquietud){
-<span class="nc" id="L29">        CRUDInquietud verinquietud= new CRUDInquietud();</span>
-<span class="nc" id="L30">        Inquietud nueva= verinquietud.consultaruna(codigoinquietud);</span>
-<span class="nc" id="L31">        return nueva;</span>
+<span class="nc" id="L41">        CRUDInquietud verinquietud= new CRUDInquietud();</span>
+<span class="nc" id="L42">        Inquietud nueva= verinquietud.consultaruna(codigoinquietud);</span>
+<span class="nc" id="L43">        return nueva;</span>
     }
     
-    public void responderinquietud(){
-        
-<span class="nc" id="L36">    }</span>
-    
     public int eliminarinquietud(int idinquietud){
-<span class="nc" id="L39">        CRUDInquietud eliminarinquietud= new CRUDInquietud();</span>
-<span class="nc" id="L40">        int result=eliminarinquietud.eliminarinquietud(0);</span>
-<span class="nc" id="L41">        return result;</span>
+<span class="nc" id="L47">        CRUDInquietud eliminarinquietud= new CRUDInquietud();</span>
+<span class="nc" id="L48">        int result=eliminarinquietud.eliminarinquietud(0);</span>
+<span class="nc" id="L49">        return result;</span>
     }
     
     public int modificar(int idinquietud,int codigoestudiante,String codigoasignatura,String tema, String descp){
-<span class="nc" id="L45">        CRUDInquietud nuevainquietud= new CRUDInquietud();</span>
-<span class="nc" id="L46">        int result=nuevainquietud.editarInquietud(idinquietud,codigoestudiante, codigoasignatura, tema, descp);</span>
-<span class="nc" id="L47">        return result;</span>
+<span class="nc" id="L53">        CRUDInquietud nuevainquietud= new CRUDInquietud();</span>
+<span class="nc" id="L54">        int result=nuevainquietud.editarInquietud(idinquietud,codigoestudiante, codigoasignatura, tema, descp);</span>
+<span class="nc" id="L55">        return result;</span>
     }
 
     public List&lt;Inquietud&gt; consultarTodas() {
-<span class="nc" id="L51">        CRUDInquietud verinquietud= new CRUDInquietud();</span>
-<span class="nc" id="L52">        List&lt;Inquietud&gt; inquietudes= verinquietud.consultarTodas();</span>
-<span class="nc" id="L53">        return inquietudes;</span>
+<span class="nc" id="L59">        CRUDInquietud verinquietud= new CRUDInquietud();</span>
+<span class="nc" id="L60">        List&lt;Inquietud&gt; inquietudes= verinquietud.consultarTodas();</span>
+<span class="nc" id="L61">        return inquietudes;</span>
     }
     
 }

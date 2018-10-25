@@ -46,12 +46,17 @@ public class Inquietud
         //this.fechaPublicacion =fechaPublicacion;
 <span class="fc" id="L47">    }</span>
 
+<span class="fc" id="L49">    public Inquietud(int idInquietud) {</span>
+        //To change body of generated methods, choose Tools | Templates.
+<span class="fc" id="L51">        this.idInquietud=idInquietud;</span>
+<span class="fc" id="L52">    }</span>
+
     /**
      * @return the idInquietud
      */
     public int getIdInquietud()
     {
-<span class="nc" id="L54">        return idInquietud;</span>
+<span class="fc" id="L59">        return idInquietud;</span>
     }
 
     /**
@@ -59,15 +64,15 @@ public class Inquietud
      */
     public void setIdInquietud(int idInquietud)
     {
-<span class="fc" id="L62">        this.idInquietud = idInquietud;</span>
-<span class="fc" id="L63">    }</span>
+<span class="fc" id="L67">        this.idInquietud = idInquietud;</span>
+<span class="fc" id="L68">    }</span>
 
     /**
      * @return the codigoEstudiante
      */
     public int getCodigoEstudiante()
     {
-<span class="fc" id="L70">        return codigoEstudiante;</span>
+<span class="fc" id="L75">        return codigoEstudiante;</span>
     }
 
     /**
@@ -75,15 +80,15 @@ public class Inquietud
      */
     public void setCodigoEstudiante(int codigoEstudiante)
     {
-<span class="fc" id="L78">        this.codigoEstudiante = codigoEstudiante;</span>
-<span class="fc" id="L79">    }</span>
+<span class="fc" id="L83">        this.codigoEstudiante = codigoEstudiante;</span>
+<span class="fc" id="L84">    }</span>
 
     /**
      * @return the codigoidAsignatura
      */
     public String getCodigoidAsignatura()
     {
-<span class="fc" id="L86">        return codigoidAsignatura;</span>
+<span class="fc" id="L91">        return codigoidAsignatura;</span>
     }
 
     /**
@@ -91,15 +96,15 @@ public class Inquietud
      */
     public void setCodigoidAsignatura(String codigoidAsignatura)
     {
-<span class="fc" id="L94">        this.codigoidAsignatura = codigoidAsignatura;</span>
-<span class="fc" id="L95">    }</span>
+<span class="fc" id="L99">        this.codigoidAsignatura = codigoidAsignatura;</span>
+<span class="fc" id="L100">    }</span>
 
     /**
      * @return the tema
      */
     public String getTema()
     {
-<span class="fc" id="L102">        return tema;</span>
+<span class="fc" id="L107">        return tema;</span>
     }
 
     /**
@@ -107,15 +112,15 @@ public class Inquietud
      */
     public void setTema(String tema)
     {
-<span class="fc" id="L110">        this.tema = tema;</span>
-<span class="fc" id="L111">    }</span>
+<span class="fc" id="L115">        this.tema = tema;</span>
+<span class="fc" id="L116">    }</span>
 
     /**
      * @return the Descripcion
      */
     public String getDescripcion()
     {
-<span class="fc" id="L118">        return Descripcion;</span>
+<span class="fc" id="L123">        return Descripcion;</span>
     }
 
     /**
@@ -123,15 +128,15 @@ public class Inquietud
      */
     public void setDescripcion(String Descripcion)
     {
-<span class="fc" id="L126">        this.Descripcion = Descripcion;</span>
-<span class="fc" id="L127">    }</span>
+<span class="fc" id="L131">        this.Descripcion = Descripcion;</span>
+<span class="fc" id="L132">    }</span>
 
     /**
      * @return the fechaPublicacion
      */
     public Date getFechaPublicacion()
     {
-<span class="nc" id="L134">        return fechaPublicacion;</span>
+<span class="nc" id="L139">        return fechaPublicacion;</span>
     }
 
     /**
@@ -139,13 +144,13 @@ public class Inquietud
      */
     public void setFechaPublicacion(String fechaPublicacion)
     {
-<span class="fc" id="L142">        SimpleDateFormat formatter = new SimpleDateFormat(&quot;yyyy-mm-dd&quot;);</span>
+<span class="fc" id="L147">        SimpleDateFormat formatter = new SimpleDateFormat(&quot;yyyy-mm-dd&quot;);</span>
         try {
-<span class="fc" id="L144">            this.fechaPublicacion = formatter.parse(fechaPublicacion);</span>
-<span class="nc" id="L145">        } catch (ParseException ex) {</span>
-<span class="nc" id="L146">            Logger.getLogger(Inquietud.class.getName()).log(Level.SEVERE, null, ex);</span>
-<span class="fc" id="L147">        }</span>
-<span class="fc" id="L148">    }</span>
+<span class="fc" id="L149">            this.fechaPublicacion = formatter.parse(fechaPublicacion);</span>
+<span class="nc" id="L150">        } catch (ParseException ex) {</span>
+<span class="nc" id="L151">            Logger.getLogger(Inquietud.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="fc" id="L152">        }</span>
+<span class="fc" id="L153">    }</span>
     
     
     

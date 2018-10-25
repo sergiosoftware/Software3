@@ -5,13 +5,11 @@
  */
 package Modelos.OperacionesEstudianteMonitor;
 
+import Modelos.CRUDEntidades.CRUDInquietud;
 import Modelos.CRUDEntidades.CRUDRespuestaInquietud;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import javax.json.Json;
+import java.sql.Time;
+import java.util.Date;
 import javax.json.JsonArray;
-import javax.json.JsonReader;
 import javax.json.JsonValue;
 
 /**
@@ -20,48 +18,36 @@ import javax.json.JsonValue;
  */
 public class OperacionResponderInquietud
 {
-    private CRUDRespuestaInquietud nuevaRespuesta;
+    private CRUDRespuestaInquietud inquietudResponder;
+    private CRUDInquietud inquietudActualizada;
     
-<span class="nc" id="L25">    public OperacionResponderInquietud() {</span>
-<span class="nc" id="L26">        this.nuevaRespuesta= new CRUDRespuestaInquietud();</span>
-<span class="nc" id="L27">    }</span>
-    
-    public void recibirdatosControladora(JsonArray datos){
-<span class="nc" id="L30">        String datosDecod[]=decodificar(datos);</span>
-<span class="nc" id="L31">        String mensaje=&quot;&quot;;</span>
-<span class="nc" id="L32">        boolean saved=guardarRespuestaInquietud(datosDecod[0],datosDecod[1],datosDecod[2],datosDecod[3]);</span>
-<span class="nc bnc" id="L33" title="All 2 branches missed.">        if(saved){</span>
-<span class="nc" id="L34">            mensaje=&quot;La respuesta ha sido guardada con exito&quot;+&quot;\n&quot;;</span>
-            boolean actualizado;
-<span class="nc" id="L36">            actualizado = actualizarEstadoInquietud(datosDecod[0],true);</span>
-<span class="nc bnc" id="L37" title="All 2 branches missed.">            if (!actualizado) {</span>
-<span class="nc" id="L38">                mensaje+=&quot;Pero ocurrio un error interno, vuelva a intentarlo mas tarde&quot;;</span>
+<span class="fc" id="L24">    public OperacionResponderInquietud() {</span>
+<span class="fc" id="L25">        this.inquietudResponder= new CRUDRespuestaInquietud();</span>
+<span class="fc" id="L26">        this.inquietudActualizada= new CRUDInquietud();</span>
+<span class="fc" id="L27">    }</span>
+
+    /**
+     * Método que registra la respuesta a una inquietud, y actualiza su estado a respondida
+     * El sistema debe validar que la fecha sea mayor a la actual o igual
+     * Si la fecha es igual, debe validar que la hora sea mayor
+     * @param idInquietud el id de la inquietud a responder
+     * @param codigoEstudiante el estudiante que realiza la respuesta
+     * @param fechaRespuesta la fecha que el estudiante propuso la reunión para responder
+     * @param hora la hora a la que la reunión quedó programada
+     * @return 
+     */
+    public int guardarRespuestaInquietud(int idInquietud, int codigoEstudiante, Date fechaRespuesta, Time hora) {
+<span class="pc bpc" id="L40" title="3 of 8 branches missed.">        if(idInquietud==0 || codigoEstudiante==0 || fechaRespuesta==null||hora==null){</span>
+<span class="fc" id="L41">            return 0;</span>
+        }
+        else{
+<span class="fc" id="L44">            int result=inquietudResponder.guardar(idInquietud,codigoEstudiante,fechaRespuesta,hora);</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">            if(result==1){</span>
+<span class="fc" id="L46">                result=inquietudActualizada.editarEstadoInquietud(idInquietud);</span>
             }
-<span class="nc" id="L40">        }</span>
-        else
-<span class="nc" id="L42">            mensaje=&quot;No se pudo guardar la respuesta, intentelo mas adelante&quot;;</span>
-<span class="nc" id="L43">    }</span>
-
-    private String[] decodificar(JsonArray datos) {
-<span class="nc" id="L46">        String valores[] =new String[10];</span>
-<span class="nc" id="L47">        int cont=0;</span>
-<span class="nc bnc" id="L48" title="All 2 branches missed.">        for (JsonValue dato : datos) {</span>
-<span class="nc" id="L49">            valores[cont]=dato.toString();</span>
-<span class="nc" id="L50">            cont++;</span>
-<span class="nc" id="L51">        }</span>
-<span class="nc" id="L52">        return valores;</span>
+<span class="fc" id="L48">            return result;</span>
+            }
     }
-
-    private boolean guardarRespuestaInquietud(String idInquietud, String codigoEstudiante, String idRespuesta, String respuesta) {
-<span class="nc" id="L56">        boolean result=nuevaRespuesta.guardar(Integer.parseInt(idInquietud),Integer.parseInt(codigoEstudiante),Integer.parseInt(idRespuesta),respuesta);</span>
-<span class="nc" id="L57">        return result;</span>
-    }
-
-    private boolean actualizarEstadoInquietud(String idInquietud, boolean cambiadoA) {
-<span class="nc" id="L61">        boolean result =nuevaRespuesta.actualizar(Integer.parseInt(idInquietud),cambiadoA);</span>
-<span class="nc" id="L62">        return result;</span>
-    }
-    
     
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

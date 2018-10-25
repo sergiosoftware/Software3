@@ -9,8 +9,6 @@ import Modelos.CRUDEntidades.CRUDInquietud;
 import Modelos.CRUDEntidades.CRUDRespuestaInquietud;
 import java.sql.Time;
 import java.util.Date;
-import javax.json.JsonArray;
-import javax.json.JsonValue;
 
 /**
  *

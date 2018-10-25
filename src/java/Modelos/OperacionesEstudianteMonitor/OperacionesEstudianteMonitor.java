@@ -26,7 +26,7 @@ public class OperacionesEstudianteMonitor {
     {
         for (Estudiante estudianteIterador:totalEstudiantes)
         {
-            if (estudianteIterador.getMonitor()!=0)
+            if (estudianteIterador.isMonitor())
             {
                 this.monitores.add(estudianteIterador);
             }

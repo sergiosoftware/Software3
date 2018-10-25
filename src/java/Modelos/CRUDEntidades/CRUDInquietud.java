@@ -62,7 +62,7 @@ public class CRUDInquietud {
     }
     
     public List consultarTodas(){
-        this.sql = "select * from inquietud order by idinquietud desc";
+        this.sql = "select * from inquietud inner join estudiante on codigoEstudiante=codigo order by idinquietud desc";
         List datos = this.jdbcTemplate.queryForList(sql);
         return datos;
     }

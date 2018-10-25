@@ -11,18 +11,20 @@ package Modelos.Entidades;
  */
 public class Estudiante {
     
+    private int codigo;
     private String nombre;
     private String apellido;
     private String cedula;
     private String correo;
     private int calificacion;
-    private int monitor;
+    private boolean monitor;
 
     public Estudiante() {
     }
 
     /**
      * 
+     * @param codigo
      * @param nombre
      * @param apellido
      * @param cedula
@@ -30,7 +32,8 @@ public class Estudiante {
      * @param calificacion
      * @param monitor 
      */
-    public Estudiante(String nombre, String apellido, String cedula, String correo, int calificacion, int monitor) {
+    public Estudiante(int codigo, String nombre, String apellido, String cedula, String correo, int calificacion, boolean monitor) {    
+        this.codigo = codigo;
         this.nombre = nombre;
         this.apellido = apellido;
         this.cedula = cedula;
@@ -112,16 +115,32 @@ public class Estudiante {
     /**
      * @return the monitor
      */
-    public int getMonitor() {
+    public boolean isMonitor() {
         return monitor;
     }
 
     /**
      * @param monitor the monitor to set
      */
-    public void setMonitor(int monitor) {
+    public void setMonitor(boolean monitor) {
         this.monitor = monitor;
     }
+
+    /**
+     * @return the codigo
+     */
+    public int getCodigo() {
+        return codigo;
+    }
+
+    /**
+     * @param codigo the codigo to set
+     */
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+  
     
     
     

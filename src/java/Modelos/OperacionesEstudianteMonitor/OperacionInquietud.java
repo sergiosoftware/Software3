@@ -19,8 +19,20 @@ import java.util.List;
 public class OperacionInquietud {
     
     
+    /**
+     * Método que registra una nueva inquietud
+     * Validando asignatura y estudiante existentes
+     * @param codigoestudiante el estudiante que publica la inquietud
+     * @param codigoasignatura la asignatura de la que se va a preguntar
+     * @param tema el tema en el que el estudiante tiene inquietud
+     * @param descp detalles simples y concretos de su inquietud
+     * @return 
+     */
     public int crearinquietud(int codigoestudiante,String codigoasignatura,String tema, String descp){
         CRUDInquietud nuevainquietud= new CRUDInquietud();
+        if(codigoasignatura==null){
+            return 0;
+        }
         int result=nuevainquietud.IngresarInquietud(codigoestudiante, codigoasignatura, tema, descp);
         return result;
     }
@@ -29,10 +41,6 @@ public class OperacionInquietud {
         CRUDInquietud verinquietud= new CRUDInquietud();
         Inquietud nueva= verinquietud.consultaruna(codigoinquietud);
         return nueva;
-    }
-    
-    public void responderinquietud(){
-        
     }
     
     public int eliminarinquietud(int idinquietud){

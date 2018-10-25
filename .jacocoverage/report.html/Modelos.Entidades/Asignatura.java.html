@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Asignatura.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProyectoIngenieriaSoftwareII&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Modelos.Entidades</a> &gt; <span class="el_source">Asignatura.java</span></div><h1>Asignatura.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelos.Entidades;
+
+/**
+ *
+ * @author sergioandres
+ */
+public class Asignatura {
+    private String codigo;
+    private String nombre;
+    private Integer creditos;
+
+    /**
+     * 
+     * @param codigo
+     * @param nombre
+     * @param creditos 
+     */
+<span class="fc" id="L23">    public Asignatura(String codigo, String nombre, Integer creditos) {</span>
+<span class="fc" id="L24">        this.codigo = codigo;</span>
+<span class="fc" id="L25">        this.nombre = nombre;</span>
+<span class="fc" id="L26">        this.creditos = creditos;</span>
+<span class="fc" id="L27">    }</span>
+    
+<span class="nc" id="L29">    public Asignatura() {}</span>
+
+    /**
+     * @return the codigo
+     */
+    public String getCodigo() {
+<span class="fc" id="L35">        return codigo;</span>
+    }
+
+    /**
+     * @param codigo the codigo to set
+     */
+    public void setCodigo(String codigo) {
+<span class="nc" id="L42">        this.codigo = codigo;</span>
+<span class="nc" id="L43">    }</span>
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+<span class="nc" id="L49">        return nombre;</span>
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+<span class="nc" id="L56">        this.nombre = nombre;</span>
+<span class="nc" id="L57">    }</span>
+
+    /**
+     * @return the creditos
+     */
+    public Integer getCreditos() {
+<span class="nc" id="L63">        return creditos;</span>
+    }
+
+    /**
+     * @param creditos the creditos to set
+     */
+    public void setCreditos(Integer creditos) {
+<span class="nc" id="L70">        this.creditos = creditos;</span>
+<span class="nc" id="L71">    }</span>
+
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

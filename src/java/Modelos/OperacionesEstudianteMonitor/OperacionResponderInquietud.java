@@ -5,14 +5,10 @@
  */
 package Modelos.OperacionesEstudianteMonitor;
 
+import Modelos.CRUDEntidades.CRUDInquietud;
 import Modelos.CRUDEntidades.CRUDRespuestaInquietud;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonReader;
-import javax.json.JsonValue;
+import java.sql.Time;
+import java.util.Date;
 
 /**
  *
@@ -20,47 +16,35 @@ import javax.json.JsonValue;
  */
 public class OperacionResponderInquietud
 {
-    private CRUDRespuestaInquietud nuevaRespuesta;
+    private CRUDRespuestaInquietud inquietudResponder;
+    private CRUDInquietud inquietudActualizada;
     
     public OperacionResponderInquietud() {
-        this.nuevaRespuesta= new CRUDRespuestaInquietud();
+        this.inquietudResponder= new CRUDRespuestaInquietud();
+        this.inquietudActualizada= new CRUDInquietud();
     }
-    
-    public void recibirdatosControladora(JsonArray datos){
-        String datosDecod[]=decodificar(datos);
-        String mensaje="";
-        boolean saved=guardarRespuestaInquietud(datosDecod[0],datosDecod[1],datosDecod[2],datosDecod[3]);
-        if(saved){
-            mensaje="La respuesta ha sido guardada con exito"+"\n";
-            boolean actualizado;
-            actualizado = actualizarEstadoInquietud(datosDecod[0],true);
-            if (!actualizado) {
-                mensaje+="Pero ocurrio un error interno, vuelva a intentarlo mas tarde";
+
+    /**
+     * Método que registra la respuesta a una inquietud, y actualiza su estado a respondida
+     * El sistema debe validar que la fecha sea mayor a la actual o igual
+     * Si la fecha es igual, debe validar que la hora sea mayor
+     * @param idInquietud el id de la inquietud a responder
+     * @param codigoEstudiante el estudiante que realiza la respuesta
+     * @param fechaRespuesta la fecha que el estudiante propuso la reunión para responder
+     * @param hora la hora a la que la reunión quedó programada
+     * @return 
+     */
+    public int guardarRespuestaInquietud(int idInquietud, int codigoEstudiante, Date fechaRespuesta, Time hora) {
+        if(idInquietud==0 || codigoEstudiante==0 || fechaRespuesta==null||hora==null){
+            return 0;
+        }
+        else{
+            int result=inquietudResponder.guardar(idInquietud,codigoEstudiante,fechaRespuesta,hora);
+            if(result==1){
+                result=inquietudActualizada.editarEstadoInquietud(idInquietud);
             }
-        }
-        else
-            mensaje="No se pudo guardar la respuesta, intentelo mas adelante";
+            return result;
+            }
     }
-
-    private String[] decodificar(JsonArray datos) {
-        String valores[] =new String[10];
-        int cont=0;
-        for (JsonValue dato : datos) {
-            valores[cont]=dato.toString();
-            cont++;
-        }
-        return valores;
-    }
-
-    private boolean guardarRespuestaInquietud(String idInquietud, String codigoEstudiante, String idRespuesta, String respuesta) {
-        boolean result=nuevaRespuesta.guardar(Integer.parseInt(idInquietud),Integer.parseInt(codigoEstudiante),Integer.parseInt(idRespuesta),respuesta);
-        return result;
-    }
-
-    private boolean actualizarEstadoInquietud(String idInquietud, boolean cambiadoA) {
-        boolean result =nuevaRespuesta.actualizar(Integer.parseInt(idInquietud),cambiadoA);
-        return result;
-    }
-    
     
 }

@@ -9,14 +9,10 @@ import Conexión.conexion;
 import Modelos.Entidades.Inquietud;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
@@ -66,7 +62,7 @@ public class CRUDInquietud {
     }
     
     public List consultarTodas(){
-        this.sql = "select * from inquietud order by idinquietud desc";
+        this.sql = "select * from inquietud inner join estudiante on codigoEstudiante=codigo order by idinquietud desc";
         List datos = this.jdbcTemplate.queryForList(sql);
         return datos;
     }
@@ -104,6 +100,14 @@ public class CRUDInquietud {
         });
         
         return datos;
+    }
+
+    public int editarEstadoInquietud(int idInquietud) {
+        //To change body of generated methods, choose Tools | Templates.}
+        Inquietud nuevainquietud = new Inquietud(idInquietud);
+        this.sql="update inquietud set respuesta='S' where idinquietud="+nuevainquietud.getIdInquietud()+";";
+        int result = this.jdbcTemplate.update(sql);
+        return result;
     }
                 
     

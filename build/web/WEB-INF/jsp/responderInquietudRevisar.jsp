@@ -51,7 +51,7 @@
                                         <td><c:out value="${respuestas.tema}" /></td>
                                         <td><c:out value="${respuestas.descripcion}" /></td>
                                         <td><c:out value="${respuestas.fechaPublicacion}" /></td>
-                                        <td><c:out value="${respuestas.codigoEstudiante}" /></td>
+                                        <td><c:out value="${respuestas.nombre} ${respuestas.apellido}" /></td>
                                         <td><c:out value="${respuestas.correo}" /></td>
                                         <td>
                                             <button href="<c:url value="generarReporteInquietudesFrecuentes.htm"></c:url>"class="btn boxed-action" id="responder-inquietud"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>

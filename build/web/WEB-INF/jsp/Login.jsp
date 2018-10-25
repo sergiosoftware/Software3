@@ -37,7 +37,7 @@
 			<div class="box-header">
 				<h2>Log In</h2>
 			</div>
-                    <form action="LoginServlet" method="POST">
+                    <form:form method="POST">
                         <label for="username">Username</label>
 			<br/>
                         <input type="text" id="txtUsername" name="txtUsername" placeholder="Nombre de usuario">
@@ -46,25 +46,14 @@
 			<br/>
                         <input type="password" id="txtPassword" name="txtPassword" placeholder="Contraseña">
 			<br/>
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         <button type="submit" name="btnLogin" id="btnLogin">Sign In</button>
 			<br/>
+                        <label><c:set var="error" value="${error}"/></label>
 			<a href="#"><p class="small">Forgot your password?</p></a>
-                    </form>			
-		</div>
-                <% 
-                HttpSession sesion = request.getSession();
-                String rol="";
-                if(request.getAttribute("rol")!=null){
-                    rol=(String)request.getAttribute("rol");
-                    if(rol.equalsIgnoreCase("administrador")){
-                        sesion.setAttribute("nombre", request.getAttribute("nombre"));
-                        sesion.setAttribute("rol", rol);
-                        response.sendRedirect("PerfilUsuarioAdmin.htm");
                         
-                    }
-                }
-                %>
+                    </form:form>		
+		</div>
+                
 </body>
 
 <script>

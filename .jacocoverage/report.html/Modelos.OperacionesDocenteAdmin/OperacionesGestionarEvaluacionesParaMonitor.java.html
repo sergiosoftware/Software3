@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>OperacionesGestionarEvaluacionesParaMonitor.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProyectoIngenieriaSoftwareII&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Modelos.OperacionesDocenteAdmin</a> &gt; <span class="el_source">OperacionesGestionarEvaluacionesParaMonitor.java</span></div><h1>OperacionesGestionarEvaluacionesParaMonitor.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelos.OperacionesDocenteAdmin;
+
+import Modelos.CRUDEntidades.*;
+import Modelos.Entidades.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ *
+ * @author SALDARRIAGA VILLADA
+ */
+<span class="nc" id="L18">public class OperacionesGestionarEvaluacionesParaMonitor</span>
+{
+    /**
+     * metodo para agregar una pregunta a la base de datos
+     * @param p corresponde a un objeto de tipo pregunta para ingreso de preguntas al sistema
+     * @param a corresponde a un objeto de tipo asignatura para ingreso de preguntas al sistema
+     * @return 
+     */   
+    public int ingresarPregunta(Pregunta p, Asignatura a)
+    {
+<span class="nc" id="L28">        CRUDPregunta crudPregunta = new CRUDPregunta();</span>
+<span class="nc" id="L29">        int result = crudPregunta.registrarPregunta(p, a);</span>
+<span class="nc" id="L30">        return result;</span>
+    }
+    
+    /**
+     * metodo para ingresar respuesta a la base de datos
+     * @param r objeto de tipo respuesta que tiene idRespuesta,descripcionRespuesta y opcionCorrecta
+     * @param p objeto de tipo pregunta que tiene como finalidad proveer idPregunta para la respuesta a ingresar
+     * @return 
+     */
+    public int ingresarRespuesta(Respuesta r, Pregunta p)
+    {
+<span class="nc" id="L41">        CRUDRespuesta crudRespuesta = new CRUDRespuesta();</span>
+<span class="nc" id="L42">        int result = crudRespuesta.registrarRespuesta(r, p);</span>
+<span class="nc" id="L43">        return result;</span>
+    }
+    
+    /**
+     * metodo para borrar una pregunta
+     * @param idPregunta es el único identificador de cada pregunta, con el cual se hace el borrado de la pregunta de la base de datos
+     * @return 
+     */
+    public int eliminarPregunta(int idPregunta)
+    {
+<span class="nc" id="L53">        CRUDPregunta crudPregunta = new CRUDPregunta();</span>
+<span class="nc" id="L54">        int result = crudPregunta.eliminarPregunta(idPregunta);</span>
+<span class="nc" id="L55">        return result;</span>
+    }
+    
+    /**
+     * funcion para eliminar Respuestas del sistema
+     * @param idRespuesta identificador unico de respuesta que permite hacer el borrado de las respuestas de la base de datos
+     * @return 
+     */
+    public int eliminarRespuesta(int idRespuesta)
+    {
+<span class="nc" id="L65">        CRUDRespuesta crudRespuesta = new CRUDRespuesta();</span>
+<span class="nc" id="L66">        int result = crudRespuesta.eliminarRespuesta(idRespuesta);</span>
+<span class="nc" id="L67">        return result;</span>
+    }
+    
+    
+    
+    
+    
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

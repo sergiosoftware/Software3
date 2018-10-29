@@ -20,7 +20,7 @@
             <header class="col-xs-12"><h1 align="center">Revisar Inquietudes</h1>
             </header>
             <div class="panel panel-primary">                
-                <div class="panel-body">                                          
+                <div class="panel-body">
                     <form:form method="GET">                 
                         <div class="col-xs-offset-2 col-xs-12 container">                                   
                             <p> 
@@ -55,7 +55,7 @@
                                         <td><c:out value="${respuestas.correo}" /></td>
                                         <td>
                                             <button href="<c:url value="generarReporteInquietudesFrecuentes.htm"></c:url>"class="btn boxed-action" id="responder-inquietud"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                                            <a href="responderInquietud.htm?codigo=${respuestas.idInquietud}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                                            <a href=<c:url value="responderInquietud.htm?codigo=${codigo}&inquietud=${respuestas.idInquietud}"></c:url> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                                             </a>
                                         </td>
                                     </tr>

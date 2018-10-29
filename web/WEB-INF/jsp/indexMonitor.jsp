@@ -23,6 +23,7 @@
         <link rel="apple-touch-icon" href="<c:url value="/assets/img/apple-touch-icon.png"/>">
         <link rel="apple-touch-icon" sizes="72x72" href="<c:url value="/assets/img/apple-touch-icon-72x72.png"/>">
         <link rel="apple-touch-icon" sizes="114x114" href="<c:url value="/assets/img/apple-touch-icon-114x114.png"/>">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!-- Bootstrap -->
         <link rel="stylesheet" type="text/css"  href="<c:url value="/assets/css/bootstrap.css" />">
@@ -61,8 +62,8 @@
                         <li><a href="#works-section" class="page-scroll">Funciones</a></li>
                         <li><a href="#about-section" class="page-scroll">Sobre nosotros</a></li>
                         <li><a href="#team-section" class="page-scroll">EasySoluciones</a></li>
-                        <li><a href="Login.htm" class="page-scroll">Iniciar Sesión</a></li>
                         <li><a href="#contact-section" class="page-scroll">Contactanos</a></li>
+                        <li><a href="perfil.htm" class="page-scroll" ><c:out value="${usuario.nombre} ${usuario.apellido} "/> <i class="fa fa-user-circle"></i></a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse --> 
@@ -135,7 +136,7 @@
                         <div class="col-sm-6 col-md-3 col-lg-3 web">
                             <div class="portfolio-item">
                                 <div class="hover-bg"> Responder Inquietud<br>
-                                <a  href="responderInquietudRevisar.htm">
+                                <a  href=<c:url value="responderInquietudRevisar.htm?codigo=${usuario.codigo}"/>>
                                     <div class="hover-text">
                                         <h4>Responder Inquietud</h4>
                                         <small>Responder</small>
@@ -148,7 +149,7 @@
                         <div class="col-sm-6 col-md-3 col-lg-3 app">
                             <div class="portfolio-item">
                                 <div class="hover-bg"> Publicar Inquietud
-                                    <a href="publicarInquietud.htm">
+                                    <a href=<c:url value="publicarInquietud.htm?codigo=${usuario.codigo}"/>>
                                     <div class="hover-text">
                                         <h4>Publicar Inquietud</h4>
                                         <small>Publicar</small>

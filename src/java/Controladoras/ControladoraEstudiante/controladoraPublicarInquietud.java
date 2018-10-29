@@ -5,9 +5,9 @@
  */
 package Controladoras.ControladoraEstudiante;
 
-import Modelos.CRUDEntidades.CRUDInquietud;
 import Modelos.Entidades.*;
 import Modelos.OperacionesEstudianteMonitor.OperacionInquietud;
+import java.util.Enumeration;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -56,7 +56,7 @@ public class controladoraPublicarInquietud
    @RequestMapping(method = RequestMethod.POST)
     public ModelAndView form(HttpServletRequest request) {
        inquietud = new OperacionInquietud();
-       inquietud.crearinquietud(1701311587, request.getParameter("inputAsignatura"), request.getParameter("inputTema"), request.getParameter("inputDescripcion"));
+       inquietud.crearinquietud(Integer.parseInt(request.getParameter("codigo")), request.getParameter("inputAsignatura"), request.getParameter("inputTema"), request.getParameter("inputDescripcion"));
        ModelAndView mav = new ModelAndView();
        mav.setViewName("publicarInquietud");
        mav.addObject("inquietud", new Inquietud());

@@ -47,8 +47,8 @@
                 <!--
                 Responder inquietud
                 --> 
-                <prop key="responderInquietud.htm">controladoraResponderInquietud</prop>
-                 <prop key="responderInquietudRevisar.htm">controladoraResponderInquietud</prop>
+                <prop key="responderInquietud.htm">controladoraResponderInquietudRevisar</prop>
+                 <prop key="responderInquietudRevisar.htm">controladoraResponderInquietudRevisar</prop>
                 <!--
                 Generar Reporte Inquietudes frecuentes
                 -->
@@ -68,7 +68,7 @@
     <bean name="homeController" class="Controladoras.ControladoraAdmin.HomeController" />
     <bean name="controladoraAdmin" class="Controladoras.ControladoraAdmin.controladoraAdmin" />
     <bean name="controladoraPublicarInquietud" class="Controladoras.ControladoraEstudiante.controladoraPublicarInquietud" />
-    <bean name="controladoraResponderInquietud" class="Controladoras.ControladoraMonitor.controladoraResponderInquietud" />
+    <bean name="controladoraResponderInquietudRevisar" class="Controladoras.ControladoraMonitor.controladoraResponderInquietudRevisar" />
     <bean name="controladoraGenerarReporteInquietudesFrecuentes" class="Controladoras.ControladoraDocente.controladoraGenerarReporteInquietudesFrecuentes" />
     <bean name="controladoraEstudiante" class="Controladoras.ControladoraEstudiante.controladoraEstudiante" />
     <bean name="controladoraPresentarEvaluacionParaMonitor" class="Controladoras.ControladoraEstudiante.controladoraPresentarEvaluacionParaMonitor" />

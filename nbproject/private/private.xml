@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/web/WEB-INF/jsp/Login.jsp</file>
             <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/web/WEB-INF/jsp/responderInquietudRevisar.jsp</file>
             <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Modelos/CRUDEntidades/CRUDInquietud.java</file>
             <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Controladoras/ControladoraAdmin/HomeController.java</file>
             <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Modelos/OperacionesDocenteAdmin/OperacionLoginRegister.java</file>
+            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/web/WEB-INF/jsp/index.jsp</file>
             <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Modelos/CRUDEntidades/CRUDSesiones.java</file>
             <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Modelos/OperacionesEstudianteMonitor/OperacionInquietud.java</file>
             <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Controladoras/ControladoraMonitor/controladoraResponderInquietud.java</file>

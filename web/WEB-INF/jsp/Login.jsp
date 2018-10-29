@@ -48,7 +48,7 @@
 			<br/>
                         <button type="submit" name="btnLogin" id="btnLogin">Sign In</button>
 			<br/>
-                        <label><c:set var="error" value="${error}"/></label>
+                        <label><c:out value="${error}"/></label>
 			<a href="#"><p class="small">Forgot your password?</p></a>
                         
                     </form:form>		

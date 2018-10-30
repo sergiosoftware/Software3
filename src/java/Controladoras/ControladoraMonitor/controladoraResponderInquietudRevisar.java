@@ -12,6 +12,7 @@ import Modelos.OperacionesEstudianteMonitor.OperacionResponderInquietud;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -24,34 +25,31 @@ import org.springframework.web.servlet.ModelAndView;
  * @author SALDARRIAGA VILLADA
  */
 @Controller
-public class controladoraResponderInquietud
+public class controladoraResponderInquietudRevisar
 {
     
     OperacionInquietud inquietud;
     OperacionResponderInquietud respuestaInquietud;
     
+    
     @RequestMapping(value = "responderInquietudRevisar.htm", method = RequestMethod.GET)
-    public ModelAndView home(){
+    public ModelAndView home(HttpServletRequest request){
         
         this.inquietud= new OperacionInquietud();
         ModelAndView mav = new ModelAndView();
         List<Inquietud> inquietudes = inquietud.consultarTodas();
         mav.setViewName("responderInquietudRevisar");
         mav.addObject("respuestas", inquietudes);
+        mav.addObject("codigo",request.getParameter("codigo"));
         return mav;
     }
     
-    /**
-     * 
-     * @param request
-     * @return 
-     */
     @RequestMapping(value = "responderInquietud.htm", method = RequestMethod.GET)
-    public ModelAndView form()
-    {
+    public ModelAndView home(){
+        
+        
         ModelAndView mav = new ModelAndView();
         mav.setViewName("responderInquietud");
-        mav.addObject("respuestas", new RespuestaInquietud());
         return mav;
     }
     
@@ -59,17 +57,17 @@ public class controladoraResponderInquietud
     public ModelAndView form(HttpServletRequest request) {
         String fecha = request.getParameter("fechaRespuesta");
         String hora = request.getParameter("horaInicioRespuesta");
-        System.out.println(Integer.parseInt(fecha.substring(0, 4)));
         LocalDate fechaR = LocalDate.of(Integer.parseInt(fecha.substring(0, 4)), Integer.parseInt(fecha.substring(5, 7)),Integer.parseInt(fecha.substring(8, 10)));
         Date fechaRespuesta= new Date(fechaR.getYear()-1900, fechaR.getMonthValue()+1, fechaR.getDayOfMonth());
         System.out.println(fechaRespuesta);
         Time horaRespuesta = new Time(Integer.parseInt(hora.substring(0, 2)), Integer.parseInt(hora.substring(3, 5)), 0);
         this.respuestaInquietud = new OperacionResponderInquietud();
-        this.respuestaInquietud.guardarRespuestaInquietud(Integer.parseInt(request.getParameter("codigo")), 1701310061, fechaRespuesta, horaRespuesta);
+        this.respuestaInquietud.guardarRespuestaInquietud(Integer.parseInt(request.getParameter("inquietud")), Integer.parseInt(request.getParameter("codigo")), fechaRespuesta, horaRespuesta);
         ModelAndView mav = new ModelAndView();
         mav.setViewName("responderInquietud");
-        mav.addObject("respuestas", new RespuestaInquietud());
+        mav.addObject("respuesta", "Su respuesta fue publicada con exito");
         return mav;
     }
+    
     
 }

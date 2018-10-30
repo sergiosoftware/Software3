@@ -20,7 +20,8 @@
             <form:form method="post" commandName="responderInquietud">
                 <cemter>
                     <div class="modal-dialog container"> 
-                        <h1>Responder Inquietud</h1> 
+                        <h1>Responder Inquietud</h1>
+                        El codigo es: <c:out value="${codigo}"/>
                         <br>
                         <br>
                         <label for="" >Fecha:</label><input type="date" id="fechaRespuesta" name="fechaRespuesta"> 
@@ -32,10 +33,12 @@
                         <br>
                         <br>
                         <button class="btn btn-success" type="button" name="agregarHorarios" id="agregarHorarios">Agregar Horarios</button> 
-                        <button class="btn btn-success" type="submit" name="enviarRespuesta" id="enviarRespuesta">Enviar Respuesta</button> 
+                        <button class="btn btn-success" type="submit" name="enviarRespuesta" id="enviarRespuesta">Enviar Respuesta</button>
+                        
                     </div> 
                 </cemter> 
             </form:form>
+            <c:out value="${respuesta}"></c:out>
         </div>
     </body>
 </html>

@@ -40,7 +40,7 @@ public class HomeController {
         String password=request.getParameter("txtPassword");
         register= new OperacionLoginRegister();
         Estudiante typeUser=register.iniciarSesion(username,password);
-        System.out.println(typeUser.isMonitor());
+        
         if(typeUser==null){
             mav.setViewName("Login");
             String error="Usuario o contraseña incorrecto";

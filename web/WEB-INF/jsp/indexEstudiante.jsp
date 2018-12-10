@@ -172,6 +172,19 @@
                                     <img src="<c:url value="/assets/img/portfolio/09.jpg"/>" class="img-responsive" alt="Visualizar Nota"> </a> </div>
                             </div>
                         </div>
+                        <div class="col-sm-6 col-md-3 col-lg-3 web">
+                            <div class="portfolio-item">
+                                <div class="hover-bg"> Mis publicaicones<br>
+                                    <a  href=<c:url value="misPublicaciones.htm?codigo=${usuario.codigo}"/>>
+                                    <div class="hover-text">
+                                        <h4>Mis publicaicones</h4>
+                                        <small>Presentar</small>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    </a>
+                                    <img src="<c:url value="/assets/img/portfolio/04.jpg"/>" class="img-responsive" alt="Presentar Evaluación para Monitor"> </a> </div>
+                            </div>
+                        </div>
                         <!--<div class="col-sm-6 col-md-3 col-lg-3 web">
                             <div class="portfolio-item">
                                 <div class="hover-bg"> <a href="publicarInquietudRespuesta.htm">Publicar Inquietud Respuesta</a><br>

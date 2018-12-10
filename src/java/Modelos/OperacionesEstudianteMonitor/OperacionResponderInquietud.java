@@ -9,6 +9,7 @@ import Modelos.CRUDEntidades.CRUDInquietud;
 import Modelos.CRUDEntidades.CRUDRespuestaInquietud;
 import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -45,6 +46,17 @@ public class OperacionResponderInquietud
             }
             return result;
             }
+    }
+
+    public List consultarRespuestas(int codigoEstudiante) {
+        List respuestas=inquietudResponder.consultarRespuestas(codigoEstudiante);
+        if(respuestas==null){
+            return null;
+        }
+        else{
+            return respuestas;
+        }
+        
     }
     
 }

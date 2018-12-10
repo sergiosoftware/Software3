@@ -52,7 +52,11 @@
                 <!--
                 Generar Reporte Inquietudes frecuentes
                 -->
-                <prop key="generarReporteInquietudesFrecuentes.htm">controladoraGenerarReporteInquietudesFrecuentes</prop>                
+                <prop key="generarReporteInquietudesFrecuentes.htm">controladoraGenerarReporteInquietudesFrecuentes</prop>
+                <!-- 
+                Listar respuestas
+                -->
+                <prop key="misPublicaciones.htm">controladoraListarPublicaciones</prop>            
             </props>
         </property>
     </bean>
@@ -75,6 +79,7 @@
     <bean name="controladoraMonitor" class="Controladoras.ControladoraMonitor.controladoraMonitor"/>
     <bean name="controladoraDocente" class="Controladoras.ControladoraDocente.controladoraDocente"/>
     <bean name="controladoraGestionarAsignatura" class="Controladoras.ControladoraAdmin.controladoraGestionarAsignatura"/>
+    <bean name="controladoraListarPublicaciones" class="Controladoras.ControladoraEstudiante.controladoraListarPublicaciones"/> 
     
     <bean name="indexController" class="org.springframework.web.servlet.mvc.ParameterizableViewController" p:viewName="index" />
 

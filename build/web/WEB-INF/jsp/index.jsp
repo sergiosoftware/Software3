@@ -64,6 +64,7 @@
         <li><a href="#team-section" class="page-scroll">EasySoluciones</a></li>
         <li><a href="Login.htm" class="page-scroll">Iniciar Sesión</a></li>
         <li><a href="#contact-section" class="page-scroll">Contactanos</a></li>
+        <!--<li><a href="perfilUsuario.htm" class="page-scroll">Perfil prueba</a></li>-->
       </ul>
     </div>
     <!-- /.navbar-collapse --> 

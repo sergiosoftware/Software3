@@ -5,6 +5,7 @@
  */
 package Modelos.OperacionesEstudianteMonitor;
 
+import Modelos.CRUDEntidades.CRUDEstudiantes;
 import java.util.LinkedList;
 import Modelos.Entidades.*;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 public class OperacionesEstudianteMonitor {
  
     LinkedList<Estudiante> monitores = new LinkedList<>();
+    CRUDEstudiantes estudiantes = new CRUDEstudiantes();
     
     /**
      * Método para listar los estudiantes que son monitores y están registrados en el sistema
@@ -32,5 +34,13 @@ public class OperacionesEstudianteMonitor {
             }
         }
         return monitores;
+    }
+
+    public Estudiante consultarEstudiante(int codigoEstudiante) {
+        Estudiante usuario=estudiantes.consultar(codigoEstudiante);
+        if(usuario.getNombre()==null){
+            usuario=null;
+        }
+        return usuario;
     }
 }

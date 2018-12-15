@@ -63,7 +63,7 @@
                         <li><a href="#about-section" class="page-scroll">Sobre nosotros</a></li>
                         <li><a href="#team-section" class="page-scroll">EasySoluciones</a></li>
                         <li><a href="#contact-section" class="page-scroll">Contactanos</a></li>
-                        <li><a href="perfil.htm" class="page-scroll" ><c:out value="${usuario.nombre} ${usuario.apellido} "/> <i class="fa fa-user-circle"></i></a></li>
+                        <li><a href="perfilUsuario.htm?codigo=${usuario.codigo}" class="page-scroll" ><c:out value="${usuario.nombre} ${usuario.apellido} "/> <i class="fa fa-user-circle"></i></a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse --> 

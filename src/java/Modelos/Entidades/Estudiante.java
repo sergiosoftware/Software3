@@ -15,6 +15,7 @@ public class Estudiante {
     private String nombre;
     private String apellido;
     private String cedula;
+    private String programa;
     private String correo;
     private int calificacion;
     private boolean monitor;
@@ -41,6 +42,18 @@ public class Estudiante {
         this.calificacion = calificacion;
         this.monitor = monitor;
     }
+
+    public Estudiante(int codigo, String nombre, String apellido, String cedula, String programa, String correo, int calificacion, boolean monitor) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.cedula = cedula;
+        this.programa = programa;
+        this.correo = correo;
+        this.calificacion = calificacion;
+        this.monitor = monitor;
+    }
+    
 
     /**
      * @return the nombre
@@ -138,6 +151,20 @@ public class Estudiante {
      */
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    /**
+     * @return the programa
+     */
+    public String getPrograma() {
+        return programa;
+    }
+
+    /**
+     * @param programa the programa to set
+     */
+    public void setPrograma(String programa) {
+        this.programa = programa;
     }
 
   

@@ -58,13 +58,10 @@ public class CRUDSesiones {
                         aux.setNombre(rs.getString(2));
                         aux.setApellido(rs.getString(3));
                         aux.setCorreo(rs.getString(5));
-                         System.out.println(rs.getNString(7));
                         if(rs.getNString(7).equals("S")){
-                            System.out.println("Es monitor");
                             aux.setMonitor(true);
                         }
                         else{
-                            System.out.println("No es monitor");
                             aux.setMonitor(false);
                         }
                         

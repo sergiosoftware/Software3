@@ -7,7 +7,10 @@ package Modelos.OperacionesEstudianteMonitor;
 
 import Modelos.CRUDEntidades.CRUDInquietud;
 import Modelos.CRUDEntidades.CRUDRespuestaInquietud;
+import Modelos.Entidades.RespuestaInquietud;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -15,48 +18,67 @@ import java.util.List;
  *
  * @author SALDARRIAGA VILLADA
  */
-public class OperacionResponderInquietud
-{
+public class OperacionResponderInquietud {
+
     private CRUDRespuestaInquietud inquietudResponder;
     private CRUDInquietud inquietudActualizada;
-    
+
     public OperacionResponderInquietud() {
-        this.inquietudResponder= new CRUDRespuestaInquietud();
-        this.inquietudActualizada= new CRUDInquietud();
+        this.inquietudResponder = new CRUDRespuestaInquietud();
+        this.inquietudActualizada = new CRUDInquietud();
     }
 
     /**
-     * Método que registra la respuesta a una inquietud, y actualiza su estado a respondida
-     * El sistema debe validar que la fecha sea mayor a la actual o igual
-     * Si la fecha es igual, debe validar que la hora sea mayor
+     * Método que registra la respuesta a una inquietud, y actualiza su estado a
+     * respondida El sistema debe validar que la fecha sea mayor a la actual o
+     * igual Si la fecha es igual, debe validar que la hora sea mayor
+     *
      * @param idInquietud el id de la inquietud a responder
      * @param codigoEstudiante el estudiante que realiza la respuesta
-     * @param fechaRespuesta la fecha que el estudiante propuso la reunión para responder
+     * @param fechaRespuesta la fecha que el estudiante propuso la reunión para
+     * responder
      * @param hora la hora a la que la reunión quedó programada
-     * @return 
+     * @return
      */
     public int guardarRespuestaInquietud(int idInquietud, int codigoEstudiante, Date fechaRespuesta, Time hora) {
-        if(idInquietud==0 || codigoEstudiante==0 || fechaRespuesta==null||hora==null){
-            return 0;
+        int result = 0;
+        Date fechaSistema = new Date();
+        Time horaActual = new Time(fechaSistema.getHours(),fechaSistema.getMinutes(),fechaSistema.getSeconds());
+        System.out.println("fecha sistema: "+fechaSistema + " hora sistema: "+horaActual);
+        System.out.println("fecha respuesta: "+fechaRespuesta + " hora respuesta: "+hora);
+        if (idInquietud == 0 || codigoEstudiante == 0 || fechaRespuesta == null || hora == null) {
+            result = 0;
         }
-        else{
-            int result=inquietudResponder.guardar(idInquietud,codigoEstudiante,fechaRespuesta,hora);
+        else if(fechaSistema.equals(fechaRespuesta) && horaActual.after(fechaSistema)){
+            result=inquietudResponder.guardar(idInquietud, codigoEstudiante, fechaRespuesta, hora);
             if(result==1){
                 result=inquietudActualizada.editarEstadoInquietud(idInquietud);
             }
-            return result;
+        }
+        else if(fechaSistema.before(fechaRespuesta)){
+            result=inquietudResponder.guardar(idInquietud, codigoEstudiante, fechaRespuesta, hora);
+            if(result==1){
+                result=inquietudActualizada.editarEstadoInquietud(idInquietud);
             }
+        }
+        return result;
+
     }
 
     public List consultarRespuestas(int codigoEstudiante) {
-        List respuestas=inquietudResponder.consultarRespuestas(codigoEstudiante);
-        if(respuestas==null){
+        List respuestas = inquietudResponder.consultarRespuestas(codigoEstudiante);
+        if (respuestas == null) {
             return null;
-        }
-        else{
+        } else {
             return respuestas;
         }
-        
+
     }
-    
+
+    RespuestaInquietud consultarUnaRespuesta(int idInquietud, int codigoEstudiante) {
+        CRUDRespuestaInquietud verRespuesta = new CRUDRespuestaInquietud();
+        RespuestaInquietud nueva = verRespuesta.consultarUna(idInquietud, codigoEstudiante);
+        return nueva;
+    }
+
 }

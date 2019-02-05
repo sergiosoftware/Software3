@@ -97,6 +97,8 @@ public class RespuestaInquietud {
     public void setHoraRespuesta(Time horaRespuesta) {
         this.horaRespuesta = horaRespuesta;
     }
+
+    
     
     
     

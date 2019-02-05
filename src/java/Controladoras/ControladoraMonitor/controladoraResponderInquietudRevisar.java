@@ -57,6 +57,8 @@ public class controladoraResponderInquietudRevisar
     public ModelAndView form(HttpServletRequest request) {
         String fecha = request.getParameter("fechaRespuesta");
         String hora = request.getParameter("horaInicioRespuesta");
+        System.out.println(fecha);
+        System.out.println(hora);
         LocalDate fechaR = LocalDate.of(Integer.parseInt(fecha.substring(0, 4)), Integer.parseInt(fecha.substring(5, 7)),Integer.parseInt(fecha.substring(8, 10)));
         Date fechaRespuesta= new Date(fechaR.getYear()-1900, fechaR.getMonthValue()+1, fechaR.getDayOfMonth());
         System.out.println(fechaRespuesta);

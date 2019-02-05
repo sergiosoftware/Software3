@@ -20,71 +20,70 @@ import org.springframework.jdbc.core.RowMapper;
  * @author JulianCamilo
  */
 public class CRUDInquietud {
-    
+
     private conexion conectar;
     private String sql;
     private JdbcTemplate jdbcTemplate;
 
     public CRUDInquietud() {
-        this.conectar= new conexion();
-        this.jdbcTemplate= new JdbcTemplate(conectar.conectar());
-        this.sql= "";
+        this.conectar = new conexion();
+        this.jdbcTemplate = new JdbcTemplate(conectar.conectar());
+        this.sql = "";
     }
-    
-    public int IngresarInquietud(int codigoestudiante, String codigoasignatura,String tema, String descrip){
-        Inquietud nuevainquietud = new Inquietud(codigoestudiante,codigoasignatura,tema,descrip);
-        this.sql="insert into inquietud(codigoestudiante,codigoasignatura,tema,descripcion,fechaPublicacion) values ("+
-                nuevainquietud.getCodigoEstudiante()+",'"+nuevainquietud.getCodigoidAsignatura()+"','"+nuevainquietud.getTema()+"','"+
-                nuevainquietud.getDescripcion()+"',NOW());";
-        int resul=this.jdbcTemplate.update(sql);
+
+    public int IngresarInquietud(int codigoestudiante, String codigoasignatura, String tema, String descrip) {
+        Inquietud nuevainquietud = new Inquietud(codigoestudiante, codigoasignatura, tema, descrip);
+        this.sql = "insert into inquietud(codigoEstudiante,codigoAsignatura,tema,descripcion,fechaPublicacion) values ("
+                + nuevainquietud.getCodigoEstudiante() + ","+'"' + nuevainquietud.getCodigoidAsignatura() + '"'+","+'"' + nuevainquietud.getTema() + '"'+","
+                +'"'+ nuevainquietud.getDescripcion() +'"'+ ",NOW());";
+        int resul = this.jdbcTemplate.update(sql);
         return resul;
     }
-    
-    
-    public Inquietud consultaruna(int idInquietud){
-        this.sql="select * from inquietud where idinquietud=" + idInquietud+";";
+
+    public Inquietud consultaruna(int idInquietud) {
+        this.sql = "select * from inquietud where idinquietud=" + idInquietud + ";";
         return (Inquietud) this.jdbcTemplate.query(sql, new ResultSetExtractor<Inquietud>() {
             @Override
             public Inquietud extractData(ResultSet rs) throws SQLException, DataAccessException {
-                    if(rs.next()){
-                        Inquietud aux = new Inquietud();
-                        aux.setIdInquietud(rs.getInt(1));
-                        aux.setCodigoEstudiante(rs.getInt(2));
-                        aux.setCodigoidAsignatura(rs.getString(3));
-                        aux.setTema(rs.getString(4));
-                        aux.setDescripcion(rs.getString(5));
-                        aux.setFechaPublicacion(rs.getString(6));
-                        return aux;
-                    }
-                    return null;
+                if (rs.next()) {
+                    Inquietud aux = new Inquietud();
+                    aux.setIdInquietud(rs.getInt(1));
+                    aux.setCodigoEstudiante(rs.getInt(2));
+                    aux.setCodigoidAsignatura(rs.getString(3));
+                    aux.setTema(rs.getString(4));
+                    aux.setDescripcion(rs.getString(5));
+                    aux.setFechaPublicacion(rs.getString(6));
+                    return aux;
                 }
+                return null;
+            }
         });
     }
-    
-    public List consultarTodas(){
+
+    public List consultarTodas() {
         this.sql = "select * from inquietud inner join estudiante on codigoEstudiante=codigo order by idinquietud desc";
         List datos = this.jdbcTemplate.queryForList(sql);
         return datos;
     }
-    
-    
-    public int editarInquietud(int idinquietud,int codigoestudiante, String codigoasignatura,String tema, String descrip){
-        Inquietud nuevainquietud = new Inquietud(codigoestudiante,codigoasignatura,tema,descrip);
-        this.sql="update inquietud set codigoestudiante="+nuevainquietud.getCodigoEstudiante()+",codigoasignatura="+nuevainquietud.getCodigoidAsignatura()
-                +",tema="+nuevainquietud.getTema()+",descripcion="+nuevainquietud.getDescripcion()+",fechapublicacion=NOW()"
-                +"where idinquietud="+idinquietud+";";
+
+    public int editarInquietud(int idinquietud, int codigoestudiante, String codigoasignatura, String tema, String descrip) {
+        Inquietud nuevainquietud = new Inquietud(codigoestudiante, codigoasignatura, tema, descrip);
+        this.sql = "update inquietud set codigoestudiante=" + nuevainquietud.getCodigoEstudiante() + ",codigoasignatura=" + nuevainquietud.getCodigoidAsignatura()
+                + ",tema=" + nuevainquietud.getTema() + ",descripcion=" + nuevainquietud.getDescripcion() + ",fechapublicacion=NOW()"
+                + "where idinquietud=" + idinquietud + ";";
         int result = this.jdbcTemplate.update(sql);
         return result;
     }
-    
-    public int eliminarinquietud(int idinquietud){
-        this.sql="delete from inquietud where idinquietud="+idinquietud+";";
+
+    public int eliminarinquietud(int idinquietud) {
+        this.sql = "delete from inquietud where idinquietud=" + idinquietud + ";";
         int result = this.jdbcTemplate.update(sql);
-        return result;         
+        return result;
     }
-    
-    public List reporteInquietudesFrecuentes(){
+
+    public List reporteInquietudesFrecuentes() {
         this.sql = "select codigoasignatura,tema,descripcion,fechaPublicacion from inquietud;";
+        this.sql = "select codigoAsignatura,tema,descripcion,fechaPublicacion from inquietud  where codigoAsignatura=\"G8F0071\";";
         List<Inquietud> datos = this.jdbcTemplate.query(sql, new RowMapper<Inquietud>() {
             @Override
             public Inquietud mapRow(ResultSet rs, int i) throws SQLException {
@@ -98,19 +97,30 @@ public class CRUDInquietud {
                 return nueva;
             }
         });
-        
+
+        return datos;
+    }
+
+    public List reporteInquietudesFrecuentesAsignatura(String codigoAsignatura) {
+        this.sql = "select codigoEstudiante,codigoAsignatura,tema,descripcion,fechaPublicacion from inquietud where codigoAsignatura=" + '"'+codigoAsignatura+'"' + ";";
+        List datos = this.jdbcTemplate.queryForList(sql);
+        return datos;
+    }
+    
+    public List reporteInquietudesFrecuentesAsignaturaTema(String codigoAsignatura, String Tema) {
+        String operadorLike="%";
+        this.sql = "select * from inquietud where codigoAsignatura="+'"' + codigoAsignatura+'"' + " AND tema like '"+operadorLike.concat(Tema).concat(operadorLike)+ "';";
+        System.out.println(this.sql);
+        List datos = this.jdbcTemplate.queryForList(sql);
         return datos;
     }
 
     public int editarEstadoInquietud(int idInquietud) {
         //To change body of generated methods, choose Tools | Templates.}
         Inquietud nuevainquietud = new Inquietud(idInquietud);
-        this.sql="update inquietud set respuesta='S' where idinquietud="+nuevainquietud.getIdInquietud()+";";
+        this.sql = "update inquietud set respuesta='S' where idinquietud=" + nuevainquietud.getIdInquietud() + ";";
         int result = this.jdbcTemplate.update(sql);
         return result;
     }
-                
-    
-    
-    
+
 }

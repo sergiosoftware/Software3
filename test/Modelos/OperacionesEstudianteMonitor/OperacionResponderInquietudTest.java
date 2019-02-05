@@ -5,7 +5,11 @@
  */
 package Modelos.OperacionesEstudianteMonitor;
 
+import Modelos.Entidades.Inquietud;
+import Modelos.Entidades.PreguntaRespondida;
+import Modelos.Entidades.RespuestaInquietud;
 import java.sql.Time;
+import java.util.Calendar;
 import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -46,14 +50,18 @@ public class OperacionResponderInquietudTest {
      */
     @Test
     public void testGuardarRespuestaInquietudNormal() {
-        System.out.println("guardarRespuestaInquietud");
         int idInquietud = 1;
         int codigoEstudiante = 1701122317;
-        Date fechaRespuesta = new Date(2018, 9, 30);
+        Date fechaRespuesta= new Date(119, 1, 6);
         Time hora = new Time(9, 0, 0);
         int expResult = 1;
         int result = instance.guardarRespuestaInquietud(idInquietud, codigoEstudiante, fechaRespuesta, hora);
+        RespuestaInquietud respuestaGuardada=instance.consultarUnaRespuesta(idInquietud,codigoEstudiante);
+        RespuestaInquietud respuestaEsperada= new RespuestaInquietud(idInquietud, codigoEstudiante, fechaRespuesta, hora);
         assertEquals(expResult, result);
+        assertEquals(respuestaEsperada.getCodigoEstudiante(), respuestaGuardada.getCodigoEstudiante());
+        assertEquals(respuestaEsperada.getFechaRespuesta(), respuestaGuardada.getFechaRespuesta());
+        assertEquals(respuestaEsperada.getHoraRespuesta(), respuestaGuardada.getHoraRespuesta());
         // TODO review the generated test code and remove the default call to fail.  
     }
     
@@ -62,7 +70,6 @@ public class OperacionResponderInquietudTest {
      */
     @Test
     public void testGuardarRespuestaInquietudFechaNull() {
-        System.out.println("fecha null");
         int idInquietud = 2;
         int codigoEstudiante = 1701310061;
         Date fechaRespuesta = null;
@@ -75,13 +82,12 @@ public class OperacionResponderInquietudTest {
     
     @Test
     public void testGuardarRespuestaInquietudFechaIgualActualHoraMenor() {
-        System.out.println("fecha igual hora mayor");
         int idInquietud = 3;
         int codigoEstudiante = 1701310061;
-        Date fechaRespuesta = new java.sql.Date(2018, 9, 14);
-        Time hora = new Time(23, 0, 0);
+        Date fechaRespuestaActual = new Date();
+        Time horaMenorActual = new Time(6, 0, 0);
         int expResult = 0;
-        int result = instance.guardarRespuestaInquietud(idInquietud, codigoEstudiante, fechaRespuesta, hora);
+        int result = instance.guardarRespuestaInquietud(idInquietud, codigoEstudiante, fechaRespuestaActual, horaMenorActual);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.  
     }

@@ -63,7 +63,7 @@ public class CRUDAsignatura {
      */
     public Asignatura seleccionarAsignatura(String Codigo) {
         final Asignatura asig = new Asignatura();
-        String quer = "SELECT * FROM asignatura WHERE codigo=" + Codigo+";";
+        String quer = "SELECT * FROM asignatura WHERE codigo=" +'"'+ Codigo+'"'+";";
         return (Asignatura) jdbcTemplate.query(quer, new ResultSetExtractor<Asignatura>() {
             public Asignatura extractData(ResultSet rs) throws SQLException, DataAccessException {
                 if (rs.next()) {

@@ -6,6 +6,8 @@
 package Modelos.OperacionesEstudianteMonitor;
 
 import Modelos.Entidades.Inquietud;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -48,22 +50,23 @@ public class OperacionInquietudTest {
      */
     @Test
     public void testPublicarInquietudCorrecta() {
-        System.out.println("crear inquietud");
+        int idInquietud=7;
         int codigoestudiante = 1701311587;
         String codigoasignatura = "G8F0080";
         String tema = "Ipv6";
         String descp = "Ayuda Taller de ipv6";
-        
+        Inquietud inquietudCreada=new Inquietud(codigoestudiante, codigoasignatura, tema, descp);
         int expResult = 1;
         int result = instance.crearinquietud(codigoestudiante, codigoasignatura, tema, descp);
+        Inquietud inquietudGuardada=instance.verinquietud(idInquietud);
         assertEquals(expResult, result);
+        assertEquals(inquietudCreada, inquietudGuardada);
         // TODO review the generated test code and remove the default call to fail.
     }
     
     //Prueba tratar de ingresar una inquietud sin asignatura
     @Test
     public void testPublicarInquietudAsignaturaNull() {
-        System.out.println("inquietud asignatura null");
         int codigoestudiante = 1701310061;
         String codigoasignatura = null;
         String tema = "Derivadas";
@@ -77,8 +80,7 @@ public class OperacionInquietudTest {
 
     //Prueba tratar de ingresar una inquietud de una asignatura no registrada
     @Test
-    public void testPublicarInquietudAsignaturanoRegistrada() {
-        System.out.println("inquietud asignatura no registrada");
+    public void testPublicarInquietudAsignaturaNoRegistrada() {
         int codigoestudiante = 1701321242;
         String codigoasignatura = "G8F0079";
         String tema = "Triggers";
@@ -88,6 +90,49 @@ public class OperacionInquietudTest {
         int result = instance.crearinquietud(codigoestudiante, codigoasignatura, tema, descp);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
+    }
+    
+    //Prueba Reporte Inquietudes frecuentes por asignatura
+    @Test
+    public void testReporteInquietudesFrecuentesAsignatura(){
+        String idAsignatura="G8F0071";
+        Inquietud inquietud1 = new Inquietud(3, idAsignatura, "Derivada Implicita", "que es eso");
+        Inquietud inquietud2 = new Inquietud(4, idAsignatura, "Derivada parcial", "repaso parcial");
+        Inquietud inquietud3 = new Inquietud(5, idAsignatura, "ipv6", "rip y ospf");
+        Inquietud inquietud4 = new Inquietud(6, idAsignatura, "Invariantes", "Me varia el invariante");
+        List<Inquietud> inquietudes = new ArrayList<>();
+        inquietudes.add(inquietud1);
+        inquietudes.add(inquietud2);
+        inquietudes.add(inquietud3);
+        inquietudes.add(inquietud4);
+        
+        List reporteGenerado= instance.generarReporteAsignatura(idAsignatura);
+        assertArrayEquals(inquietudes.toArray(), reporteGenerado.toArray());
+        assertEquals(inquietudes.size(), reporteGenerado.size(), 0);
+    }
+    
+    //Prueba Reporte Inquietudes frecuentes por asignatura y tema
+    @Test
+    public void testReporteInquietudesFrecuentesAsignaturaTema(){
+        String idAsignatura="G8F0071";
+        String tema="Derivada";
+        Inquietud inquietud1 = new Inquietud(3, idAsignatura, "Derivada Implicita", "que es eso");
+        Inquietud inquietud2 = new Inquietud(4, idAsignatura, "Derivada parcial", "repaso parcial");
+        List<Inquietud> inquietudes = new ArrayList<>();
+        inquietudes.add(inquietud1);
+        inquietudes.add(inquietud2);
+        List reporteGenerado= instance.generarReporteAsignaturaTema(idAsignatura,tema);
+        assertSame(inquietudes, reporteGenerado);
+        assertEquals(reporteGenerado.size(), inquietudes.size(), 0);
+    }
+    
+    //Prueba Reporte Inquietudes frecuentes con asignatura vacia
+    @Test
+    public void testReporteInquietudesFrecuentesAsignaturaVacia(){
+        String idAsignatura="";
+        List inquietudes=null;
+        List reporteGenerado= instance.generarReporteAsignatura(idAsignatura);
+        assertEquals(inquietudes, reporteGenerado);
     }
     /**
      * Test of verinquietud method, of class OperacionInquietud.

@@ -8,10 +8,14 @@ package Modelos.CRUDEntidades;
 import Conexión.conexion;
 import Modelos.Entidades.Asignatura;
 import Modelos.Entidades.RespuestaInquietud;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 
 /**
  *
@@ -39,6 +43,25 @@ public class CRUDRespuestaInquietud {
         this.sql = "select * from bemonitorfinal.inquietud c left join respuestainquietud d on c.idinquietud=d.idinquietud left join estudiante e on d.codigoMonitor=e.codigo where c.codigoEstudiante="+codigoEstudiante+";";
         List datos = this.jdbcTemplate.queryForList(sql);
         return datos;
+    }
+
+    public RespuestaInquietud consultarUna(int idInquietud, int codigoMonitor) {
+        this.sql="select * from respuestainquietud where idinquietud=" + idInquietud+" and codigoMonitor="+codigoMonitor+";";
+        return (RespuestaInquietud) this.jdbcTemplate.query(sql, new ResultSetExtractor<RespuestaInquietud>() {
+            @Override
+            public RespuestaInquietud extractData(ResultSet rs) throws SQLException, DataAccessException {
+                    if(rs.next()){
+                        RespuestaInquietud aux = new RespuestaInquietud();
+                        aux.setIdRespuesta(rs.getInt(1));
+                        aux.setIdInquetud(rs.getInt(2));
+                        aux.setCodigoEstudiante(rs.getInt(3));
+                        aux.setFechaRespuesta(rs.getDate(4));
+                        aux.setHoraRespuesta(rs.getTime(5));
+                        return aux;
+                    }
+                    return null;
+                }
+        });
     }
 
 

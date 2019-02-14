@@ -8,6 +8,7 @@ package Controladoras.ControladoraDocente;
 import Modelos.Entidades.Inquietud;
 import Modelos.Entidades.RespuestaInquietud;
 import Modelos.CRUDEntidades.CRUDInquietud;
+import Modelos.OperacionesEstudianteMonitor.OperacionInquietud;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -22,40 +23,19 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class controladoraGenerarReporteInquietudesFrecuentes {
-    private CRUDInquietud crudInq;
-    
+
+    private OperacionInquietud crudInq;
+
     @RequestMapping(value = "generarReporteInquietudesFrecuentes.htm", method = RequestMethod.GET)
-    public ModelAndView form(HttpServletRequest request)
-    {
-        this.crudInq = new CRUDInquietud();
+    public ModelAndView form(HttpServletRequest request) {
+        this.crudInq = new OperacionInquietud();
         ModelAndView mav = new ModelAndView();
-        Inquietud nueva = new Inquietud();
-        nueva.setCodigoEstudiante(1234);
-        nueva.setCodigoidAsignatura("12345");
-        nueva.setDescripcion("Hola");
-        //nueva.setFechaPublicacion("25 enero 2017");
-        nueva.setIdInquietud(12);
-        nueva.setTema("este");
-        Inquietud nueva2 = new Inquietud();
-        nueva2.setCodigoEstudiante(1234);
-        nueva2.setCodigoidAsignatura("12345");
-        nueva2.setDescripcion("Hola");
-        //nueva.setFechaPublicacion("25 enero 2017");
-        nueva2.setIdInquietud(12);
-        nueva2.setTema("este");
-        LinkedList<Inquietud> uno = new LinkedList<>();
-        uno.add(nueva);
-        uno.add(nueva2);
-        List<Inquietud> datos;
-//        uno.add("1");
-//        uno.add("lenguajes");
-//        uno.add("Lexico");
-//        uno.add("duro");
-//        uno.add("nulo");
-        datos = this.crudInq.reporteInquietudesFrecuentes();
+        String asignatura = request.getParameter("asignatura");
+        String tema = request.getParameter("tema");
+        List<Inquietud> datos = crudInq.generarReporte(asignatura, tema);
         mav.addObject("inquietudesFrecuentes", datos);
         mav.setViewName("generarReporteInquietudesFrecuentes");
         return mav;
     }
-    
+
 }

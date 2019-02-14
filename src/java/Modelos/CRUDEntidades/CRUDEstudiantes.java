@@ -34,6 +34,11 @@ public class CRUDEstudiantes {
         return 0;
     }
 
+    /**
+     * Metodo para consultar la informacion asociada a un estudiante dado su código
+     * @param codigoEstudiante codigo del para el cual se va a generar el reporte
+     * @return estudiante con toda su informacion registrada
+     */
     public Estudiante consultar(int codigoEstudiante) {
         this.sql="select * from estudiante where codigo=" + codigoEstudiante+";";
         return (Estudiante) this.jdbcTemplate.query(sql, new ResultSetExtractor<Estudiante>() {

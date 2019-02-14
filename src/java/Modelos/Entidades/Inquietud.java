@@ -5,11 +5,7 @@
  */
 package Modelos.Entidades;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -29,13 +25,11 @@ public class Inquietud
     }
 
     /**
-     * 
-     * @param idInquietud
-     * @param codigoEstudiante
-     * @param codigoidAsignatura
-     * @param tema
-     * @param Descripcion
-     * @param fechaPublicacion 
+     * Constructor de una inquietud
+     * @param codigoEstudiante identificador del estudiante que esta realizando la inquietud
+     * @param codigoidAsignatura identificador de la asignatura para la cual se esta generando la inquietud
+     * @param tema tema de la inquietud generada
+     * @param Descripcion descripcion de la inquietud generada
      */
     public Inquietud(int codigoEstudiante, String codigoidAsignatura, String tema, String Descripcion)
     {
@@ -142,14 +136,14 @@ public class Inquietud
     /**
      * @param fechaPublicacion the fechaPublicacion to set
      */
-    public void setFechaPublicacion(String fechaPublicacion)
+    public void setFechaPublicacion(Date fechaPublicacion)
     {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
-        try {
-            this.fechaPublicacion = formatter.parse(fechaPublicacion);
-        } catch (ParseException ex) {
-            Logger.getLogger(Inquietud.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.fechaPublicacion=fechaPublicacion;
+    }
+
+    public boolean equals(int codigoEstudiante) {
+        return this.codigoEstudiante == codigoEstudiante; //To change body of generated methods, choose Tools | Templates.
+        
     }
     
     

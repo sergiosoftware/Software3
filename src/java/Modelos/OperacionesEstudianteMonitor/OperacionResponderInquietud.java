@@ -9,8 +9,6 @@ import Modelos.CRUDEntidades.CRUDInquietud;
 import Modelos.CRUDEntidades.CRUDRespuestaInquietud;
 import Modelos.Entidades.RespuestaInquietud;
 import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -38,33 +36,42 @@ public class OperacionResponderInquietud {
      * @param fechaRespuesta la fecha que el estudiante propuso la reunión para
      * responder
      * @param hora la hora a la que la reunión quedó programada
-     * @return
+     * @return 0 si no se pudo registrar la respuesta para la inquietud, 1 en caso contrario
      */
-    public int guardarRespuestaInquietud(int idInquietud, int codigoEstudiante, Date fechaRespuesta, Time hora) {
+    public int guardarRespuestaInquietud(int idInquietud, int codigoEstudiante, Date fechaRespuesta, Time hora, String preRespuesta) {
         int result = 0;
         Date fechaSistema = new Date();
-        Time horaActual = new Time(fechaSistema.getHours(),fechaSistema.getMinutes(),fechaSistema.getSeconds());
-        System.out.println("fecha sistema: "+fechaSistema + " hora sistema: "+horaActual);
-        System.out.println("fecha respuesta: "+fechaRespuesta + " hora respuesta: "+hora);
-        if (idInquietud == 0 || codigoEstudiante == 0 || fechaRespuesta == null || hora == null) {
+        Time horaActual = new Time(fechaSistema.getHours(), fechaSistema.getMinutes(), fechaSistema.getSeconds());
+        if (idInquietud == 0 || codigoEstudiante == 0 || preRespuesta.isEmpty()) {
             result = 0;
-        }
-        else if(fechaSistema.equals(fechaRespuesta) && horaActual.after(fechaSistema)){
-            result=inquietudResponder.guardar(idInquietud, codigoEstudiante, fechaRespuesta, hora);
-            if(result==1){
-                result=inquietudActualizada.editarEstadoInquietud(idInquietud);
+        } else if (fechaRespuesta != null) {
+            if (fechaSistema.equals(fechaRespuesta) && horaActual.after(fechaSistema)) {
+                result = inquietudResponder.guardarConFecha(idInquietud, codigoEstudiante, fechaRespuesta, hora,preRespuesta);
+                if (result == 1) {
+                    result = inquietudActualizada.editarEstadoInquietud(idInquietud);
+                }
+            } else if (fechaSistema.before(fechaRespuesta)) {
+                result = inquietudResponder.guardarConFecha(idInquietud, codigoEstudiante, fechaRespuesta, hora,preRespuesta);
+                if (result == 1) {
+                    result = inquietudActualizada.editarEstadoInquietud(idInquietud);
+                }
             }
         }
-        else if(fechaSistema.before(fechaRespuesta)){
-            result=inquietudResponder.guardar(idInquietud, codigoEstudiante, fechaRespuesta, hora);
-            if(result==1){
-                result=inquietudActualizada.editarEstadoInquietud(idInquietud);
-            }
+        else{
+            result = inquietudResponder.guardarSinFecha(idInquietud, codigoEstudiante,preRespuesta);
+            if (result == 1) {
+                    result = inquietudActualizada.editarEstadoInquietud(idInquietud);
+                }
         }
         return result;
 
     }
 
+    /**
+     * Método para consultar las respuestas que a dado un estudiante a inquietudes planteadas
+     * @param codigoEstudiante codigo del estudiante que ha dado respuesta a las inquietudes
+     * @return lista con las respuestas a iinquietud que a registrado un estudiante
+     */
     public List consultarRespuestas(int codigoEstudiante) {
         List respuestas = inquietudResponder.consultarRespuestas(codigoEstudiante);
         if (respuestas == null) {
@@ -74,7 +81,13 @@ public class OperacionResponderInquietud {
         }
 
     }
-
+    
+    /**
+     * Metodo para consultar una respuesta en especifico que a dado un estudiante a una inquietud
+     * @param idInquietud identificar de la inquietud que se va a onsultar
+     * @param codigoEstudiante codigo del estudiante que se va a relacionar con la inquietud que se va a consultar
+     * @return informacion de una respuesta a una inquietud por parte de un estudiante
+     */
     RespuestaInquietud consultarUnaRespuesta(int idInquietud, int codigoEstudiante) {
         CRUDRespuestaInquietud verRespuesta = new CRUDRespuestaInquietud();
         RespuestaInquietud nueva = verRespuesta.consultarUna(idInquietud, codigoEstudiante);

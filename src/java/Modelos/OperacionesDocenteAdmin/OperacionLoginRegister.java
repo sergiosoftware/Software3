@@ -23,6 +23,12 @@ public class OperacionLoginRegister {
     }
     
 
+    /**
+     * Método para verificar la existencia de un usuario en los registros del sistema
+     * @param username nombre de usuario para cual se va a iniciar la sesion
+     * @param password contraseña del usuario que desea acceder al sistema
+     * @return informacion del estudiante que se encuentra registrada en el sistema para tener acceso al mismo
+     */
     public Estudiante iniciarSesion(String username, String password) {
         String newpass=encriptar(password);
         session= new CRUDSesiones();
@@ -31,6 +37,11 @@ public class OperacionLoginRegister {
         return estudiante;
     }
 
+    /**
+     * Método para encriptar la contraseña de un usuario
+     * @param password contraseña que se va a encriptar
+     * @return password encriptado en formato MD5
+     */
     private String encriptar(String password) {
         String newpass="";
         try {

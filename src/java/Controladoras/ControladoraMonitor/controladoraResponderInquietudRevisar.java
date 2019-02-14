@@ -31,7 +31,11 @@ public class controladoraResponderInquietudRevisar
     OperacionInquietud inquietud;
     OperacionResponderInquietud respuestaInquietud;
     
-    
+    /**
+     * Metodo para rediccionar hacia la vista solicitada
+     * @param request metodo de la solicitud
+     * @return redireccionamiento a la vista responderInquietudRevisar
+     */
     @RequestMapping(value = "responderInquietudRevisar.htm", method = RequestMethod.GET)
     public ModelAndView home(HttpServletRequest request){
         
@@ -44,6 +48,10 @@ public class controladoraResponderInquietudRevisar
         return mav;
     }
     
+    /**
+     * Metodo para rediccionar hacia la vista solicitada
+     * @return redireccionamiento a la vista responderInquietud
+     */
     @RequestMapping(value = "responderInquietud.htm", method = RequestMethod.GET)
     public ModelAndView home(){
         
@@ -53,18 +61,21 @@ public class controladoraResponderInquietudRevisar
         return mav;
     }
     
+    /**
+     * Metodo para redireccionar a la vista solicitada
+     * @param request
+     * @return redireccionamiento a la vista responderInquietud
+     */
     @RequestMapping(value = "responderInquietud.htm", method = RequestMethod.POST)
     public ModelAndView form(HttpServletRequest request) {
         String fecha = request.getParameter("fechaRespuesta");
         String hora = request.getParameter("horaInicioRespuesta");
-        System.out.println(fecha);
-        System.out.println(hora);
+        String preRespuesta=request.getParameter("preRespuesta");
         LocalDate fechaR = LocalDate.of(Integer.parseInt(fecha.substring(0, 4)), Integer.parseInt(fecha.substring(5, 7)),Integer.parseInt(fecha.substring(8, 10)));
         Date fechaRespuesta= new Date(fechaR.getYear()-1900, fechaR.getMonthValue()+1, fechaR.getDayOfMonth());
-        System.out.println(fechaRespuesta);
         Time horaRespuesta = new Time(Integer.parseInt(hora.substring(0, 2)), Integer.parseInt(hora.substring(3, 5)), 0);
         this.respuestaInquietud = new OperacionResponderInquietud();
-        this.respuestaInquietud.guardarRespuestaInquietud(Integer.parseInt(request.getParameter("inquietud")), Integer.parseInt(request.getParameter("codigo")), fechaRespuesta, horaRespuesta);
+        this.respuestaInquietud.guardarRespuestaInquietud(Integer.parseInt(request.getParameter("inquietud")), Integer.parseInt(request.getParameter("codigo")), fechaRespuesta, horaRespuesta,preRespuesta);
         ModelAndView mav = new ModelAndView();
         mav.setViewName("responderInquietud");
         mav.addObject("respuesta", "Su respuesta fue publicada con exito");

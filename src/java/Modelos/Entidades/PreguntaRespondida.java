@@ -5,6 +5,8 @@
  */
 package Modelos.Entidades;
 
+import java.beans.PropertyChangeSupport;
+
 /**
  *
  * @author JulianCamilo
@@ -27,21 +29,42 @@ public class PreguntaRespondida {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public int getIdInquietud() {
-        return idInquietud;
-    }
-
+    /**
+     * @return the monitorRespondio
+     */
     public Estudiante getMonitorRespondio() {
         return monitorRespondio;
     }
 
-    public void setIdInquietud(int idInquietud) {
-        this.idInquietud = idInquietud;
+    /**
+     * @param monitorRespondio the monitorRespondio to set
+     */
+    public void setMonitorRespondio(Estudiante monitorRespondio) {
+        Modelos.Entidades.Estudiante oldMonitorRespondio = this.monitorRespondio;
+        this.monitorRespondio = monitorRespondio;
+        propertyChangeSupport.firePropertyChange(PROP_MONITORRESPONDIO, oldMonitorRespondio, monitorRespondio);
     }
 
-    public void setMonitorRespondio(Estudiante monitorRespondio) {
-        this.monitorRespondio = monitorRespondio;
+    /**
+     * @return the idInquietud
+     */
+    public int getIdInquietud() {
+        return idInquietud;
     }
+
+    /**
+     * @param idInquietud the idInquietud to set
+     */
+    public void setIdInquietud(int idInquietud) {
+        int oldIdInquietud = this.idInquietud;
+        this.idInquietud = idInquietud;
+        propertyChangeSupport.firePropertyChange(PROP_IDINQUIETUD, oldIdInquietud, idInquietud);
+    }
+    private final transient PropertyChangeSupport propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
+    public static final String PROP_MONITORRESPONDIO = "monitorRespondio";
+    public static final String PROP_IDINQUIETUD = "idInquietud";
+
+    
     
     
     

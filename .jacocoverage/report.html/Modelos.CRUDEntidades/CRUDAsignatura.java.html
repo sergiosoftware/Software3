@@ -20,10 +20,10 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 public class CRUDAsignatura {
     private JdbcTemplate jdbcTemplate;
 
-<span class="nc" id="L23">    public CRUDAsignatura() {</span>
-<span class="nc" id="L24">        conexion con = new conexion();</span>
-<span class="nc" id="L25">        this.jdbcTemplate = new JdbcTemplate(con.conectar());</span>
-<span class="nc" id="L26">    }</span>
+<span class="fc" id="L23">    public CRUDAsignatura() {</span>
+<span class="fc" id="L24">        conexion con = new conexion();</span>
+<span class="fc" id="L25">        this.jdbcTemplate = new JdbcTemplate(con.conectar());</span>
+<span class="fc" id="L26">    }</span>
     
     /**
      * Funcion para registrar asignatura en la base de datos
@@ -62,16 +62,16 @@ public class CRUDAsignatura {
      * @return retorna una asignatura
      */
     public Asignatura seleccionarAsignatura(String Codigo) {
-<span class="nc" id="L65">        final Asignatura asig = new Asignatura();</span>
-<span class="nc" id="L66">        String quer = &quot;SELECT * FROM asignatura WHERE codigo=&quot; + Codigo+&quot;;&quot;;</span>
-<span class="nc" id="L67">        return (Asignatura) jdbcTemplate.query(quer, new ResultSetExtractor&lt;Asignatura&gt;() {</span>
+<span class="fc" id="L65">        final Asignatura asig = new Asignatura();</span>
+<span class="fc" id="L66">        String quer = &quot;SELECT * FROM asignatura WHERE codigo=&quot; +'&quot;'+ Codigo+'&quot;'+&quot;;&quot;;</span>
+<span class="fc" id="L67">        return (Asignatura) jdbcTemplate.query(quer, new ResultSetExtractor&lt;Asignatura&gt;() {</span>
             public Asignatura extractData(ResultSet rs) throws SQLException, DataAccessException {
-<span class="nc bnc" id="L69" title="All 2 branches missed.">                if (rs.next()) {</span>
-<span class="nc" id="L70">                    asig.setCodigo(rs.getString(&quot;codigo&quot;));</span>
-<span class="nc" id="L71">                    asig.setNombre(rs.getString(&quot;nombre&quot;));</span>
-<span class="nc" id="L72">                    asig.setCreditos (Integer.parseInt(rs.getString(&quot;creditos&quot;)));</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">                if (rs.next()) {</span>
+<span class="fc" id="L70">                    asig.setCodigo(rs.getString(&quot;codigo&quot;));</span>
+<span class="fc" id="L71">                    asig.setNombre(rs.getString(&quot;nombre&quot;));</span>
+<span class="fc" id="L72">                    asig.setCreditos (Integer.parseInt(rs.getString(&quot;creditos&quot;)));</span>
                 }
-<span class="nc" id="L74">                return asig;</span>
+<span class="fc" id="L74">                return asig;</span>
             }
 
         }

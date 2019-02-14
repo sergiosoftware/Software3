@@ -22,6 +22,11 @@ public class controladoraListarPublicaciones {
     
     OperacionResponderInquietud respuestaInquietud;
     
+    /**
+     * Metodo para redireccionar a la vista solicitada
+     * @param request
+     * @return redireccionamiento a la vista misPublicaciones
+     */
     @RequestMapping(value = "misPublicaciones.htm", method = RequestMethod.GET)
     public ModelAndView home(HttpServletRequest request){
         

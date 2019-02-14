@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 import org.junit.Ignore;
 
 /**
- *
+ * Test's CRUD Pregunta
  * @author JulianCamilo
  */
 public class CRUDPreguntaTest {
@@ -47,7 +47,6 @@ public class CRUDPreguntaTest {
      */
     @Test
     public void testRegistrarPreguntaCorrectamente() {
-        System.out.println("registrarPregunta");
         Pregunta p = new Pregunta(0, "enunciado prueba", "C:/Descktop");
         Asignatura a = new Asignatura("12345", "asignaturaPrueba", 3);
         CRUDPregunta instance = new CRUDPregunta();
@@ -65,7 +64,6 @@ public class CRUDPreguntaTest {
      */
     @Test
     public void testEliminarPreguntaFallido() {
-        System.out.println("eliminarPregunta");
         int idPregunta = 0;
         CRUDPregunta instance = new CRUDPregunta();
         int expResult = 0;
@@ -80,7 +78,6 @@ public class CRUDPreguntaTest {
      */
     @Ignore
     public void testEditarPregunta() {
-        System.out.println("editarPregunta");
         Pregunta p = null;
         Asignatura a = null;
         int idPregunta = 0;
@@ -99,7 +96,6 @@ public class CRUDPreguntaTest {
      */
     @Test
     public void testSeleccionarPreguntaFallido() {
-        System.out.println("seleccionarPregunta");
         int idPregunta = 5;
         CRUDPregunta instance = new CRUDPregunta();
         Pregunta expResult = null;

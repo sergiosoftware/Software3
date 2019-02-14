@@ -19,7 +19,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Test's operaciones Responder inquietud
  * @author JulianCamilo
  */
 public class OperacionResponderInquietudTest {
@@ -46,18 +46,19 @@ public class OperacionResponderInquietudTest {
     }
 
     /**
-     * Prueba para responder una pregunta normal
+     * Prueba para responder una pregunta normal, con los parámetros definidos en los requisitos técnicos del aplicativo 
      */
     @Test
     public void testGuardarRespuestaInquietudNormal() {
         int idInquietud = 1;
         int codigoEstudiante = 1701122317;
-        Date fechaRespuesta= new Date(119, 1, 6);
+        Date fechaRespuesta= new Date(119, 2, 6);
         Time hora = new Time(9, 0, 0);
+        String preRespuesta="visita un enlace en youtube";
         int expResult = 1;
-        int result = instance.guardarRespuestaInquietud(idInquietud, codigoEstudiante, fechaRespuesta, hora);
+        int result = instance.guardarRespuestaInquietud(idInquietud, codigoEstudiante, fechaRespuesta, hora,preRespuesta);
         RespuestaInquietud respuestaGuardada=instance.consultarUnaRespuesta(idInquietud,codigoEstudiante);
-        RespuestaInquietud respuestaEsperada= new RespuestaInquietud(idInquietud, codigoEstudiante, fechaRespuesta, hora);
+        RespuestaInquietud respuestaEsperada= new RespuestaInquietud(idInquietud, codigoEstudiante, fechaRespuesta, hora,"visita un enlace de youtube");
         assertEquals(expResult, result);
         assertEquals(respuestaEsperada.getCodigoEstudiante(), respuestaGuardada.getCodigoEstudiante());
         assertEquals(respuestaEsperada.getFechaRespuesta(), respuestaGuardada.getFechaRespuesta());
@@ -66,7 +67,7 @@ public class OperacionResponderInquietudTest {
     }
     
     /**
-     * Prueba para responder una pregunta fecha null
+     * Prueba para responder una pregunta sin indicar la fecha, es decir la fecha null
      */
     @Test
     public void testGuardarRespuestaInquietudFechaNull() {
@@ -75,20 +76,29 @@ public class OperacionResponderInquietudTest {
         Date fechaRespuesta = null;
         Time hora = new Time(12, 0, 0);
         int expResult = 0;
-        int result = instance.guardarRespuestaInquietud(idInquietud, codigoEstudiante, fechaRespuesta, hora);
+        int tamanoActual = instance.consultarRespuestas(codigoEstudiante).size();
+        int result = instance.guardarRespuestaInquietud(idInquietud, codigoEstudiante, fechaRespuesta, hora,"visita un enlace");
+        int tamanoNuevo = instance.consultarRespuestas(codigoEstudiante).size();
         assertEquals(expResult, result);
+        assertEquals(tamanoActual, tamanoNuevo);
         // TODO review the generated test code and remove the default call to fail.  
     }
-    
+    /**
+     * Prueba para responder una inquietud con fecha igual a la actual, pero hora menor a la actual
+     */
     @Test
     public void testGuardarRespuestaInquietudFechaIgualActualHoraMenor() {
         int idInquietud = 3;
         int codigoEstudiante = 1701310061;
         Date fechaRespuestaActual = new Date();
         Time horaMenorActual = new Time(6, 0, 0);
+        String preRespuesta="preRespuesta";
         int expResult = 0;
-        int result = instance.guardarRespuestaInquietud(idInquietud, codigoEstudiante, fechaRespuestaActual, horaMenorActual);
+        int tamanoActual = instance.consultarRespuestas(codigoEstudiante).size();
+        int result = instance.guardarRespuestaInquietud(idInquietud, codigoEstudiante, fechaRespuestaActual, horaMenorActual,preRespuesta);
+        int tamanoNuevo = instance.consultarRespuestas(codigoEstudiante).size();
         assertEquals(expResult, result);
+        assertEquals(tamanoActual, tamanoNuevo);
         // TODO review the generated test code and remove the default call to fail.  
     }
     

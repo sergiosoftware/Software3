@@ -7,47 +7,79 @@ package Modelos.OperacionesEstudianteMonitor;
 
 import Modelos.CRUDEntidades.CRUDInquietud;
 import Modelos.CRUDEntidades.CRUDRespuestaInquietud;
+import Modelos.Entidades.RespuestaInquietud;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
 import java.util.Date;
-import javax.json.JsonArray;
-import javax.json.JsonValue;
+import java.util.List;
 
 /**
  *
  * @author SALDARRIAGA VILLADA
  */
-public class OperacionResponderInquietud
-{
+public class OperacionResponderInquietud {
+
     private CRUDRespuestaInquietud inquietudResponder;
     private CRUDInquietud inquietudActualizada;
-    
-<span class="fc" id="L24">    public OperacionResponderInquietud() {</span>
-<span class="fc" id="L25">        this.inquietudResponder= new CRUDRespuestaInquietud();</span>
-<span class="fc" id="L26">        this.inquietudActualizada= new CRUDInquietud();</span>
-<span class="fc" id="L27">    }</span>
+
+<span class="fc" id="L26">    public OperacionResponderInquietud() {</span>
+<span class="fc" id="L27">        this.inquietudResponder = new CRUDRespuestaInquietud();</span>
+<span class="fc" id="L28">        this.inquietudActualizada = new CRUDInquietud();</span>
+<span class="fc" id="L29">    }</span>
 
     /**
-     * Método que registra la respuesta a una inquietud, y actualiza su estado a respondida
-     * El sistema debe validar que la fecha sea mayor a la actual o igual
-     * Si la fecha es igual, debe validar que la hora sea mayor
+     * Método que registra la respuesta a una inquietud, y actualiza su estado a
+     * respondida El sistema debe validar que la fecha sea mayor a la actual o
+     * igual Si la fecha es igual, debe validar que la hora sea mayor
+     *
      * @param idInquietud el id de la inquietud a responder
      * @param codigoEstudiante el estudiante que realiza la respuesta
-     * @param fechaRespuesta la fecha que el estudiante propuso la reunión para responder
+     * @param fechaRespuesta la fecha que el estudiante propuso la reunión para
+     * responder
      * @param hora la hora a la que la reunión quedó programada
-     * @return 
+     * @return
      */
     public int guardarRespuestaInquietud(int idInquietud, int codigoEstudiante, Date fechaRespuesta, Time hora) {
-<span class="pc bpc" id="L40" title="3 of 8 branches missed.">        if(idInquietud==0 || codigoEstudiante==0 || fechaRespuesta==null||hora==null){</span>
-<span class="fc" id="L41">            return 0;</span>
+<span class="fc" id="L44">        int result = 0;</span>
+<span class="fc" id="L45">        Date fechaSistema = new Date();</span>
+<span class="fc" id="L46">        Time horaActual = new Time(fechaSistema.getHours(),fechaSistema.getMinutes(),fechaSistema.getSeconds());</span>
+<span class="fc" id="L47">        System.out.println(&quot;fecha sistema: &quot;+fechaSistema + &quot; hora sistema: &quot;+horaActual);</span>
+<span class="fc" id="L48">        System.out.println(&quot;fecha respuesta: &quot;+fechaRespuesta + &quot; hora respuesta: &quot;+hora);</span>
+<span class="pc bpc" id="L49" title="3 of 8 branches missed.">        if (idInquietud == 0 || codigoEstudiante == 0 || fechaRespuesta == null || hora == null) {</span>
+<span class="fc" id="L50">            result = 0;</span>
         }
-        else{
-<span class="fc" id="L44">            int result=inquietudResponder.guardar(idInquietud,codigoEstudiante,fechaRespuesta,hora);</span>
-<span class="pc bpc" id="L45" title="1 of 2 branches missed.">            if(result==1){</span>
-<span class="fc" id="L46">                result=inquietudActualizada.editarEstadoInquietud(idInquietud);</span>
+<span class="pc bpc" id="L52" title="3 of 4 branches missed.">        else if(fechaSistema.equals(fechaRespuesta) &amp;&amp; horaActual.after(fechaSistema)){</span>
+<span class="nc" id="L53">            result=inquietudResponder.guardar(idInquietud, codigoEstudiante, fechaRespuesta, hora);</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            if(result==1){</span>
+<span class="nc" id="L55">                result=inquietudActualizada.editarEstadoInquietud(idInquietud);</span>
             }
-<span class="fc" id="L48">            return result;</span>
+        }
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        else if(fechaSistema.before(fechaRespuesta)){</span>
+<span class="fc" id="L59">            result=inquietudResponder.guardar(idInquietud, codigoEstudiante, fechaRespuesta, hora);</span>
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">            if(result==1){</span>
+<span class="fc" id="L61">                result=inquietudActualizada.editarEstadoInquietud(idInquietud);</span>
             }
+        }
+<span class="fc" id="L64">        return result;</span>
+
     }
-    
+
+    public List consultarRespuestas(int codigoEstudiante) {
+<span class="fc" id="L69">        List respuestas = inquietudResponder.consultarRespuestas(codigoEstudiante);</span>
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">        if (respuestas == null) {</span>
+<span class="nc" id="L71">            return null;</span>
+        } else {
+<span class="fc" id="L73">            return respuestas;</span>
+        }
+
+    }
+
+    RespuestaInquietud consultarUnaRespuesta(int idInquietud, int codigoEstudiante) {
+<span class="fc" id="L79">        CRUDRespuestaInquietud verRespuesta = new CRUDRespuestaInquietud();</span>
+<span class="fc" id="L80">        RespuestaInquietud nueva = verRespuesta.consultarUna(idInquietud, codigoEstudiante);</span>
+<span class="fc" id="L81">        return nueva;</span>
+    }
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

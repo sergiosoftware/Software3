@@ -5,6 +5,7 @@
  */
 package Modelos.OperacionesEstudianteMonitor;
 
+import Modelos.CRUDEntidades.CRUDEstudiantes;
 import java.util.LinkedList;
 import Modelos.Entidades.*;
 import java.util.List;
@@ -12,9 +13,10 @@ import java.util.List;
  *
  * @author sergioandres
  */
-<span class="nc" id="L15">public class OperacionesEstudianteMonitor {</span>
+<span class="nc" id="L16">public class OperacionesEstudianteMonitor {</span>
  
-<span class="nc" id="L17">    LinkedList&lt;Estudiante&gt; monitores = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L18">    LinkedList&lt;Estudiante&gt; monitores = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L19">    CRUDEstudiantes estudiantes = new CRUDEstudiantes();</span>
     
     /**
      * Método para listar los estudiantes que son monitores y están registrados en el sistema
@@ -24,14 +26,22 @@ import java.util.List;
      */
     public LinkedList&lt;Estudiante&gt; obtenerMonitores(List&lt;Estudiante&gt; totalEstudiantes)
     {
-<span class="nc bnc" id="L27" title="All 2 branches missed.">        for (Estudiante estudianteIterador:totalEstudiantes)</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">        for (Estudiante estudianteIterador:totalEstudiantes)</span>
         {
-<span class="nc bnc" id="L29" title="All 2 branches missed.">            if (estudianteIterador.getMonitor()!=0)</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            if (estudianteIterador.isMonitor())</span>
             {
-<span class="nc" id="L31">                this.monitores.add(estudianteIterador);</span>
+<span class="nc" id="L33">                this.monitores.add(estudianteIterador);</span>
             }
-<span class="nc" id="L33">        }</span>
-<span class="nc" id="L34">        return monitores;</span>
+<span class="nc" id="L35">        }</span>
+<span class="nc" id="L36">        return monitores;</span>
+    }
+
+    public Estudiante consultarEstudiante(int codigoEstudiante) {
+<span class="nc" id="L40">        Estudiante usuario=estudiantes.consultar(codigoEstudiante);</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        if(usuario.getNombre()==null){</span>
+<span class="nc" id="L42">            usuario=null;</span>
+        }
+<span class="nc" id="L44">        return usuario;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

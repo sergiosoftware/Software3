@@ -9,6 +9,8 @@ import Conexión.conexion;
 import Modelos.Entidades.Inquietud;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -31,6 +33,14 @@ public class CRUDInquietud {
         this.sql = "";
     }
 
+    /**
+     * Método para registrar una nueva inquietud en el sistema
+     * @param codigoestudiante Identificador del estudiante que esta realizando la inquietud
+     * @param codigoasignatura Identificador de la asignatura para la cual se esta registrando la inquietud
+     * @param tema Tema de lnquietud registrada
+     * @param descrip Descripcion de la inquietud registrada
+     * @return 
+     */
     public int IngresarInquietud(int codigoestudiante, String codigoasignatura, String tema, String descrip) {
         Inquietud nuevainquietud = new Inquietud(codigoestudiante, codigoasignatura, tema, descrip);
         this.sql = "insert into inquietud(codigoEstudiante,codigoAsignatura,tema,descripcion,fechaPublicacion) values ("
@@ -40,6 +50,11 @@ public class CRUDInquietud {
         return resul;
     }
 
+    /**
+     * Método para consultar una unica inquietud dado su idee¿ntificador
+     * @param idInquietud identificador de la inquietud que va a ser consultada
+     * @return inquietud con toda la informacion registrada en el sistema
+     */
     public Inquietud consultaruna(int idInquietud) {
         this.sql = "select * from inquietud where idinquietud=" + idInquietud + ";";
         return (Inquietud) this.jdbcTemplate.query(sql, new ResultSetExtractor<Inquietud>() {
@@ -52,7 +67,7 @@ public class CRUDInquietud {
                     aux.setCodigoidAsignatura(rs.getString(3));
                     aux.setTema(rs.getString(4));
                     aux.setDescripcion(rs.getString(5));
-                    aux.setFechaPublicacion(rs.getString(6));
+                    aux.setFechaPublicacion(rs.getDate(6));
                     return aux;
                 }
                 return null;
@@ -60,12 +75,25 @@ public class CRUDInquietud {
         });
     }
 
+    /**
+     * Método para generar un reporte con todas las inquietudes registradas en el sistema
+     * @return lista con todas las inquietudes registrada en el sistema
+     */
     public List consultarTodas() {
         this.sql = "select * from inquietud inner join estudiante on codigoEstudiante=codigo order by idinquietud desc";
         List datos = this.jdbcTemplate.queryForList(sql);
         return datos;
     }
 
+    /**
+     * Método para modificar los datos de un inquietud registrada en el sistema
+     * @param idinquietud identificador de la inquietud que va a ser modificada
+     * @param codigoestudiante codigo del estudiante que va a realzar la inuqietud
+     * @param codigoasignatura código de la asignatura para la cual se realiza la inquietud
+     * @param tema tema de la inquietud
+     * @param descrip descripcion de la inquietud
+     * @return 
+     */
     public int editarInquietud(int idinquietud, int codigoestudiante, String codigoasignatura, String tema, String descrip) {
         Inquietud nuevainquietud = new Inquietud(codigoestudiante, codigoasignatura, tema, descrip);
         this.sql = "update inquietud set codigoestudiante=" + nuevainquietud.getCodigoEstudiante() + ",codigoasignatura=" + nuevainquietud.getCodigoidAsignatura()
@@ -75,46 +103,47 @@ public class CRUDInquietud {
         return result;
     }
 
+    /**
+     * Método para eliminar una inquietud registrada en el sistema
+     * @param idinquietud identificador de la inquietud que va a ser eliminada 
+     * @return 
+     */
     public int eliminarinquietud(int idinquietud) {
         this.sql = "delete from inquietud where idinquietud=" + idinquietud + ";";
         int result = this.jdbcTemplate.update(sql);
         return result;
     }
-
-    public List reporteInquietudesFrecuentes() {
-        this.sql = "select codigoasignatura,tema,descripcion,fechaPublicacion from inquietud;";
-        this.sql = "select codigoAsignatura,tema,descripcion,fechaPublicacion from inquietud  where codigoAsignatura=\"G8F0071\";";
-        List<Inquietud> datos = this.jdbcTemplate.query(sql, new RowMapper<Inquietud>() {
-            @Override
-            public Inquietud mapRow(ResultSet rs, int i) throws SQLException {
-                //To change body of generated methods, choose Tools | Templates.
-                System.out.println(rs);
-                Inquietud nueva = new Inquietud();
-                nueva.setCodigoidAsignatura(rs.getString("codigoasignatura"));
-                nueva.setTema(rs.getString("tema"));
-                nueva.setDescripcion(rs.getString("descripcion"));
-                nueva.setFechaPublicacion(rs.getDate("fechaPublicacion").toString());
-                return nueva;
-            }
-        });
-
-        return datos;
-    }
-
-    public List reporteInquietudesFrecuentesAsignatura(String codigoAsignatura) {
+    
+    /**
+     * Método para generar un reporte con inquietudes de una asignatura
+     * @param codigoAsignatura codigo de la asignatura para la cual se va a generar el reporte
+     * @return lista con las inquietudes registradas en el sistema para una asignatura
+     */    
+    public List<Inquietud> reporteInquietudesFrecuentesAsignatura(String codigoAsignatura) {
         this.sql = "select codigoEstudiante,codigoAsignatura,tema,descripcion,fechaPublicacion from inquietud where codigoAsignatura=" + '"'+codigoAsignatura+'"' + ";";
         List datos = this.jdbcTemplate.queryForList(sql);
         return datos;
     }
     
-    public List reporteInquietudesFrecuentesAsignaturaTema(String codigoAsignatura, String Tema) {
+    /**
+     * Método para generar un reporte con inquietudes de una asignatura ademas de un tema
+     * @param codigoAsignatura codigo de la asignatura para la cual se va a generar el reporte
+     * @param Tema Tema de la asignatura que se va a generar el reporte 
+     * @return lista con las inquietudes registradas en el sistema para una asignatura y un tema
+     */
+    public List<Inquietud> reporteInquietudesFrecuentesAsignaturaTema(String codigoAsignatura, String Tema) {
         String operadorLike="%";
         this.sql = "select * from inquietud where codigoAsignatura="+'"' + codigoAsignatura+'"' + " AND tema like '"+operadorLike.concat(Tema).concat(operadorLike)+ "';";
-        System.out.println(this.sql);
         List datos = this.jdbcTemplate.queryForList(sql);
         return datos;
     }
 
+    /**
+     * Método para editar el estado de una inquietud, donde "S" indica que la inquietud ya tiene una respuesta asociada
+     * por defecto la inquietud esta marcada como "N" indicando que no tiene respuesta
+     * @param idInquietud identificador la inquietud que se va a modificar su estado
+     * @return 
+     */
     public int editarEstadoInquietud(int idInquietud) {
         //To change body of generated methods, choose Tools | Templates.}
         Inquietud nuevainquietud = new Inquietud(idInquietud);

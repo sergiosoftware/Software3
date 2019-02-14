@@ -45,6 +45,10 @@ public class controladoraPresentarEvaluacionParaMonitor
         return new Respuesta();
     }
     
+    /**
+     * Metodo para redireccionar a la vista solicitada
+     * @return redireccionar a la vista PresentarEvalaucaionesParaMonitor
+     */
     @RequestMapping(value = "PresentarEvaluacionParaMonitor.htm", method = RequestMethod.GET)
     public ModelAndView form() {
         ModelAndView mav = new ModelAndView();
@@ -53,6 +57,11 @@ public class controladoraPresentarEvaluacionParaMonitor
         return mav;
     }
     
+    /**
+     * Metodo para redirecionar a la vista solicitada
+     * @param model
+     * @return redireccionamiento a la vista PresentarEvaluacionParaMonitor
+     */
     @RequestMapping(value = "PresentarEvaluacionParaMonitor.htm",method = RequestMethod.GET)
     public String addInquietud(ModelMap model){
         model.addAttribute("pregunta", new Pregunta());

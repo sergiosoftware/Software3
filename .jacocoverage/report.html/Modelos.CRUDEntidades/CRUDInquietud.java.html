@@ -9,6 +9,8 @@ import Conexión.conexion;
 import Modelos.Entidades.Inquietud;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,98 +22,107 @@ import org.springframework.jdbc.core.RowMapper;
  * @author JulianCamilo
  */
 public class CRUDInquietud {
-    
+
     private conexion conectar;
     private String sql;
     private JdbcTemplate jdbcTemplate;
 
-<span class="fc" id="L28">    public CRUDInquietud() {</span>
-<span class="fc" id="L29">        this.conectar= new conexion();</span>
-<span class="fc" id="L30">        this.jdbcTemplate= new JdbcTemplate(conectar.conectar());</span>
-<span class="fc" id="L31">        this.sql= &quot;&quot;;</span>
-<span class="fc" id="L32">    }</span>
-    
-    public int IngresarInquietud(int codigoestudiante, String codigoasignatura,String tema, String descrip){
-<span class="fc" id="L35">        Inquietud nuevainquietud = new Inquietud(codigoestudiante,codigoasignatura,tema,descrip);</span>
-<span class="fc" id="L36">        this.sql=&quot;insert into inquietud(codigoestudiante,codigoasignatura,tema,descripcion,fechaPublicacion) values (&quot;+</span>
-<span class="fc" id="L37">                nuevainquietud.getCodigoEstudiante()+&quot;,'&quot;+nuevainquietud.getCodigoidAsignatura()+&quot;','&quot;+nuevainquietud.getTema()+&quot;','&quot;+</span>
-<span class="fc" id="L38">                nuevainquietud.getDescripcion()+&quot;',NOW());&quot;;</span>
-<span class="fc" id="L39">        int resul=this.jdbcTemplate.update(sql);</span>
-<span class="fc" id="L40">        return resul;</span>
+<span class="fc" id="L30">    public CRUDInquietud() {</span>
+<span class="fc" id="L31">        this.conectar = new conexion();</span>
+<span class="fc" id="L32">        this.jdbcTemplate = new JdbcTemplate(conectar.conectar());</span>
+<span class="fc" id="L33">        this.sql = &quot;&quot;;</span>
+<span class="fc" id="L34">    }</span>
+
+    public int IngresarInquietud(int codigoestudiante, String codigoasignatura, String tema, String descrip) {
+<span class="fc" id="L37">        Inquietud nuevainquietud = new Inquietud(codigoestudiante, codigoasignatura, tema, descrip);</span>
+<span class="fc" id="L38">        this.sql = &quot;insert into inquietud(codigoEstudiante,codigoAsignatura,tema,descripcion,fechaPublicacion) values (&quot;</span>
+<span class="fc" id="L39">                + nuevainquietud.getCodigoEstudiante() + &quot;,&quot;+'&quot;' + nuevainquietud.getCodigoidAsignatura() + '&quot;'+&quot;,&quot;+'&quot;' + nuevainquietud.getTema() + '&quot;'+&quot;,&quot;</span>
+<span class="fc" id="L40">                +'&quot;'+ nuevainquietud.getDescripcion() +'&quot;'+ &quot;,NOW());&quot;;</span>
+<span class="fc" id="L41">        int resul = this.jdbcTemplate.update(sql);</span>
+<span class="fc" id="L42">        return resul;</span>
     }
-    
-    
-    public Inquietud consultaruna(int idInquietud){
-<span class="fc" id="L45">        this.sql=&quot;select * from inquietud where idinquietud=&quot; + idInquietud+&quot;;&quot;;</span>
-<span class="fc" id="L46">        return (Inquietud) this.jdbcTemplate.query(sql, new ResultSetExtractor&lt;Inquietud&gt;() {</span>
+
+    public Inquietud consultaruna(int idInquietud) {
+<span class="fc" id="L46">        this.sql = &quot;select * from inquietud where idinquietud=&quot; + idInquietud + &quot;;&quot;;</span>
+<span class="fc" id="L47">        return (Inquietud) this.jdbcTemplate.query(sql, new ResultSetExtractor&lt;Inquietud&gt;() {</span>
             @Override
             public Inquietud extractData(ResultSet rs) throws SQLException, DataAccessException {
-<span class="pc bpc" id="L49" title="1 of 2 branches missed.">                    if(rs.next()){</span>
-<span class="fc" id="L50">                        Inquietud aux = new Inquietud();</span>
-<span class="fc" id="L51">                        aux.setIdInquietud(rs.getInt(1));</span>
-<span class="fc" id="L52">                        aux.setCodigoEstudiante(rs.getInt(2));</span>
-<span class="fc" id="L53">                        aux.setCodigoidAsignatura(rs.getString(3));</span>
-<span class="fc" id="L54">                        aux.setTema(rs.getString(4));</span>
-<span class="fc" id="L55">                        aux.setDescripcion(rs.getString(5));</span>
-<span class="fc" id="L56">                        aux.setFechaPublicacion(rs.getString(6));</span>
-<span class="fc" id="L57">                        return aux;</span>
-                    }
-<span class="nc" id="L59">                    return null;</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">                if (rs.next()) {</span>
+<span class="fc" id="L51">                    Inquietud aux = new Inquietud();</span>
+<span class="fc" id="L52">                    aux.setIdInquietud(rs.getInt(1));</span>
+<span class="fc" id="L53">                    aux.setCodigoEstudiante(rs.getInt(2));</span>
+<span class="fc" id="L54">                    aux.setCodigoidAsignatura(rs.getString(3));</span>
+<span class="fc" id="L55">                    aux.setTema(rs.getString(4));</span>
+<span class="fc" id="L56">                    aux.setDescripcion(rs.getString(5));</span>
+<span class="fc" id="L57">                    aux.setFechaPublicacion(rs.getDate(6));</span>
+<span class="fc" id="L58">                    return aux;</span>
                 }
+<span class="nc" id="L60">                return null;</span>
+            }
         });
     }
-    
-    public List consultarTodas(){
-<span class="nc" id="L65">        this.sql = &quot;select * from inquietud order by idinquietud desc&quot;;</span>
-<span class="nc" id="L66">        List datos = this.jdbcTemplate.queryForList(sql);</span>
-<span class="nc" id="L67">        return datos;</span>
+
+    public List consultarTodas() {
+<span class="nc" id="L66">        this.sql = &quot;select * from inquietud inner join estudiante on codigoEstudiante=codigo order by idinquietud desc&quot;;</span>
+<span class="nc" id="L67">        List datos = this.jdbcTemplate.queryForList(sql);</span>
+<span class="nc" id="L68">        return datos;</span>
     }
-    
-    
-    public int editarInquietud(int idinquietud,int codigoestudiante, String codigoasignatura,String tema, String descrip){
-<span class="nc" id="L72">        Inquietud nuevainquietud = new Inquietud(codigoestudiante,codigoasignatura,tema,descrip);</span>
-<span class="nc" id="L73">        this.sql=&quot;update inquietud set codigoestudiante=&quot;+nuevainquietud.getCodigoEstudiante()+&quot;,codigoasignatura=&quot;+nuevainquietud.getCodigoidAsignatura()</span>
-<span class="nc" id="L74">                +&quot;,tema=&quot;+nuevainquietud.getTema()+&quot;,descripcion=&quot;+nuevainquietud.getDescripcion()+&quot;,fechapublicacion=NOW()&quot;</span>
-                +&quot;where idinquietud=&quot;+idinquietud+&quot;;&quot;;
+
+    public int editarInquietud(int idinquietud, int codigoestudiante, String codigoasignatura, String tema, String descrip) {
+<span class="nc" id="L72">        Inquietud nuevainquietud = new Inquietud(codigoestudiante, codigoasignatura, tema, descrip);</span>
+<span class="nc" id="L73">        this.sql = &quot;update inquietud set codigoestudiante=&quot; + nuevainquietud.getCodigoEstudiante() + &quot;,codigoasignatura=&quot; + nuevainquietud.getCodigoidAsignatura()</span>
+<span class="nc" id="L74">                + &quot;,tema=&quot; + nuevainquietud.getTema() + &quot;,descripcion=&quot; + nuevainquietud.getDescripcion() + &quot;,fechapublicacion=NOW()&quot;</span>
+                + &quot;where idinquietud=&quot; + idinquietud + &quot;;&quot;;
 <span class="nc" id="L76">        int result = this.jdbcTemplate.update(sql);</span>
 <span class="nc" id="L77">        return result;</span>
     }
-    
-    public int eliminarinquietud(int idinquietud){
-<span class="fc" id="L81">        this.sql=&quot;delete from inquietud where idinquietud=&quot;+idinquietud+&quot;;&quot;;</span>
+
+    public int eliminarinquietud(int idinquietud) {
+<span class="fc" id="L81">        this.sql = &quot;delete from inquietud where idinquietud=&quot; + idinquietud + &quot;;&quot;;</span>
 <span class="fc" id="L82">        int result = this.jdbcTemplate.update(sql);</span>
-<span class="fc" id="L83">        return result;         </span>
+<span class="fc" id="L83">        return result;</span>
     }
-    
-    public List reporteInquietudesFrecuentes(){
+
+    public List reporteInquietudesFrecuentes() {
 <span class="nc" id="L87">        this.sql = &quot;select codigoasignatura,tema,descripcion,fechaPublicacion from inquietud;&quot;;</span>
-<span class="nc" id="L88">        List&lt;Inquietud&gt; datos = this.jdbcTemplate.query(sql, new RowMapper&lt;Inquietud&gt;() {</span>
+<span class="nc" id="L88">        this.sql = &quot;select codigoAsignatura,tema,descripcion,fechaPublicacion from inquietud  where codigoAsignatura=\&quot;G8F0071\&quot;;&quot;;</span>
+<span class="nc" id="L89">        List&lt;Inquietud&gt; datos = this.jdbcTemplate.query(sql, new RowMapper&lt;Inquietud&gt;() {</span>
             @Override
             public Inquietud mapRow(ResultSet rs, int i) throws SQLException {
                 //To change body of generated methods, choose Tools | Templates.
-<span class="nc" id="L92">                System.out.println(rs);</span>
-<span class="nc" id="L93">                Inquietud nueva = new Inquietud();</span>
-<span class="nc" id="L94">                nueva.setCodigoidAsignatura(rs.getString(&quot;codigoasignatura&quot;));</span>
-<span class="nc" id="L95">                nueva.setTema(rs.getString(&quot;tema&quot;));</span>
-<span class="nc" id="L96">                nueva.setDescripcion(rs.getString(&quot;descripcion&quot;));</span>
-<span class="nc" id="L97">                nueva.setFechaPublicacion(rs.getDate(&quot;fechaPublicacion&quot;).toString());</span>
-<span class="nc" id="L98">                return nueva;</span>
+<span class="nc" id="L93">                System.out.println(rs);</span>
+<span class="nc" id="L94">                Inquietud nueva = new Inquietud();</span>
+<span class="nc" id="L95">                nueva.setCodigoidAsignatura(rs.getString(&quot;codigoasignatura&quot;));</span>
+<span class="nc" id="L96">                nueva.setTema(rs.getString(&quot;tema&quot;));</span>
+<span class="nc" id="L97">                nueva.setDescripcion(rs.getString(&quot;descripcion&quot;));</span>
+<span class="nc" id="L98">                nueva.setFechaPublicacion(rs.getDate(&quot;fechaPublicacion&quot;));</span>
+<span class="nc" id="L99">                return nueva;</span>
             }
         });
-        
-<span class="nc" id="L102">        return datos;</span>
+
+<span class="nc" id="L103">        return datos;</span>
+    }
+
+    public List&lt;Inquietud&gt; reporteInquietudesFrecuentesAsignatura(String codigoAsignatura) {
+<span class="fc" id="L107">        this.sql = &quot;select codigoEstudiante,codigoAsignatura,tema,descripcion,fechaPublicacion from inquietud where codigoAsignatura=&quot; + '&quot;'+codigoAsignatura+'&quot;' + &quot;;&quot;;</span>
+<span class="fc" id="L108">        List datos = this.jdbcTemplate.queryForList(sql);</span>
+<span class="fc" id="L109">        return datos;</span>
+    }
+    
+    public List&lt;Inquietud&gt; reporteInquietudesFrecuentesAsignaturaTema(String codigoAsignatura, String Tema) {
+<span class="fc" id="L113">        String operadorLike=&quot;%&quot;;</span>
+<span class="fc" id="L114">        this.sql = &quot;select * from inquietud where codigoAsignatura=&quot;+'&quot;' + codigoAsignatura+'&quot;' + &quot; AND tema like '&quot;+operadorLike.concat(Tema).concat(operadorLike)+ &quot;';&quot;;</span>
+<span class="fc" id="L115">        List datos = this.jdbcTemplate.queryForList(sql);</span>
+<span class="fc" id="L116">        return datos;</span>
     }
 
     public int editarEstadoInquietud(int idInquietud) {
         //To change body of generated methods, choose Tools | Templates.}
-<span class="fc" id="L107">        Inquietud nuevainquietud = new Inquietud(idInquietud);</span>
-<span class="fc" id="L108">        this.sql=&quot;update inquietud set respuesta='S' where idinquietud=&quot;+nuevainquietud.getIdInquietud()+&quot;;&quot;;</span>
-<span class="fc" id="L109">        int result = this.jdbcTemplate.update(sql);</span>
-<span class="fc" id="L110">        return result;</span>
+<span class="fc" id="L121">        Inquietud nuevainquietud = new Inquietud(idInquietud);</span>
+<span class="fc" id="L122">        this.sql = &quot;update inquietud set respuesta='S' where idinquietud=&quot; + nuevainquietud.getIdInquietud() + &quot;;&quot;;</span>
+<span class="fc" id="L123">        int result = this.jdbcTemplate.update(sql);</span>
+<span class="fc" id="L124">        return result;</span>
     }
-                
-    
-    
-    
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

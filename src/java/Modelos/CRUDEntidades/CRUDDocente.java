@@ -27,7 +27,8 @@ public class CRUDDocente {
     /**
      * funcion para registrar un nuevo docente en la base de datos
      * @param d Modelo de docente que se desea registrar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int registrarDocente(Docente d){
         return jdbcTemplate.update("INSERT INTO docente (identificacion,nombre,apellido,correoElectronico)"
@@ -37,7 +38,8 @@ public class CRUDDocente {
     /**
      * funcion para eliminar un docente de la base de datos del sistema
      * @param identificacion  identificador del docente que se desea eliminar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int eliminarDocente(int identificacion){
         return jdbcTemplate.update("DELETE from docente "
@@ -49,7 +51,8 @@ public class CRUDDocente {
      * funcion para editar un docente dada su identificacion
      * @param d Objeto con los nuevos datos del docente
      * @param identificacion  Identificador del docente que se desea editar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int editarDocente(Docente d, String identificacion){
         return jdbcTemplate.update("UPDATE docente"

@@ -7,8 +7,6 @@ package Modelos.OperacionesEstudianteMonitor;
 
 import Modelos.Entidades.Inquietud;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,7 +15,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
-import static org.hamcrest.CoreMatchers.*;
         
 
 /**

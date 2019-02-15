@@ -56,7 +56,8 @@ public class OperacionInquietud {
     /**
      * Método para eliminar una inquietud registrada mediante su identificador 
      * @param idinquietud identificador de la inquietud que va a ser eliminada del sistema
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int eliminarinquietud(int idinquietud) {
         CRUDInquietud eliminarinquietud = new CRUDInquietud();
@@ -71,7 +72,8 @@ public class OperacionInquietud {
      * @param codigoasignatura código de la asignatura para la cual se esta modificando la inquietud
      * @param tema tema de la inquietud
      * @param descp descripción de la inquietud
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int modificar(int idinquietud, int codigoestudiante, String codigoasignatura, String tema, String descp) {
         CRUDInquietud nuevainquietud = new CRUDInquietud();

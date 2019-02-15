@@ -39,7 +39,8 @@ public class CRUDInquietud {
      * @param codigoasignatura Identificador de la asignatura para la cual se esta registrando la inquietud
      * @param tema Tema de lnquietud registrada
      * @param descrip Descripcion de la inquietud registrada
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int IngresarInquietud(int codigoestudiante, String codigoasignatura, String tema, String descrip) {
         Inquietud nuevainquietud = new Inquietud(codigoestudiante, codigoasignatura, tema, descrip);
@@ -92,7 +93,8 @@ public class CRUDInquietud {
      * @param codigoasignatura código de la asignatura para la cual se realiza la inquietud
      * @param tema tema de la inquietud
      * @param descrip descripcion de la inquietud
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int editarInquietud(int idinquietud, int codigoestudiante, String codigoasignatura, String tema, String descrip) {
         Inquietud nuevainquietud = new Inquietud(codigoestudiante, codigoasignatura, tema, descrip);
@@ -106,7 +108,8 @@ public class CRUDInquietud {
     /**
      * Método para eliminar una inquietud registrada en el sistema
      * @param idinquietud identificador de la inquietud que va a ser eliminada 
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int eliminarinquietud(int idinquietud) {
         this.sql = "delete from inquietud where idinquietud=" + idinquietud + ";";
@@ -142,7 +145,8 @@ public class CRUDInquietud {
      * Método para editar el estado de una inquietud, donde "S" indica que la inquietud ya tiene una respuesta asociada
      * por defecto la inquietud esta marcada como "N" indicando que no tiene respuesta
      * @param idInquietud identificador la inquietud que se va a modificar su estado
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int editarEstadoInquietud(int idInquietud) {
         //To change body of generated methods, choose Tools | Templates.}

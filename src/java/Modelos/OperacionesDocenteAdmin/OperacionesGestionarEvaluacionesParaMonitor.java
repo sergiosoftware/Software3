@@ -21,7 +21,8 @@ public class OperacionesGestionarEvaluacionesParaMonitor
      * metodo para agregar una pregunta a la base de datos
      * @param p corresponde a un objeto de tipo pregunta para ingreso de preguntas al sistema
      * @param a corresponde a un objeto de tipo asignatura para ingreso de preguntas al sistema
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */   
     public int ingresarPregunta(Pregunta p, Asignatura a)
     {
@@ -34,7 +35,8 @@ public class OperacionesGestionarEvaluacionesParaMonitor
      * metodo para ingresar respuesta a la base de datos
      * @param r objeto de tipo respuesta que tiene idRespuesta,descripcionRespuesta y opcionCorrecta
      * @param p objeto de tipo pregunta que tiene como finalidad proveer idPregunta para la respuesta a ingresar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int ingresarRespuesta(Respuesta r, Pregunta p)
     {
@@ -46,7 +48,8 @@ public class OperacionesGestionarEvaluacionesParaMonitor
     /**
      * metodo para borrar una pregunta
      * @param idPregunta es el único identificador de cada pregunta, con el cual se hace el borrado de la pregunta de la base de datos
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int eliminarPregunta(int idPregunta)
     {
@@ -58,7 +61,8 @@ public class OperacionesGestionarEvaluacionesParaMonitor
     /**
      * funcion para eliminar Respuestas del sistema
      * @param idRespuesta identificador unico de respuesta que permite hacer el borrado de las respuestas de la base de datos
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int eliminarRespuesta(int idRespuesta)
     {

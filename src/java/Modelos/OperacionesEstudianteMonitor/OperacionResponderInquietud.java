@@ -36,6 +36,7 @@ public class OperacionResponderInquietud {
      * @param fechaRespuesta la fecha que el estudiante propuso la reunión para
      * responder
      * @param hora la hora a la que la reunión quedó programada
+     * @param preRespuesta respuesta previa a la inquietud planteada
      * @return 0 si no se pudo registrar la respuesta para la inquietud, 1 en caso contrario
      */
     public int guardarRespuestaInquietud(int idInquietud, int codigoEstudiante, Date fechaRespuesta, Time hora, String preRespuesta) {

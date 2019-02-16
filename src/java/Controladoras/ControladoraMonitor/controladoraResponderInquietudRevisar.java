@@ -53,9 +53,7 @@ public class controladoraResponderInquietudRevisar
      * @return redireccionamiento a la vista responderInquietud
      */
     @RequestMapping(value = "responderInquietud.htm", method = RequestMethod.GET)
-    public ModelAndView home(){
-        
-        
+    public ModelAndView home(){       
         ModelAndView mav = new ModelAndView();
         mav.setViewName("responderInquietud");
         return mav;

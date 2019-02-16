@@ -56,7 +56,8 @@
                 <!-- 
                 Listar respuestas
                 -->
-                <prop key="misPublicaciones.htm">controladoraListarPublicaciones</prop>  
+                <prop key="misPublicaciones.htm">controladoraListarPublicaciones</prop> 
+                <prop key="masDetallesPublicacion.htm">controladoraMasDetallesPublicaciones</prop> 
                 <!--
                 Ver perfil
                 
@@ -87,6 +88,9 @@
     <bean name="controladoraGestionarAsignatura" class="Controladoras.ControladoraAdmin.controladoraGestionarAsignatura"/>
     <bean name="controladoraListarPublicaciones" class="Controladoras.ControladoraEstudiante.controladoraListarPublicaciones"/>
     <bean name="controladoraPerfilUsuario" class="Controladoras.ControladoraAdmin.controladoraPerfilUsuario"/>
+    <bean name="controladoraMasDetallesPublicaciones" class="Controladoras.ControladoraEstudiante.controladoraMasDetallesPublicaciones"/>
+
+    
     
     <bean name="indexController" class="org.springframework.web.servlet.mvc.ParameterizableViewController" p:viewName="index" />
 

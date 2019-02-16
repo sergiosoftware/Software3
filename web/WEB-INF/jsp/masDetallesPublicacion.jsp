@@ -1,12 +1,13 @@
 <%-- 
-    Document   : misPublicaciones
-    Created on : 09-dic-2018, 14:06:03
-    Author     : JulianCamilo
+    Document   : masDetallesPublicacion
+    Created on : 15/02/2019, 12:01:48 PM
+    Author     : sergioandres
 --%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="es">
+<html>
     <head>
         <meta charset="UTF-8" />
         <title>BeMonitor</title>
@@ -39,31 +40,34 @@
                     <thead>
                         <tr>
                             <th>Tema</th>
-                            <th>Asignatura</th>
+                            <th>Descripción</th>
                             <th>Fecha publicación</th>
-                            <th>Estado</th>
-                            <th>Mas Detalles</th>
+                            <th>Respuesta</th>
+                            <th>Monitor</th>
+                            <th>Fecha Monitoria</th>
+                            <th>Hora Monitoria</th>
+                            <th>Regresar</th>
                     <tbody>
                         <c:forEach items="${respuestas}" var="respuestas">
-                            <tr>
-                                <td><c:out value="${respuestas.tema}" /></td>
-                                <td><c:out value="${respuestas.codigoAsignatura}" /></td>
-                                <td><c:out value="${respuestas.fechaPublicacion}" /></td>
-                                <td><c:out value="${respuestas.respuesta}" /></td>
-                                <td>
-                                <c:choose> 
-                                    <c:when test="${respuestas.respuesta == 'S'}">
-                                        <a href=<c:url value="masDetallesPublicacion.htm?idInquietud=${respuestas.idInquietud}&&codigoEstudiante=${respuestas.codigoEstudiante}"></c:url> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-                                    </c:when>
-                                </c:choose>
+                        <tr>
+                            <td><c:out value="${respuestas.tema}" /></td>
+                            <td><c:out value="${respuestas.descripcion}" /></td>
+                            <td><c:out value="${respuestas.fechaPublicacion}" /></td>
+                            <td><c:out value="${respuestas.respuesta}" /></td>
+                            <td><c:out value="${respuestas.nombre} ${respuestas.apellido}" default="Sin respuesta aun" /></td>
+                            <td><c:out value="${respuestas.fechaRespuesta}" default="Sin respuesta aun" /></td>
+                            <td><c:out value="${respuestas.hora}" default="Sin respuesta aun" /></td>
+                            <td>
+                                <a href=<c:url value="misPublicaciones.htm?codigo=${respuestas.codigoEstudiante}"></c:url> <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span></a>
                                 </td>
                             </tr>
-                        </c:forEach>
-                    </tbody>
-                    </tr>
-                    </thead>
-                </table>
-            </div>
+                    </c:forEach>
+                </tbody>
+                </tr>
+                </thead>
+            </table>
         </div>
-    </body>
+    </div>
+</body>            
+<td>
 </html>

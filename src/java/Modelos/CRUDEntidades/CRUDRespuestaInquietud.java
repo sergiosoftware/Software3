@@ -43,12 +43,12 @@ public class CRUDRespuestaInquietud {
      * estudiante
      * @param horaRespuesta hora en la cual el monitor ofrecera la asesoria al
      * estudiante
-     * @param preRepuesta respuesta previa del monitor al estudiante
+     * @param preRespuesta respuesta previa del monitor al estudiante
      * @return retorna un valor entero, si es 0 es que hubo algun error si es 1
      * es que fue correcto
      */
-    public int guardarConFecha(int idInquietud, int codigoEstudiante, Date fechaRespueta, Time horaRespuesta, String preRepuesta) {
-        RespuestaInquietud nuevaRespuesta = new RespuestaInquietud(idInquietud, codigoEstudiante, fechaRespueta, horaRespuesta, preRepuesta);
+    public int guardarConFecha(int idInquietud, int codigoEstudiante, Date fechaRespueta, Time horaRespuesta, String preRespuesta) {
+        RespuestaInquietud nuevaRespuesta = new RespuestaInquietud(idInquietud, codigoEstudiante, fechaRespueta, horaRespuesta, preRespuesta);
         int resultUpdate = jdbcTemplate.update("INSERT INTO respuestainquietud(idInquietud, codigoMonitor, fechaRespuesta,hora,preRespuesta) "
                 + "VALUES (?,?,?,?,?)", nuevaRespuesta.getIdInquetud(), nuevaRespuesta.getCodigoEstudiante(), nuevaRespuesta.getFechaRespuesta(), nuevaRespuesta.getHoraRespuesta(), nuevaRespuesta.getPreRespuesta());
         return resultUpdate;
@@ -84,6 +84,7 @@ public class CRUDRespuestaInquietud {
     public List consultarRespuestas(int codigoEstudiante) {
         this.sql = "select * from inquietud c left join respuestainquietud d on c.idinquietud=d.idinquietud left join estudiante e on d.codigoMonitor=e.codigo where c.codigoEstudiante=" + codigoEstudiante + ";";
         List datos = this.jdbcTemplate.queryForList(sql);
+        System.out.println("lista datos: " + datos);
         return datos;
     }
 
@@ -113,6 +114,20 @@ public class CRUDRespuestaInquietud {
                 return null;
             }
         });
+
+    }
+    /**
+     * Método para consultar mas detalles de una inquietud
+     * @param codigoEstudiante codigo del estudiante que a registrado las
+     * respuestas por lo menos una inquietud
+     * @param idInquietud  identificador de la inquietud
+     * @return lista con las respuestas dadas a inquietudes por parte de un
+     * estudiante
+     */
+    public List consultarRespuestasMasDetalles(int codigoEstudiante, int idInquietud) {
+        this.sql = "select * from inquietud c left join respuestainquietud d on c.idinquietud=d.idinquietud left join estudiante e on d.codigoMonitor=e.codigo where c.codigoEstudiante=" + codigoEstudiante + " and d.idInquietud=" +idInquietud+ ";";
+        List datos = this.jdbcTemplate.queryForList(sql);
+        return datos;
     }
 
 }

@@ -93,5 +93,22 @@ public class OperacionResponderInquietud {
         RespuestaInquietud nueva = verRespuesta.consultarUna(idInquietud, codigoEstudiante);
         return nueva;
     }
+    
+    /**
+     * Método para consultar una respuesta que a recibido un estudiante a una inquietud planteada
+     * @param codigoEstudiante codigo del estudiante que ha dado respuesta a las inquietudes
+     * @param idInquietud idenitificador de la inquietud que se va a detallar
+     * @return lista con las respuestas a iinquietud que a registrado un estudiante
+     */
+    public List consultarRespuestasMasDetalles(int codigoEstudiante, int idInquietud) {
+        List respuestas = inquietudResponder.consultarRespuestasMasDetalles(codigoEstudiante,idInquietud);
+        if (respuestas == null) {
+            return null;
+        } else {
+            return respuestas;
+        }
 
+    }
+
+    
 }

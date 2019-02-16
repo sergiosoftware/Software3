@@ -28,7 +28,8 @@ public class CRUDAsignatura {
     /**
      * Funcion para registrar asignatura en la base de datos
      * @param a Asignatura que se quiere registrar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int registrarAsignatura(Asignatura a){
         return jdbcTemplate.update("INSERT INTO asignatura(codigo, nombre, creditos) "
@@ -37,7 +38,8 @@ public class CRUDAsignatura {
     /**
      * elimina una asignatura de la base de datos
      * @param codigo de la asignatura que se quiere eliminar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int eliminarAsignatura(String codigo) {
         return jdbcTemplate.update("delete from asignatura "
@@ -48,7 +50,8 @@ public class CRUDAsignatura {
      * edita los datos de una asignatura en la base de datos
      * @param a asignatura a modificar con los datos que se quieren cambiar
      * @param codigo de la asignatura que se quiere cambiar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int editarAsignatura(Asignatura a, String codigo) {
         return jdbcTemplate.update("update asignatura"
@@ -63,7 +66,7 @@ public class CRUDAsignatura {
      */
     public Asignatura seleccionarAsignatura(String Codigo) {
         final Asignatura asig = new Asignatura();
-        String quer = "SELECT * FROM asignatura WHERE codigo=" + Codigo+";";
+        String quer = "SELECT * FROM asignatura WHERE codigo=" +'"'+ Codigo+'"'+";";
         return (Asignatura) jdbcTemplate.query(quer, new ResultSetExtractor<Asignatura>() {
             public Asignatura extractData(ResultSet rs) throws SQLException, DataAccessException {
                 if (rs.next()) {

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CRUDSesiones.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProyectoIngenieriaSoftwareII&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Modelos.CRUDEntidades</a> &gt; <span class="el_source">CRUDSesiones.java</span></div><h1>CRUDSesiones.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelos.CRUDEntidades;
+
+import Conexión.conexion;
+import Modelos.Entidades.Estudiante;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+
+/**
+ *
+ * @author JulianCamilo
+ */
+public class CRUDSesiones {
+    
+    private conexion conectar;
+    private String sql;
+    private JdbcTemplate jdbcTemplate;
+
+<span class="nc" id="L26">    public CRUDSesiones() {</span>
+<span class="nc" id="L27">        this.conectar= new conexion();</span>
+<span class="nc" id="L28">        this.jdbcTemplate= new JdbcTemplate(conectar.conectar());</span>
+<span class="nc" id="L29">        this.sql= &quot;&quot;;</span>
+<span class="nc" id="L30">    }</span>
+    
+
+    public Estudiante consultar(String username, String newpass) {
+        Estudiante user;
+<span class="nc" id="L35">        this.sql=&quot;SELECT * FROM login WHERE username=&quot; +&quot;'&quot;+username+&quot;'&quot;+&quot; AND pass=&quot; +&quot;'&quot;+newpass+&quot;'&quot;+&quot;;&quot;;</span>
+<span class="nc" id="L36">        Estudiante buscado=(Estudiante)this.jdbcTemplate.query(sql,new ResultSetExtractor&lt;Estudiante&gt;() {</span>
+            @Override
+            public Estudiante extractData(ResultSet rs) throws SQLException, DataAccessException {
+<span class="nc bnc" id="L39" title="All 2 branches missed.">                if(rs.next()){</span>
+<span class="nc" id="L40">                        Estudiante aux = new Estudiante();</span>
+<span class="nc" id="L41">                        aux.setCorreo(rs.getString(1));</span>
+<span class="nc" id="L42">                        return aux;</span>
+                    }
+<span class="nc" id="L44">                    return null;</span>
+            }
+        });
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if(buscado==null){</span>
+<span class="nc" id="L48">            user=null;</span>
+        }
+        else{
+<span class="nc" id="L51">            this.sql=&quot;SELECT * FROM estudiante WHERE correo=&quot;+&quot;'&quot;+username+&quot;'&quot;;</span>
+<span class="nc" id="L52">            user=(Estudiante) this.jdbcTemplate.query(sql, new ResultSetExtractor&lt;Estudiante&gt;() {</span>
+                @Override
+                public Estudiante extractData(ResultSet rs) throws SQLException, DataAccessException {
+<span class="nc bnc" id="L55" title="All 2 branches missed.">                     if(rs.next()){</span>
+<span class="nc" id="L56">                        Estudiante aux = new Estudiante();</span>
+<span class="nc" id="L57">                        aux.setCodigo(rs.getInt(1));</span>
+<span class="nc" id="L58">                        aux.setNombre(rs.getString(2));</span>
+<span class="nc" id="L59">                        aux.setApellido(rs.getString(3));</span>
+<span class="nc" id="L60">                        aux.setCorreo(rs.getString(5));</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">                        if(rs.getNString(7).equals(&quot;S&quot;)){</span>
+<span class="nc" id="L62">                            aux.setMonitor(true);</span>
+                        }
+                        else{
+<span class="nc" id="L65">                            aux.setMonitor(false);</span>
+                        }
+                        
+<span class="nc" id="L68">                        return aux;</span>
+                    }
+<span class="nc" id="L70">                    return null;</span>
+                }
+            });
+        }
+<span class="nc" id="L74">        return user;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

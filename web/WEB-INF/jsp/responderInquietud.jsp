@@ -22,7 +22,6 @@
                 <cemter>
                     <div class="modal-dialog container"> 
                         <h1>Responder Inquietud</h1>
-                        El codigo es: <c:out value="${codigo}"/>
                         <br>
                         <br>
                         <label for="" >Fecha:</label><input type="date" id="fechaRespuesta" name="fechaRespuesta"> 
@@ -31,6 +30,7 @@
                         <label for="">Hora inicio:</label><input type="time" id="horaInicioRespuesta" name="horaInicioRespuesta">   
                         <br>
                         <br>
+                        <label>Respuesta preliminar</label><input type="text" id="preRespuesta" name="preRespuesta">
                         <br>
                         <br>
                         <button class="btn btn-success" type="button" name="agregarHorarios" id="agregarHorarios">Agregar Horarios</button> 

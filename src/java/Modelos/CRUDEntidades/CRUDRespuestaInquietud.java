@@ -8,10 +8,14 @@ package Modelos.CRUDEntidades;
 import Conexión.conexion;
 import Modelos.Entidades.Asignatura;
 import Modelos.Entidades.RespuestaInquietud;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 
 /**
  *
@@ -21,26 +25,109 @@ public class CRUDRespuestaInquietud {
 
     private JdbcTemplate jdbcTemplate;
     private String sql;
-    
+
     public CRUDRespuestaInquietud() {
         conexion con = new conexion();
         this.jdbcTemplate = new JdbcTemplate(con.conectar());
-        this.sql= "";
+        this.sql = "";
     }
 
-    public int guardar(int idInquietud, int codigoEstudiante, Date fechaRespueta, Time horaRespuesta) {
-        RespuestaInquietud nuevaRespuesta = new RespuestaInquietud(idInquietud,codigoEstudiante,fechaRespueta,horaRespuesta);
-        int resultUpdate=jdbcTemplate.update("INSERT INTO respuestainquietud(idInquietud, codigoMonitor, fechaRespuesta,hora) "
-                + "VALUES (?,?,?,?)", nuevaRespuesta.getIdInquetud(), nuevaRespuesta.getCodigoEstudiante(), nuevaRespuesta.getFechaRespuesta(), nuevaRespuesta.getHoraRespuesta());
+    /**
+     * Método para guardar una respuesta para una inquietud, esta respuesta
+     * indicara una fecha de asesoria
+     *
+     * @param idInquietud identificador de la inquietud
+     * @param codigoEstudiante codigo del estudiante que registra la respuesta
+     * de la inquietud
+     * @param fechaRespueta fecha en la cual el monitor ofrecera la asesoria al
+     * estudiante
+     * @param horaRespuesta hora en la cual el monitor ofrecera la asesoria al
+     * estudiante
+     * @param preRespuesta respuesta previa del monitor al estudiante
+     * @return retorna un valor entero, si es 0 es que hubo algun error si es 1
+     * es que fue correcto
+     */
+    public int guardarConFecha(int idInquietud, int codigoEstudiante, Date fechaRespueta, Time horaRespuesta, String preRespuesta) {
+        RespuestaInquietud nuevaRespuesta = new RespuestaInquietud(idInquietud, codigoEstudiante, fechaRespueta, horaRespuesta, preRespuesta);
+        int resultUpdate = jdbcTemplate.update("INSERT INTO respuestainquietud(idInquietud, codigoMonitor, fechaRespuesta,hora,preRespuesta) "
+                + "VALUES (?,?,?,?,?)", nuevaRespuesta.getIdInquetud(), nuevaRespuesta.getCodigoEstudiante(), nuevaRespuesta.getFechaRespuesta(), nuevaRespuesta.getHoraRespuesta(), nuevaRespuesta.getPreRespuesta());
         return resultUpdate;
     }
 
+    /**
+     * Método para guardar una respuesta para una inquietud, esta respuesta
+     * indicara una respuesta previa
+     *
+     * @param idInquietud identificador la inquietud
+     * @param codigoEstudiante codigo del estudiante que va a registrar la
+     * respuesta a la inquietud
+     * @param preRepuesta respuesta previa del monitor a la inquietud planteada
+     * @return retorna un valor entero, si es 0 es que hubo algun error si es 1
+     * es que fue correcto
+     */
+    public int guardarSinFecha(int idInquietud, int codigoEstudiante, String preRepuesta) {
+        RespuestaInquietud nuevaRespuesta = new RespuestaInquietud(idInquietud, codigoEstudiante, preRepuesta);
+        int resultUpdate = jdbcTemplate.update("INSERT INTO respuestainquietud(idInquietud, codigoMonitor,preRespuesta) "
+                + "VALUES (?,?,?)", nuevaRespuesta.getIdInquetud(), nuevaRespuesta.getCodigoEstudiante(), nuevaRespuesta.getPreRespuesta());
+        return resultUpdate;
+    }
+
+    /**
+     * Método para consultar todas las respuestas dadas a inquietudes por parte
+     * de un estudiante
+     *
+     * @param codigoEstudiante codigo del estudiante que a registrado las
+     * respuestas por lo menos una inquietud
+     * @return lista con las respuestas dadas a inquietudes por parte de un
+     * estudiante
+     */
     public List consultarRespuestas(int codigoEstudiante) {
-        this.sql = "select * from bemonitorfinal.inquietud c left join respuestainquietud d on c.idinquietud=d.idinquietud left join estudiante e on d.codigoMonitor=e.codigo where c.codigoEstudiante="+codigoEstudiante+";";
+        this.sql = "select * from inquietud c left join respuestainquietud d on c.idinquietud=d.idinquietud left join estudiante e on d.codigoMonitor=e.codigo where c.codigoEstudiante=" + codigoEstudiante + ";";
+        List datos = this.jdbcTemplate.queryForList(sql);
+        System.out.println("lista datos: " + datos);
+        return datos;
+    }
+
+    /**
+     * Método para consultar una respuesta dada a una inquietud por parte de un
+     * estudiante
+     *
+     * @param idInquietud identificador de la inquietud
+     * @param codigoMonitor codigo del estudiante que registro la respuesta a la
+     * inquietud
+     * @return respuesta dada a una inquietud por un estudiante
+     */
+    public RespuestaInquietud consultarUna(int idInquietud, int codigoMonitor) {
+        this.sql = "select * from respuestainquietud where idinquietud=" + idInquietud + " and codigoMonitor=" + codigoMonitor + ";";
+        return (RespuestaInquietud) this.jdbcTemplate.query(sql, new ResultSetExtractor<RespuestaInquietud>() {
+            @Override
+            public RespuestaInquietud extractData(ResultSet rs) throws SQLException, DataAccessException {
+                if (rs.next()) {
+                    RespuestaInquietud aux = new RespuestaInquietud();
+                    aux.setIdRespuesta(rs.getInt(1));
+                    aux.setIdInquetud(rs.getInt(2));
+                    aux.setCodigoEstudiante(rs.getInt(3));
+                    aux.setFechaRespuesta(rs.getDate(4));
+                    aux.setHoraRespuesta(rs.getTime(5));
+                    return aux;
+                }
+                return null;
+            }
+        });
+
+    }
+    /**
+     * Método para consultar mas detalles de una inquietud
+     * @param codigoEstudiante codigo del estudiante que a registrado las
+     * respuestas por lo menos una inquietud
+     * @param idInquietud  identificador de la inquietud
+     * @return lista con las respuestas dadas a inquietudes por parte de un
+     * estudiante
+     */
+    public List consultarRespuestasMasDetalles(int codigoEstudiante, int idInquietud) {
+        this.sql = "select * from inquietud c left join respuestainquietud d on c.idinquietud=d.idinquietud left join estudiante e on d.codigoMonitor=e.codigo where c.codigoEstudiante=" + codigoEstudiante + " and d.idInquietud=" +idInquietud+ ";";
         List datos = this.jdbcTemplate.queryForList(sql);
         return datos;
     }
 
-
-    
 }

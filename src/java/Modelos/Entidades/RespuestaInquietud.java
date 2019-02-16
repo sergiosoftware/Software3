@@ -14,18 +14,26 @@ import java.util.Date;
  */
 public class RespuestaInquietud {
 
-    private int idInquetud,codigoEstudiante,idRespuesta;
+    private int idInquetud, codigoEstudiante, idRespuesta;
     private Date fechaRespuesta;
     private Time horaRespuesta;
-    
+    private String preRespuesta;
+
     public RespuestaInquietud() {
     }
 
-    public RespuestaInquietud(int idInquetud, int codigoEstudiante, Date fecha, Time hora) {
+    public RespuestaInquietud(int idInquetud, int codigoEstudiante, Date fecha, Time hora, String preRespuesta) {
         this.idInquetud = idInquetud;
         this.codigoEstudiante = codigoEstudiante;
         this.fechaRespuesta = fecha;
-        this.horaRespuesta=hora;
+        this.horaRespuesta = hora;
+        this.preRespuesta = preRespuesta;
+    }
+
+    public RespuestaInquietud(int idInquetud, int codigoEstudiante, String preRespuesta) {
+        this.idInquetud = idInquetud;
+        this.codigoEstudiante = codigoEstudiante;
+        this.preRespuesta = preRespuesta;
     }
 
     /**
@@ -97,7 +105,19 @@ public class RespuestaInquietud {
     public void setHoraRespuesta(Time horaRespuesta) {
         this.horaRespuesta = horaRespuesta;
     }
-    
-    
-    
+
+    /**
+     * @return the preRespuesta
+     */
+    public String getPreRespuesta() {
+        return preRespuesta;
+    }
+
+    /**
+     * @param preRespuesta the preRespuesta to set
+     */
+    public void setPreRespuesta(String preRespuesta) {
+        this.preRespuesta = preRespuesta;
+    }
+
 }

@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 import org.junit.Ignore;
 
 /**
- *
+ * Test's CRUD inquietud
  * @author JulianCamilo
  */
 public class CRUDInquietudTest {
@@ -48,7 +48,6 @@ public class CRUDInquietudTest {
      */
     @Test
     public void testIngresarInquietudCorrecto() throws ParseException {
-        System.out.println("IngresarInquietud");
         int codigoestudiante = 1234;
         String codigoasignatura ="3214";
         String tema = "direccionamiento";
@@ -68,7 +67,6 @@ public class CRUDInquietudTest {
      */
     @Test
     public void testConsultarunaFallido() {
-        System.out.println("consultaruna");
         int idInquietud = 1;
         CRUDInquietud instance = new CRUDInquietud();
         Inquietud expResult = null;
@@ -83,7 +81,6 @@ public class CRUDInquietudTest {
      */
     @Ignore
     public void testConsultarTodas() {
-        System.out.println("consultarTodas");
         CRUDInquietud instance = new CRUDInquietud();
         List expResult = null;
         List result = instance.consultarTodas();
@@ -97,7 +94,6 @@ public class CRUDInquietudTest {
      */
     @Ignore
     public void testEditarInquietud() throws ParseException {
-        System.out.println("editarInquietud");
         int idinquietud = 0;
         int codigoestudiante = 0;
         String codigoasignatura = "0";
@@ -118,7 +114,6 @@ public class CRUDInquietudTest {
      */
     @Test
     public void testEliminarinquietudFallido() {
-        System.out.println("eliminarinquietud");
         int idinquietud = 10;
         CRUDInquietud instance = new CRUDInquietud();
         int expResult = 0;

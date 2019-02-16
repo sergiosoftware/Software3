@@ -36,6 +36,11 @@ public class OperacionesEstudianteMonitor {
         return monitores;
     }
 
+    /**
+     * Método para onsultar la informacion registrada de un estudiante
+     * @param codigoEstudiante codigo del estudiante para el cual se va a generar el reporte con la informacion solicitada
+     * @return informacion asociada a un estudiante registrado en el sistema
+     */
     public Estudiante consultarEstudiante(int codigoEstudiante) {
         Estudiante usuario=estudiantes.consultar(codigoEstudiante);
         if(usuario.getNombre()==null){

@@ -6,8 +6,9 @@
 package Controladoras.ControladoraAdmin;
 
 
-import Conexión.conexion;
 import Modelos.Entidades.Estudiante;
+import Modelos.OperacionesDocenteAdmin.OperacionLoginRegister;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,18 +18,47 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author sergioandres
  */
-<span class="nc" id="L20">public class HomeController {</span>
+<span class="nc" id="L21">public class HomeController {</span>
     private JdbcTemplate jdbcTemplate;
+    private OperacionLoginRegister register;
 
    
 
     @RequestMapping(value = &quot;Login.htm&quot;, method = RequestMethod.GET)
     public ModelAndView form() {
-<span class="nc" id="L27">        ModelAndView mav = new ModelAndView();</span>
-<span class="nc" id="L28">        mav.setViewName(&quot;Login&quot;);</span>
-<span class="nc" id="L29">        mav.addObject(&quot;usuarios&quot;, new Estudiante());</span>
-<span class="nc" id="L30">        return mav;</span>
+<span class="nc" id="L29">        System.out.println(&quot;Entre al controller&quot;);</span>
+<span class="nc" id="L30">        ModelAndView mav = new ModelAndView();</span>
+<span class="nc" id="L31">        mav.setViewName(&quot;Login&quot;);</span>
+<span class="nc" id="L32">        return mav;</span>
     }
+    
+    
+    @RequestMapping(value = &quot;Login.htm&quot;, method = RequestMethod.POST)
+    public ModelAndView form(HttpServletRequest request) {
+<span class="nc" id="L38">        ModelAndView mav = new ModelAndView();</span>
+<span class="nc" id="L39">        String username=request.getParameter(&quot;txtUsername&quot;);</span>
+<span class="nc" id="L40">        String password=request.getParameter(&quot;txtPassword&quot;);</span>
+<span class="nc" id="L41">        register= new OperacionLoginRegister();</span>
+<span class="nc" id="L42">        Estudiante typeUser=register.iniciarSesion(username,password);</span>
+        
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if(typeUser==null){</span>
+<span class="nc" id="L45">            mav.setViewName(&quot;Login&quot;);</span>
+<span class="nc" id="L46">            String error=&quot;Usuario o contraseña incorrecto&quot;;</span>
+<span class="nc" id="L47">            mav.addObject(&quot;error&quot;,error);</span>
+<span class="nc" id="L48">        }</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        else if(typeUser.isMonitor()){</span>
+<span class="nc" id="L50">            System.out.println(&quot;Es monitor&quot;);</span>
+<span class="nc" id="L51">            mav.setViewName(&quot;indexMonitor&quot;);</span>
+<span class="nc" id="L52">            mav.addObject(&quot;usuario&quot;,typeUser);</span>
+        }
+        else{
+<span class="nc" id="L55">            System.out.println(&quot;Es estudiante&quot;);</span>
+<span class="nc" id="L56">            mav.setViewName(&quot;indexEstudiante&quot;);</span>
+<span class="nc" id="L57">            mav.addObject(&quot;usuario&quot;,typeUser);</span>
+        }
+<span class="nc" id="L59">        return mav;</span>
+    }
+    
     
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

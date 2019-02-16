@@ -30,7 +30,8 @@ public class CRUDRespuesta {
      * funcoin para registrar una respuesta a una pregunta
      * @param r respuesta definida
      * @param p pregunta para asociar la respuesta
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     
     public int registrarRespuesta(Respuesta r, Pregunta p){
@@ -41,7 +42,8 @@ public class CRUDRespuesta {
     /**
      * funcion para eliminar una respuesta de la base de datos dado su id
      * @param idRespuesta identificador de la respuesta que se desea eliminar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int eliminarRespuesta(int idRespuesta){
         return jdbcTemplate.update("DELETE from respuesta "
@@ -54,7 +56,8 @@ public class CRUDRespuesta {
      * @param r Objeto con los nuevos datos de la respuesta
      * @param p pregunta que se le esta modificando una respuesta
      * @param idRespuesta  Identificador de la respuesta que se desea aditar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int editarPregunta(Respuesta r, Pregunta p, int idRespuesta){
         return jdbcTemplate.update("UPDATE respuesta"

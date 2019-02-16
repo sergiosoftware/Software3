@@ -5,10 +5,13 @@
  */
 package Modelos.OperacionesEstudianteMonitor;
 
+import Modelos.CRUDEntidades.CRUDAsignatura;
 import Modelos.CRUDEntidades.CRUDInquietud;
+import Modelos.Entidades.Asignatura;
 import Modelos.Entidades.Inquietud;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,50 +19,94 @@ import java.util.List;
  *
  * @author JulianCamilo
  */
-<span class="fc" id="L19">public class OperacionInquietud {</span>
-    
-    
+<span class="fc" id="L22">public class OperacionInquietud {</span>
+
     /**
-     * Método que registra una nueva inquietud
-     * Validando asignatura y estudiante existentes
+     * Método que registra una nueva inquietud Validando asignatura y estudiante
+     * existentes
+     *
      * @param codigoestudiante el estudiante que publica la inquietud
      * @param codigoasignatura la asignatura de la que se va a preguntar
      * @param tema el tema en el que el estudiante tiene inquietud
      * @param descp detalles simples y concretos de su inquietud
-     * @return 
+     * @return
      */
-    public int crearinquietud(int codigoestudiante,String codigoasignatura,String tema, String descp){
-<span class="fc" id="L32">        CRUDInquietud nuevainquietud= new CRUDInquietud();</span>
-<span class="fc bfc" id="L33" title="All 2 branches covered.">        if(codigoasignatura==null){</span>
-<span class="fc" id="L34">            return 0;</span>
+    public int crearinquietud(int codigoestudiante, String codigoasignatura, String tema, String descp) {
+<span class="fc" id="L35">        CRUDInquietud nuevainquietud = new CRUDInquietud();</span>
+<span class="fc" id="L36">        CRUDAsignatura asignatura = new CRUDAsignatura();</span>
+<span class="fc" id="L37">        int result = 0;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (codigoasignatura == null) {</span>
+<span class="fc" id="L39">            result = 0;</span>
+        } else {
+<span class="fc" id="L41">            Asignatura resultAsignatura = asignatura.seleccionarAsignatura(codigoasignatura);</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">            if (resultAsignatura.getCodigo() != null) {</span>
+<span class="fc" id="L43">                result = nuevainquietud.IngresarInquietud(codigoestudiante, codigoasignatura, tema, descp);</span>
+            }
         }
-<span class="fc" id="L36">        int result=nuevainquietud.IngresarInquietud(codigoestudiante, codigoasignatura, tema, descp);</span>
-<span class="fc" id="L37">        return result;</span>
+<span class="fc" id="L46">        return result;</span>
     }
-    
-    public Inquietud verinquietud(int codigoinquietud){
-<span class="nc" id="L41">        CRUDInquietud verinquietud= new CRUDInquietud();</span>
-<span class="nc" id="L42">        Inquietud nueva= verinquietud.consultaruna(codigoinquietud);</span>
-<span class="nc" id="L43">        return nueva;</span>
+
+    public Inquietud verinquietud(int codigoinquietud) {
+<span class="fc" id="L50">        CRUDInquietud verinquietud = new CRUDInquietud();</span>
+<span class="fc" id="L51">        Inquietud nueva = verinquietud.consultaruna(codigoinquietud);</span>
+<span class="fc" id="L52">        return nueva;</span>
     }
-    
-    public int eliminarinquietud(int idinquietud){
-<span class="nc" id="L47">        CRUDInquietud eliminarinquietud= new CRUDInquietud();</span>
-<span class="nc" id="L48">        int result=eliminarinquietud.eliminarinquietud(0);</span>
-<span class="nc" id="L49">        return result;</span>
+
+    public int eliminarinquietud(int idinquietud) {
+<span class="nc" id="L56">        CRUDInquietud eliminarinquietud = new CRUDInquietud();</span>
+<span class="nc" id="L57">        int result = eliminarinquietud.eliminarinquietud(0);</span>
+<span class="nc" id="L58">        return result;</span>
     }
-    
-    public int modificar(int idinquietud,int codigoestudiante,String codigoasignatura,String tema, String descp){
-<span class="nc" id="L53">        CRUDInquietud nuevainquietud= new CRUDInquietud();</span>
-<span class="nc" id="L54">        int result=nuevainquietud.editarInquietud(idinquietud,codigoestudiante, codigoasignatura, tema, descp);</span>
-<span class="nc" id="L55">        return result;</span>
+
+    public int modificar(int idinquietud, int codigoestudiante, String codigoasignatura, String tema, String descp) {
+<span class="nc" id="L62">        CRUDInquietud nuevainquietud = new CRUDInquietud();</span>
+<span class="nc" id="L63">        int result = nuevainquietud.editarInquietud(idinquietud, codigoestudiante, codigoasignatura, tema, descp);</span>
+<span class="nc" id="L64">        return result;</span>
     }
 
     public List&lt;Inquietud&gt; consultarTodas() {
-<span class="nc" id="L59">        CRUDInquietud verinquietud= new CRUDInquietud();</span>
-<span class="nc" id="L60">        List&lt;Inquietud&gt; inquietudes= verinquietud.consultarTodas();</span>
-<span class="nc" id="L61">        return inquietudes;</span>
+<span class="nc" id="L68">        CRUDInquietud verinquietud = new CRUDInquietud();</span>
+<span class="nc" id="L69">        List&lt;Inquietud&gt; inquietudes = verinquietud.consultarTodas();</span>
+<span class="nc" id="L70">        return inquietudes;</span>
+    }
+
+    /**
+     * Método que genera un reporte con las dudas de una asignatura, opcionalmente tambien las de un tema
+     * @param idAsignatura Parametro String obligatorio de la asignatura a la que se le va a generar el reporte
+     * @param tema Parametro String opcional que genera un reporte de la asignatura solo con el tema elegido 
+     * @return Una lista de inquietudes para esa asignatura
+     */
+    List&lt;Inquietud&gt; generarReporte(String idAsignatura, String tema){
+<span class="fc" id="L80">        List&lt;Inquietud&gt; reporte=null;</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        if(!idAsignatura.isEmpty()){</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">            if(!tema.isEmpty()){</span>
+<span class="fc" id="L83">                reporte=generarReporteAsignaturaTema(idAsignatura, tema);</span>
+            }
+            else{
+<span class="fc" id="L86">                reporte=generarReporteAsignatura(idAsignatura);</span>
+            }
+        }
+<span class="fc" id="L89">        return reporte;</span>
     }
     
+    
+    List&lt;Inquietud&gt; generarReporteAsignatura(String idAsignatura) {
+<span class="fc" id="L94">        List&lt;Inquietud&gt; reporte = null;</span>
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">        if (!idAsignatura.isEmpty()) {</span>
+<span class="fc" id="L96">            CRUDInquietud reporteAsignatura = new CRUDInquietud();</span>
+<span class="fc" id="L97">            reporte = reporteAsignatura.reporteInquietudesFrecuentesAsignatura(idAsignatura);</span>
+        }
+<span class="fc" id="L99">        return reporte;</span>
+    }
+
+    List&lt;Inquietud&gt; generarReporteAsignaturaTema(String idAsignatura, String tema) {
+<span class="fc" id="L103">       List&lt;Inquietud&gt; reporte = null;</span>
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">        if (!idAsignatura.isEmpty()) {</span>
+<span class="fc" id="L105">            CRUDInquietud reporteAsignatura = new CRUDInquietud();</span>
+<span class="fc" id="L106">            reporte = reporteAsignatura.reporteInquietudesFrecuentesAsignaturaTema(idAsignatura, tema);</span>
+        }
+<span class="fc" id="L108">        return reporte;</span>
+    }
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

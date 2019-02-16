@@ -30,6 +30,12 @@ public class CRUDSesiones {
     }
     
 
+    /**
+     * Metodo para verificar los datos de un usuario que desea acceder al sistema 
+     * @param username nombre del usuario 
+     * @param newpass contraseña del usuario
+     * @return estudiante con todos sus datos registrados en el sistema
+     */
     public Estudiante consultar(String username, String newpass) {
         Estudiante user;
         this.sql="SELECT * FROM login WHERE username=" +"'"+username+"'"+" AND pass=" +"'"+newpass+"'"+";";

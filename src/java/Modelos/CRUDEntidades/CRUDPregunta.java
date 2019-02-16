@@ -29,6 +29,8 @@ public class CRUDPregunta {
      * funcion para crear una pregunta en la base de datos
      * @param p Pregunta que se desea registrar
      * @param a Asignatura a la que se va a registrar una nueva pregunta
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     
     public int registrarPregunta(Pregunta p, Asignatura a){
@@ -39,7 +41,8 @@ public class CRUDPregunta {
     /**
      * funcion para eliminar una pregunta de la base de datos dado su id
      * @param idPregunta identificador de la pregunta que se desea eliminar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int eliminarPregunta(int idPregunta){
         return jdbcTemplate.update("DELETE from pregunta "
@@ -52,7 +55,8 @@ public class CRUDPregunta {
      * @param p Onjeto con los nuevos datos de la pregunta
      * @param a Asignatura que se le esta modificando una pregunta
      * @param idPregunta Identificado de la pregunta que se desea editar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int editarPregunta(Pregunta p, Asignatura a, int idPregunta){
         return jdbcTemplate.update("UPDATE pregunta"

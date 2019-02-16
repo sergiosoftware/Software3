@@ -39,26 +39,28 @@
                     <thead>
                         <tr>
                             <th>Tema</th>
-                            <th>Descripción</th>
+                            <th>Asignatura</th>
                             <th>Fecha publicación</th>
                             <th>Estado</th>
-                            <th>Monitor</th>
-                            <th>Fecha</th>
-                            <th>Hora</th>
+                            <th>Mas Detalles</th>
                     <tbody>
                         <c:forEach items="${respuestas}" var="respuestas">
                             <tr>
                                 <td><c:out value="${respuestas.tema}" /></td>
-                                <td><c:out value="${respuestas.descripcion}" /></td>
+                                <td><c:out value="${respuestas.codigoAsignatura}" /></td>
                                 <td><c:out value="${respuestas.fechaPublicacion}" /></td>
                                 <td><c:out value="${respuestas.respuesta}" /></td>
-                                <td><c:out value="${respuestas.nombre} ${respuestas.apellido}" default="Sin respuesta aun" /></td>
-                                <td><c:out value="${respuestas.fechaRespuesta}" default="Sin respuesta aun" /></td>
-                                <td><c:out value="${respuestas.hora}" default="Sin respuesta aun" /></td>
+                                <td>
+                                <c:choose> 
+                                    <c:when test="${respuestas.respuesta == 'S'}">
+                                        <a href=<c:url value="masDetallesPublicacion.htm?idInquietud=${respuestas.idInquietud}&&codigoEstudiante=${respuestas.codigoEstudiante}"></c:url> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                                    </c:when>
+                                </c:choose>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>
-                        </tr>
+                    </tr>
                     </thead>
                 </table>
             </div>

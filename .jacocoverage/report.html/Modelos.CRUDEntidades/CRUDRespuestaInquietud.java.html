@@ -8,9 +8,14 @@ package Modelos.CRUDEntidades;
 import Conexión.conexion;
 import Modelos.Entidades.Asignatura;
 import Modelos.Entidades.RespuestaInquietud;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.Date;
+import java.util.List;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 
 /**
  *
@@ -19,17 +24,44 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class CRUDRespuestaInquietud {
 
     private JdbcTemplate jdbcTemplate;
+    private String sql;
     
-<span class="fc" id="L23">    public CRUDRespuestaInquietud() {</span>
-<span class="fc" id="L24">        conexion con = new conexion();</span>
-<span class="fc" id="L25">        this.jdbcTemplate = new JdbcTemplate(con.conectar());</span>
-<span class="fc" id="L26">    }</span>
+<span class="fc" id="L29">    public CRUDRespuestaInquietud() {</span>
+<span class="fc" id="L30">        conexion con = new conexion();</span>
+<span class="fc" id="L31">        this.jdbcTemplate = new JdbcTemplate(con.conectar());</span>
+<span class="fc" id="L32">        this.sql= &quot;&quot;;</span>
+<span class="fc" id="L33">    }</span>
 
     public int guardar(int idInquietud, int codigoEstudiante, Date fechaRespueta, Time horaRespuesta) {
-<span class="fc" id="L29">        RespuestaInquietud nuevaRespuesta = new RespuestaInquietud(idInquietud,codigoEstudiante,fechaRespueta,horaRespuesta);</span>
-<span class="fc" id="L30">        int resultUpdate=jdbcTemplate.update(&quot;INSERT INTO respuestainquietud(idInquietud, codigoMonitor, fechaRespuesta,hora) &quot;</span>
-<span class="fc" id="L31">                + &quot;VALUES (?,?,?,?)&quot;, nuevaRespuesta.getIdInquetud(), nuevaRespuesta.getCodigoEstudiante(), nuevaRespuesta.getFechaRespuesta(), nuevaRespuesta.getHoraRespuesta());</span>
-<span class="fc" id="L32">        return resultUpdate;</span>
+<span class="fc" id="L36">        RespuestaInquietud nuevaRespuesta = new RespuestaInquietud(idInquietud,codigoEstudiante,fechaRespueta,horaRespuesta);</span>
+<span class="fc" id="L37">        int resultUpdate=jdbcTemplate.update(&quot;INSERT INTO respuestainquietud(idInquietud, codigoMonitor, fechaRespuesta,hora) &quot;</span>
+<span class="fc" id="L38">                + &quot;VALUES (?,?,?,?)&quot;, nuevaRespuesta.getIdInquetud(), nuevaRespuesta.getCodigoEstudiante(), nuevaRespuesta.getFechaRespuesta(), nuevaRespuesta.getHoraRespuesta());</span>
+<span class="fc" id="L39">        return resultUpdate;</span>
+    }
+
+    public List consultarRespuestas(int codigoEstudiante) {
+<span class="fc" id="L43">        this.sql = &quot;select * from bemonitorfinal.inquietud c left join respuestainquietud d on c.idinquietud=d.idinquietud left join estudiante e on d.codigoMonitor=e.codigo where c.codigoEstudiante=&quot;+codigoEstudiante+&quot;;&quot;;</span>
+<span class="fc" id="L44">        List datos = this.jdbcTemplate.queryForList(sql);</span>
+<span class="fc" id="L45">        return datos;</span>
+    }
+
+    public RespuestaInquietud consultarUna(int idInquietud, int codigoMonitor) {
+<span class="fc" id="L49">        this.sql=&quot;select * from respuestainquietud where idinquietud=&quot; + idInquietud+&quot; and codigoMonitor=&quot;+codigoMonitor+&quot;;&quot;;</span>
+<span class="fc" id="L50">        return (RespuestaInquietud) this.jdbcTemplate.query(sql, new ResultSetExtractor&lt;RespuestaInquietud&gt;() {</span>
+            @Override
+            public RespuestaInquietud extractData(ResultSet rs) throws SQLException, DataAccessException {
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">                    if(rs.next()){</span>
+<span class="fc" id="L54">                        RespuestaInquietud aux = new RespuestaInquietud();</span>
+<span class="fc" id="L55">                        aux.setIdRespuesta(rs.getInt(1));</span>
+<span class="fc" id="L56">                        aux.setIdInquetud(rs.getInt(2));</span>
+<span class="fc" id="L57">                        aux.setCodigoEstudiante(rs.getInt(3));</span>
+<span class="fc" id="L58">                        aux.setFechaRespuesta(rs.getDate(4));</span>
+<span class="fc" id="L59">                        aux.setHoraRespuesta(rs.getTime(5));</span>
+<span class="fc" id="L60">                        return aux;</span>
+                    }
+<span class="nc" id="L62">                    return null;</span>
+                }
+        });
     }
 
 

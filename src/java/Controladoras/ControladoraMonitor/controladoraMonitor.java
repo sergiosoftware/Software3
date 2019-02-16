@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- *
+ * Redireccionar a la vista indexMonitor
  * @author sergioandres
  */
 public class controladoraMonitor {

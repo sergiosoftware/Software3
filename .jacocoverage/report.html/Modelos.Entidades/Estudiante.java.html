@@ -11,18 +11,21 @@ package Modelos.Entidades;
  */
 public class Estudiante {
     
+    private int codigo;
     private String nombre;
     private String apellido;
     private String cedula;
+    private String programa;
     private String correo;
     private int calificacion;
-    private int monitor;
+    private boolean monitor;
 
-<span class="nc" id="L21">    public Estudiante() {</span>
-<span class="nc" id="L22">    }</span>
+<span class="nc" id="L23">    public Estudiante() {</span>
+<span class="nc" id="L24">    }</span>
 
     /**
      * 
+     * @param codigo
      * @param nombre
      * @param apellido
      * @param cedula
@@ -30,98 +33,141 @@ public class Estudiante {
      * @param calificacion
      * @param monitor 
      */
-<span class="nc" id="L33">    public Estudiante(String nombre, String apellido, String cedula, String correo, int calificacion, int monitor) {</span>
-<span class="nc" id="L34">        this.nombre = nombre;</span>
-<span class="nc" id="L35">        this.apellido = apellido;</span>
-<span class="nc" id="L36">        this.cedula = cedula;</span>
-<span class="nc" id="L37">        this.correo = correo;</span>
-<span class="nc" id="L38">        this.calificacion = calificacion;</span>
-<span class="nc" id="L39">        this.monitor = monitor;</span>
-<span class="nc" id="L40">    }</span>
+<span class="nc" id="L36">    public Estudiante(int codigo, String nombre, String apellido, String cedula, String correo, int calificacion, boolean monitor) {    </span>
+<span class="nc" id="L37">        this.codigo = codigo;</span>
+<span class="nc" id="L38">        this.nombre = nombre;</span>
+<span class="nc" id="L39">        this.apellido = apellido;</span>
+<span class="nc" id="L40">        this.cedula = cedula;</span>
+<span class="nc" id="L41">        this.correo = correo;</span>
+<span class="nc" id="L42">        this.calificacion = calificacion;</span>
+<span class="nc" id="L43">        this.monitor = monitor;</span>
+<span class="nc" id="L44">    }</span>
+
+<span class="nc" id="L46">    public Estudiante(int codigo, String nombre, String apellido, String cedula, String programa, String correo, int calificacion, boolean monitor) {</span>
+<span class="nc" id="L47">        this.codigo = codigo;</span>
+<span class="nc" id="L48">        this.nombre = nombre;</span>
+<span class="nc" id="L49">        this.apellido = apellido;</span>
+<span class="nc" id="L50">        this.cedula = cedula;</span>
+<span class="nc" id="L51">        this.programa = programa;</span>
+<span class="nc" id="L52">        this.correo = correo;</span>
+<span class="nc" id="L53">        this.calificacion = calificacion;</span>
+<span class="nc" id="L54">        this.monitor = monitor;</span>
+<span class="nc" id="L55">    }</span>
+    
 
     /**
      * @return the nombre
      */
     public String getNombre() {
-<span class="nc" id="L46">        return nombre;</span>
+<span class="nc" id="L62">        return nombre;</span>
     }
 
     /**
      * @param nombre the nombre to set
      */
     public void setNombre(String nombre) {
-<span class="nc" id="L53">        this.nombre = nombre;</span>
-<span class="nc" id="L54">    }</span>
+<span class="nc" id="L69">        this.nombre = nombre;</span>
+<span class="nc" id="L70">    }</span>
 
     /**
      * @return the apellido
      */
     public String getApellido() {
-<span class="nc" id="L60">        return apellido;</span>
+<span class="nc" id="L76">        return apellido;</span>
     }
 
     /**
      * @param apellido the apellido to set
      */
     public void setApellido(String apellido) {
-<span class="nc" id="L67">        this.apellido = apellido;</span>
-<span class="nc" id="L68">    }</span>
+<span class="nc" id="L83">        this.apellido = apellido;</span>
+<span class="nc" id="L84">    }</span>
 
     /**
      * @return the cedula
      */
     public String getCedula() {
-<span class="nc" id="L74">        return cedula;</span>
+<span class="nc" id="L90">        return cedula;</span>
     }
 
     /**
      * @param cedula the cedula to set
      */
     public void setCedula(String cedula) {
-<span class="nc" id="L81">        this.cedula = cedula;</span>
-<span class="nc" id="L82">    }</span>
+<span class="nc" id="L97">        this.cedula = cedula;</span>
+<span class="nc" id="L98">    }</span>
 
     /**
      * @return the correo
      */
     public String getCorreo() {
-<span class="nc" id="L88">        return correo;</span>
+<span class="nc" id="L104">        return correo;</span>
     }
 
     /**
      * @param correo the correo to set
      */
     public void setCorreo(String correo) {
-<span class="nc" id="L95">        this.correo = correo;</span>
-<span class="nc" id="L96">    }</span>
+<span class="nc" id="L111">        this.correo = correo;</span>
+<span class="nc" id="L112">    }</span>
 
     /**
      * @return the calificacion
      */
     public int getCalificacion() {
-<span class="nc" id="L102">        return calificacion;</span>
+<span class="nc" id="L118">        return calificacion;</span>
     }
 
     /**
      * @param calificacion the calificacion to set
      */
     public void setCalificacion(int calificacion) {
-<span class="nc" id="L109">        this.calificacion = calificacion;</span>
-<span class="nc" id="L110">    }</span>
+<span class="nc" id="L125">        this.calificacion = calificacion;</span>
+<span class="nc" id="L126">    }</span>
 
     /**
      * @return the monitor
      */
-    public int getMonitor() {
-<span class="nc" id="L116">        return monitor;</span>
+    public boolean isMonitor() {
+<span class="nc" id="L132">        return monitor;</span>
     }
 
     /**
      * @param monitor the monitor to set
      */
-    public void setMonitor(int monitor) {
-<span class="nc" id="L123">        this.monitor = monitor;</span>
-<span class="nc" id="L124">    }</span>
+    public void setMonitor(boolean monitor) {
+<span class="nc" id="L139">        this.monitor = monitor;</span>
+<span class="nc" id="L140">    }</span>
+
+    /**
+     * @return the codigo
+     */
+    public int getCodigo() {
+<span class="nc" id="L146">        return codigo;</span>
+    }
+
+    /**
+     * @param codigo the codigo to set
+     */
+    public void setCodigo(int codigo) {
+<span class="nc" id="L153">        this.codigo = codigo;</span>
+<span class="nc" id="L154">    }</span>
+
+    /**
+     * @return the programa
+     */
+    public String getPrograma() {
+<span class="nc" id="L160">        return programa;</span>
+    }
+
+    /**
+     * @param programa the programa to set
+     */
+    public void setPrograma(String programa) {
+<span class="nc" id="L167">        this.programa = programa;</span>
+<span class="nc" id="L168">    }</span>
+
+  
     
     
     

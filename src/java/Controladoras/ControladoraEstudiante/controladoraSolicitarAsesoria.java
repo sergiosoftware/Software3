@@ -33,21 +33,27 @@ public class controladoraSolicitarAsesoria {
     
     @RequestMapping(value = "getAsesoriaJSP.htm", method = RequestMethod.GET)
     public ModelAndView home(HttpServletRequest request){
-        List respuest=asesorias.consultarTodas();
+        //List respuest=asesorias.consultarTodas();
         JSONObject json = new JSONObject();
-        System.out.println(respuest.toString());
+        //System.out.println(respuest.toString());
+        System.out.println("Puerto remoto:"+request.getRemotePort());
+        System.out.println("Puerto del servidor:"+request.getLocalPort());
+        int codigoEstudiante=Integer.parseInt(request.getParameter("codigoEstudiante"));
+        String asignatura=request.getParameter("asignatura");
+        String tema=request.getParameter("tema");
+        int respuesta = asesorias.IngresarAsesoria(codigoEstudiante, asignatura, tema);
         ModelAndView mav = new ModelAndView();
-        int cont=0;
-        for (Object object : respuest) {
-            cont++;
-            try {
-                json.put("asesoria"+cont, object);
-            } catch (JSONException ex) {
-                Logger.getLogger(controladoraSolicitarAsesoria.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+//        int cont=0;
+//        for (Object object : respuest) {
+//            cont++;
+//            try {
+//                json.put("asesoria"+cont, object);
+//            } catch (JSONException ex) {
+//                Logger.getLogger(controladoraSolicitarAsesoria.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
         mav.setViewName("respuesta");
-        mav.addObject("respuestas",json);
+        mav.addObject("respuestas",respuesta);
         return mav;
     }
     

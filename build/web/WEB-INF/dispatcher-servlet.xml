@@ -99,8 +99,8 @@
     <bean name="controladoraListarPublicaciones" class="Controladoras.ControladoraEstudiante.controladoraListarPublicaciones"/>
     <bean name="controladoraPerfilUsuario" class="Controladoras.ControladoraAdmin.controladoraPerfilUsuario"/>
     <bean name="controladoraMasDetallesPublicaciones" class="Controladoras.ControladoraEstudiante.controladoraMasDetallesPublicaciones"/>
-    <bean name="controladoraResponderAsesoria" class="Controladoras.ControladoraEstudiante.controladoraResponderAsesoria"/>
-    <bean name="controladoraSolicitarAsesoria" class="Controladoras.ControladoraMonitor.controladoraSolicitarAsesoria"/>
+    <bean name="controladoraResponderAsesoria" class="Controladoras.ControladoraMonitor.controladoraResponderAsesoria"/>
+    <bean name="controladoraSolicitarAsesoria" class="Controladoras.ControladoraEstudiante.controladoraSolicitarAsesoria"/>
 
     
     

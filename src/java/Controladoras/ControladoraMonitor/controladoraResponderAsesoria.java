@@ -59,12 +59,11 @@ public class controladoraResponderAsesoria {
         Date format = new Date();
         Date time = new Date();
         Time tiempo= new Time(1);
-        int idInquietud = Integer.parseInt(request.getParameter("idInquietud"));
+        int idInquietud = Integer.parseInt(request.getParameter("idAsesoria"));
         int codigoEstudiante = Integer.parseInt(request.getParameter("codigoMonitor"));
         String asignatura = request.getParameter("asignatura");
         String fecha = request.getParameter("fecha");
         String hora = request.getParameter("hora");
-        String tema = request.getParameter("tema");
         try {
             format = new SimpleDateFormat("yyyy-mm-dd").parse(fecha);
             time = new SimpleDateFormat("hh:mm:ss").parse(hora);

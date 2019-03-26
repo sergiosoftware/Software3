@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>controladoraResponderAsesoria.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProyectoIngenieriaSoftwareII&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controladoras.ControladoraMonitor</a> &gt; <span class="el_source">controladoraResponderAsesoria.java</span></div><h1>controladoraResponderAsesoria.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controladoras.ControladoraMonitor;
+
+import Modelos.CRUDEntidades.CRUDRespuestaAsesoria;
+import Modelos.Entidades.RespuestaAsesoria;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+/**
+ *
+ * @author JulianCamilo
+ */
+@Controller
+public class controladoraResponderAsesoria {
+
+    private CRUDRespuestaAsesoria respuestas;
+
+<span class="nc" id="L33">    public controladoraResponderAsesoria() {</span>
+<span class="nc" id="L34">        this.respuestas = new CRUDRespuestaAsesoria();</span>
+<span class="nc" id="L35">    }</span>
+
+    @RequestMapping(value = &quot;getRespuestaAsesoria.htm&quot;, method = RequestMethod.GET,headers=&quot;Accept=application/json&quot;)
+    public RespuestaAsesoria getRespuesta(HttpServletRequest request) {
+<span class="nc" id="L39">        int idRespuesta = Integer.parseInt(request.getParameter(&quot;idAsesoria&quot;));</span>
+<span class="nc" id="L40">        RespuestaAsesoria respuesta = respuestas.consultaruna(idRespuesta);</span>
+<span class="nc" id="L41">        return respuesta;</span>
+    }
+
+    @RequestMapping(value = &quot;getRespuestaAsignatura.htm&quot;, method = RequestMethod.GET,headers=&quot;Accept=application/json&quot;)
+    public RespuestaAsesoria getRespuestaAsignatura(HttpServletRequest request) {
+<span class="nc" id="L46">        String asignatura = request.getParameter(&quot;asignatura&quot;);</span>
+<span class="nc" id="L47">        RespuestaAsesoria respuesta = respuestas.consultarUnaPorAsignatura(asignatura);</span>
+<span class="nc" id="L48">        return respuesta;</span>
+    }
+
+    @RequestMapping(value = &quot;getTodasRespuestas.htm&quot;, method = RequestMethod.GET,headers=&quot;Accept=application/json&quot;)
+    public List getTodas() {
+<span class="nc" id="L53">        List respuest = respuestas.consultarTodas();</span>
+<span class="nc" id="L54">        return respuest;</span>
+    }
+
+    @RequestMapping(value = &quot;agregarRespuesta.htm&quot;, method = RequestMethod.GET,headers=&quot;Accept=application/json&quot;)
+    public int agregarAsesoria(HttpServletRequest request) {
+<span class="nc" id="L59">        Date format = new Date();</span>
+<span class="nc" id="L60">        Date time = new Date();</span>
+<span class="nc" id="L61">        Time tiempo= new Time(1);</span>
+<span class="nc" id="L62">        int idInquietud = Integer.parseInt(request.getParameter(&quot;idAsesoria&quot;));</span>
+<span class="nc" id="L63">        int codigoEstudiante = Integer.parseInt(request.getParameter(&quot;codigoMonitor&quot;));</span>
+<span class="nc" id="L64">        String asignatura = request.getParameter(&quot;asignatura&quot;);</span>
+<span class="nc" id="L65">        String fecha = request.getParameter(&quot;fecha&quot;);</span>
+<span class="nc" id="L66">        String hora = request.getParameter(&quot;hora&quot;);</span>
+        try {
+<span class="nc" id="L68">            format = new SimpleDateFormat(&quot;yyyy-mm-dd&quot;).parse(fecha);</span>
+<span class="nc" id="L69">            time = new SimpleDateFormat(&quot;hh:mm:ss&quot;).parse(hora);</span>
+<span class="nc" id="L70">            Calendar calendar = Calendar.getInstance();</span>
+<span class="nc" id="L71">            calendar.setTimeInMillis(time.getTime());</span>
+<span class="nc" id="L72">            tiempo.setTime(calendar.getTimeInMillis());</span>
+            
+<span class="nc" id="L74">        } catch (ParseException ex) {</span>
+<span class="nc" id="L75">            Logger.getLogger(controladoraResponderAsesoria.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L76">        }</span>
+<span class="nc" id="L77">        int respuesta = respuestas.IngresarRespuestaAsesoria(idInquietud, codigoEstudiante, format, tiempo);</span>
+<span class="nc" id="L78">        return respuesta;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -9,8 +9,6 @@ import Modelos.CRUDEntidades.CRUDInquietud;
 import Modelos.CRUDEntidades.CRUDRespuestaInquietud;
 import Modelos.Entidades.RespuestaInquietud;
 import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -23,10 +21,10 @@ public class OperacionResponderInquietud {
     private CRUDRespuestaInquietud inquietudResponder;
     private CRUDInquietud inquietudActualizada;
 
-<span class="fc" id="L26">    public OperacionResponderInquietud() {</span>
-<span class="fc" id="L27">        this.inquietudResponder = new CRUDRespuestaInquietud();</span>
-<span class="fc" id="L28">        this.inquietudActualizada = new CRUDInquietud();</span>
-<span class="fc" id="L29">    }</span>
+<span class="fc" id="L24">    public OperacionResponderInquietud() {</span>
+<span class="fc" id="L25">        this.inquietudResponder = new CRUDRespuestaInquietud();</span>
+<span class="fc" id="L26">        this.inquietudActualizada = new CRUDInquietud();</span>
+<span class="fc" id="L27">    }</span>
 
     /**
      * Método que registra la respuesta a una inquietud, y actualiza su estado a
@@ -38,48 +36,81 @@ public class OperacionResponderInquietud {
      * @param fechaRespuesta la fecha que el estudiante propuso la reunión para
      * responder
      * @param hora la hora a la que la reunión quedó programada
-     * @return
+     * @param preRespuesta respuesta previa a la inquietud planteada
+     * @return 0 si no se pudo registrar la respuesta para la inquietud, 1 en caso contrario
      */
-    public int guardarRespuestaInquietud(int idInquietud, int codigoEstudiante, Date fechaRespuesta, Time hora) {
-<span class="fc" id="L44">        int result = 0;</span>
-<span class="fc" id="L45">        Date fechaSistema = new Date();</span>
-<span class="fc" id="L46">        Time horaActual = new Time(fechaSistema.getHours(),fechaSistema.getMinutes(),fechaSistema.getSeconds());</span>
-<span class="fc" id="L47">        System.out.println(&quot;fecha sistema: &quot;+fechaSistema + &quot; hora sistema: &quot;+horaActual);</span>
-<span class="fc" id="L48">        System.out.println(&quot;fecha respuesta: &quot;+fechaRespuesta + &quot; hora respuesta: &quot;+hora);</span>
-<span class="pc bpc" id="L49" title="3 of 8 branches missed.">        if (idInquietud == 0 || codigoEstudiante == 0 || fechaRespuesta == null || hora == null) {</span>
-<span class="fc" id="L50">            result = 0;</span>
-        }
-<span class="pc bpc" id="L52" title="3 of 4 branches missed.">        else if(fechaSistema.equals(fechaRespuesta) &amp;&amp; horaActual.after(fechaSistema)){</span>
-<span class="nc" id="L53">            result=inquietudResponder.guardar(idInquietud, codigoEstudiante, fechaRespuesta, hora);</span>
-<span class="nc bnc" id="L54" title="All 2 branches missed.">            if(result==1){</span>
-<span class="nc" id="L55">                result=inquietudActualizada.editarEstadoInquietud(idInquietud);</span>
+    public int guardarRespuestaInquietud(int idInquietud, int codigoEstudiante, Date fechaRespuesta, Time hora, String preRespuesta) {
+<span class="fc" id="L43">        int result = 0;</span>
+<span class="fc" id="L44">        Date fechaSistema = new Date();</span>
+<span class="fc" id="L45">        Time horaActual = new Time(fechaSistema.getHours(), fechaSistema.getMinutes(), fechaSistema.getSeconds());</span>
+<span class="pc bpc" id="L46" title="3 of 6 branches missed.">        if (idInquietud == 0 || codigoEstudiante == 0 || preRespuesta.isEmpty()) {</span>
+<span class="nc" id="L47">            result = 0;</span>
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">        } else if (fechaRespuesta != null) {</span>
+<span class="pc bpc" id="L49" title="3 of 4 branches missed.">            if (fechaSistema.equals(fechaRespuesta) &amp;&amp; horaActual.after(fechaSistema)) {</span>
+<span class="nc" id="L50">                result = inquietudResponder.guardarConFecha(idInquietud, codigoEstudiante, fechaRespuesta, hora,preRespuesta);</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">                if (result == 1) {</span>
+<span class="nc" id="L52">                    result = inquietudActualizada.editarEstadoInquietud(idInquietud);</span>
+                }
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">            } else if (fechaSistema.before(fechaRespuesta)) {</span>
+<span class="nc" id="L55">                result = inquietudResponder.guardarConFecha(idInquietud, codigoEstudiante, fechaRespuesta, hora,preRespuesta);</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">                if (result == 1) {</span>
+<span class="nc" id="L57">                    result = inquietudActualizada.editarEstadoInquietud(idInquietud);</span>
+                }
             }
         }
-<span class="fc bfc" id="L58" title="All 2 branches covered.">        else if(fechaSistema.before(fechaRespuesta)){</span>
-<span class="fc" id="L59">            result=inquietudResponder.guardar(idInquietud, codigoEstudiante, fechaRespuesta, hora);</span>
-<span class="pc bpc" id="L60" title="1 of 2 branches missed.">            if(result==1){</span>
-<span class="fc" id="L61">                result=inquietudActualizada.editarEstadoInquietud(idInquietud);</span>
-            }
+        else{
+<span class="nc" id="L62">            result = inquietudResponder.guardarSinFecha(idInquietud, codigoEstudiante,preRespuesta);</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            if (result == 1) {</span>
+<span class="nc" id="L64">                    result = inquietudActualizada.editarEstadoInquietud(idInquietud);</span>
+                }
         }
-<span class="fc" id="L64">        return result;</span>
+<span class="fc" id="L67">        return result;</span>
 
     }
 
+    /**
+     * Método para consultar las respuestas que a dado un estudiante a inquietudes planteadas
+     * @param codigoEstudiante codigo del estudiante que ha dado respuesta a las inquietudes
+     * @return lista con las respuestas a iinquietud que a registrado un estudiante
+     */
     public List consultarRespuestas(int codigoEstudiante) {
-<span class="fc" id="L69">        List respuestas = inquietudResponder.consultarRespuestas(codigoEstudiante);</span>
-<span class="pc bpc" id="L70" title="1 of 2 branches missed.">        if (respuestas == null) {</span>
-<span class="nc" id="L71">            return null;</span>
+<span class="fc" id="L77">        List respuestas = inquietudResponder.consultarRespuestas(codigoEstudiante);</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">        if (respuestas == null) {</span>
+<span class="nc" id="L79">            return null;</span>
         } else {
-<span class="fc" id="L73">            return respuestas;</span>
+<span class="fc" id="L81">            return respuestas;</span>
+        }
+
+    }
+    
+    /**
+     * Metodo para consultar una respuesta en especifico que a dado un estudiante a una inquietud
+     * @param idInquietud identificar de la inquietud que se va a onsultar
+     * @param codigoEstudiante codigo del estudiante que se va a relacionar con la inquietud que se va a consultar
+     * @return informacion de una respuesta a una inquietud por parte de un estudiante
+     */
+    RespuestaInquietud consultarUnaRespuesta(int idInquietud, int codigoEstudiante) {
+<span class="fc" id="L93">        CRUDRespuestaInquietud verRespuesta = new CRUDRespuestaInquietud();</span>
+<span class="fc" id="L94">        RespuestaInquietud nueva = verRespuesta.consultarUna(idInquietud, codigoEstudiante);</span>
+<span class="fc" id="L95">        return nueva;</span>
+    }
+    
+    /**
+     * Método para consultar una respuesta que a recibido un estudiante a una inquietud planteada
+     * @param codigoEstudiante codigo del estudiante que ha dado respuesta a las inquietudes
+     * @param idInquietud idenitificador de la inquietud que se va a detallar
+     * @return lista con las respuestas a iinquietud que a registrado un estudiante
+     */
+    public List consultarRespuestasMasDetalles(int codigoEstudiante, int idInquietud) {
+<span class="nc" id="L105">        List respuestas = inquietudResponder.consultarRespuestasMasDetalles(codigoEstudiante,idInquietud);</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        if (respuestas == null) {</span>
+<span class="nc" id="L107">            return null;</span>
+        } else {
+<span class="nc" id="L109">            return respuestas;</span>
         }
 
     }
 
-    RespuestaInquietud consultarUnaRespuesta(int idInquietud, int codigoEstudiante) {
-<span class="fc" id="L79">        CRUDRespuestaInquietud verRespuesta = new CRUDRespuestaInquietud();</span>
-<span class="fc" id="L80">        RespuestaInquietud nueva = verRespuesta.consultarUna(idInquietud, codigoEstudiante);</span>
-<span class="fc" id="L81">        return nueva;</span>
-    }
-
+    
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -14,93 +14,111 @@ import java.util.Date;
  */
 public class RespuestaInquietud {
 
-    private int idInquetud,codigoEstudiante,idRespuesta;
+    private int idInquetud, codigoEstudiante, idRespuesta;
     private Date fechaRespuesta;
     private Time horaRespuesta;
-    
-<span class="fc" id="L21">    public RespuestaInquietud() {</span>
-<span class="fc" id="L22">    }</span>
+    private String preRespuesta;
 
-<span class="fc" id="L24">    public RespuestaInquietud(int idInquetud, int codigoEstudiante, Date fecha, Time hora) {</span>
-<span class="fc" id="L25">        this.idInquetud = idInquetud;</span>
-<span class="fc" id="L26">        this.codigoEstudiante = codigoEstudiante;</span>
-<span class="fc" id="L27">        this.fechaRespuesta = fecha;</span>
-<span class="fc" id="L28">        this.horaRespuesta=hora;</span>
-<span class="fc" id="L29">    }</span>
+<span class="nc" id="L22">    public RespuestaInquietud() {</span>
+<span class="nc" id="L23">    }</span>
+
+<span class="fc" id="L25">    public RespuestaInquietud(int idInquetud, int codigoEstudiante, Date fecha, Time hora, String preRespuesta) {</span>
+<span class="fc" id="L26">        this.idInquetud = idInquetud;</span>
+<span class="fc" id="L27">        this.codigoEstudiante = codigoEstudiante;</span>
+<span class="fc" id="L28">        this.fechaRespuesta = fecha;</span>
+<span class="fc" id="L29">        this.horaRespuesta = hora;</span>
+<span class="fc" id="L30">        this.preRespuesta = preRespuesta;</span>
+<span class="fc" id="L31">    }</span>
+
+<span class="fc" id="L33">    public RespuestaInquietud(int idInquetud, int codigoEstudiante, String preRespuesta) {</span>
+<span class="fc" id="L34">        this.idInquetud = idInquetud;</span>
+<span class="fc" id="L35">        this.codigoEstudiante = codigoEstudiante;</span>
+<span class="fc" id="L36">        this.preRespuesta = preRespuesta;</span>
+<span class="fc" id="L37">    }</span>
 
     /**
      * @return the idInquetud
      */
     public int getIdInquetud() {
-<span class="fc" id="L35">        return idInquetud;</span>
+<span class="fc" id="L43">        return idInquetud;</span>
     }
 
     /**
      * @param idInquetud the idInquetud to set
      */
     public void setIdInquetud(int idInquetud) {
-<span class="fc" id="L42">        this.idInquetud = idInquetud;</span>
-<span class="fc" id="L43">    }</span>
+<span class="nc" id="L50">        this.idInquetud = idInquetud;</span>
+<span class="nc" id="L51">    }</span>
 
     /**
      * @return the codigoEstudiante
      */
     public int getCodigoEstudiante() {
-<span class="fc" id="L49">        return codigoEstudiante;</span>
+<span class="fc" id="L57">        return codigoEstudiante;</span>
     }
 
     /**
      * @param codigoEstudiante the codigoEstudiante to set
      */
     public void setCodigoEstudiante(int codigoEstudiante) {
-<span class="fc" id="L56">        this.codigoEstudiante = codigoEstudiante;</span>
-<span class="fc" id="L57">    }</span>
+<span class="nc" id="L64">        this.codigoEstudiante = codigoEstudiante;</span>
+<span class="nc" id="L65">    }</span>
 
     /**
      * @return the idRespuesta
      */
     public int getIdRespuesta() {
-<span class="nc" id="L63">        return idRespuesta;</span>
+<span class="nc" id="L71">        return idRespuesta;</span>
     }
 
     /**
      * @param idRespuesta the idRespuesta to set
      */
     public void setIdRespuesta(int idRespuesta) {
-<span class="fc" id="L70">        this.idRespuesta = idRespuesta;</span>
-<span class="fc" id="L71">    }</span>
+<span class="nc" id="L78">        this.idRespuesta = idRespuesta;</span>
+<span class="nc" id="L79">    }</span>
 
     /**
      * @return the fechaRespuesta
      */
     public Date getFechaRespuesta() {
-<span class="fc" id="L77">        return fechaRespuesta;</span>
+<span class="nc" id="L85">        return fechaRespuesta;</span>
     }
 
     /**
      * @param fechaRespuesta the fechaRespuesta to set
      */
     public void setFechaRespuesta(Date fechaRespuesta) {
-<span class="fc" id="L84">        this.fechaRespuesta = fechaRespuesta;</span>
-<span class="fc" id="L85">    }</span>
+<span class="nc" id="L92">        this.fechaRespuesta = fechaRespuesta;</span>
+<span class="nc" id="L93">    }</span>
 
     /**
      * @return the horaRespuesta
      */
     public Time getHoraRespuesta() {
-<span class="fc" id="L91">        return horaRespuesta;</span>
+<span class="nc" id="L99">        return horaRespuesta;</span>
     }
 
     /**
      * @param horaRespuesta the horaRespuesta to set
      */
     public void setHoraRespuesta(Time horaRespuesta) {
-<span class="fc" id="L98">        this.horaRespuesta = horaRespuesta;</span>
-<span class="fc" id="L99">    }</span>
+<span class="nc" id="L106">        this.horaRespuesta = horaRespuesta;</span>
+<span class="nc" id="L107">    }</span>
 
-    
-    
-    
-    
+    /**
+     * @return the preRespuesta
+     */
+    public String getPreRespuesta() {
+<span class="fc" id="L113">        return preRespuesta;</span>
+    }
+
+    /**
+     * @param preRespuesta the preRespuesta to set
+     */
+    public void setPreRespuesta(String preRespuesta) {
+<span class="nc" id="L120">        this.preRespuesta = preRespuesta;</span>
+<span class="nc" id="L121">    }</span>
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

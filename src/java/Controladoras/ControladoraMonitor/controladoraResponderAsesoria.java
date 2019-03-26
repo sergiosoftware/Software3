@@ -34,27 +34,27 @@ public class controladoraResponderAsesoria {
         this.respuestas = new CRUDRespuestaAsesoria();
     }
 
-    @RequestMapping(value = "getRespuestaAsesoria.htm", method = RequestMethod.GET)
+    @RequestMapping(value = "getRespuestaAsesoria.htm", method = RequestMethod.GET,headers="Accept=application/json")
     public RespuestaAsesoria getRespuesta(HttpServletRequest request) {
         int idRespuesta = Integer.parseInt(request.getParameter("idAsesoria"));
         RespuestaAsesoria respuesta = respuestas.consultaruna(idRespuesta);
         return respuesta;
     }
 
-    @RequestMapping(value = "getRespuestaAsignatura.htm", method = RequestMethod.GET)
+    @RequestMapping(value = "getRespuestaAsignatura.htm", method = RequestMethod.GET,headers="Accept=application/json")
     public RespuestaAsesoria getRespuestaAsignatura(HttpServletRequest request) {
         String asignatura = request.getParameter("asignatura");
         RespuestaAsesoria respuesta = respuestas.consultarUnaPorAsignatura(asignatura);
         return respuesta;
     }
 
-    @RequestMapping(value = "getTodasRespuestas.htm", method = RequestMethod.GET)
+    @RequestMapping(value = "getTodasRespuestas.htm", method = RequestMethod.GET,headers="Accept=application/json")
     public List getTodas() {
         List respuest = respuestas.consultarTodas();
         return respuest;
     }
 
-    @RequestMapping(value = "agregarRespuesta.htm", method = RequestMethod.GET)
+    @RequestMapping(value = "agregarRespuesta.htm", method = RequestMethod.GET,headers="Accept=application/json")
     public int agregarAsesoria(HttpServletRequest request) {
         Date format = new Date();
         Date time = new Date();

@@ -16,16 +16,17 @@ import org.springframework.web.servlet.ModelAndView;
  * @author sergioandres
  */
 <span class="nc" id="L18">public class controladoraEstudiante {</span>
-    
-
    
-
+    /**
+     * Metodo para redireccionar a la vista solicitada
+     * @return  redireccionamiento a la vista indexEstudiante
+     */
     @RequestMapping(value = &quot;indexEstudiante.htm&quot;, method = RequestMethod.GET)
     public ModelAndView form() {
-<span class="nc" id="L25">        ModelAndView mav = new ModelAndView();</span>
-<span class="nc" id="L26">        mav.setViewName(&quot;indexEstudiante&quot;);</span>
+<span class="nc" id="L26">        ModelAndView mav = new ModelAndView();</span>
+<span class="nc" id="L27">        mav.setViewName(&quot;indexEstudiante&quot;);</span>
         //mav.addObject(&quot;usuarios&quot;, new Estudiante());
-<span class="nc" id="L28">        return mav;</span>
+<span class="nc" id="L29">        return mav;</span>
     }
     
 }

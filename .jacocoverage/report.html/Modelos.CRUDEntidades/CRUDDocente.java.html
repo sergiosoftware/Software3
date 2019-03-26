@@ -27,36 +27,39 @@ public class CRUDDocente {
     /**
      * funcion para registrar un nuevo docente en la base de datos
      * @param d Modelo de docente que se desea registrar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int registrarDocente(Docente d){
-<span class="nc" id="L33">        return jdbcTemplate.update(&quot;INSERT INTO docente (identificacion,nombre,apellido,correoElectronico)&quot;</span>
-<span class="nc" id="L34">        + &quot;VALUES (?,?,?,?)&quot;,d.getIdentificacion(),d.getNombre(),d.getApellido(),d.getCorreoElectronico());</span>
+<span class="nc" id="L34">        return jdbcTemplate.update(&quot;INSERT INTO docente (identificacion,nombre,apellido,correoElectronico)&quot;</span>
+<span class="nc" id="L35">        + &quot;VALUES (?,?,?,?)&quot;,d.getIdentificacion(),d.getNombre(),d.getApellido(),d.getCorreoElectronico());</span>
     }
     
     /**
      * funcion para eliminar un docente de la base de datos del sistema
      * @param identificacion  identificador del docente que se desea eliminar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int eliminarDocente(int identificacion){
-<span class="nc" id="L43">        return jdbcTemplate.update(&quot;DELETE from docente &quot;</span>
+<span class="nc" id="L45">        return jdbcTemplate.update(&quot;DELETE from docente &quot;</span>
                 + &quot;WHERE &quot;
-<span class="nc" id="L45">                + &quot;identificacion=?;&quot;,identificacion);</span>
+<span class="nc" id="L47">                + &quot;identificacion=?;&quot;,identificacion);</span>
     }
     
     /**
      * funcion para editar un docente dada su identificacion
      * @param d Objeto con los nuevos datos del docente
      * @param identificacion  Identificador del docente que se desea editar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int editarDocente(Docente d, String identificacion){
-<span class="nc" id="L55">        return jdbcTemplate.update(&quot;UPDATE docente&quot;</span>
+<span class="nc" id="L58">        return jdbcTemplate.update(&quot;UPDATE docente&quot;</span>
                 + &quot;nombre=?,&quot;
                 + &quot;apellido=?&quot;
                 + &quot;correoElectronico=?,&quot;
-<span class="nc" id="L59">                + &quot;WHERE identificacion=?&quot;,d.getNombre(),d.getApellido(),d.getCorreoElectronico(),identificacion);</span>
+<span class="nc" id="L62">                + &quot;WHERE identificacion=?&quot;,d.getNombre(),d.getApellido(),d.getCorreoElectronico(),identificacion);</span>
     }
     
     /**
@@ -65,15 +68,15 @@ public class CRUDDocente {
      * @return una pregunta con todos sus valores
      */
     public Docente seleccionarDocente(int identificacion) {
-<span class="nc" id="L68">        final Docente doc = new Docente();</span>
-<span class="nc" id="L69">        String quer = &quot;SELECT * FROM docente WHERE identificacion=?&quot; + identificacion;</span>
-<span class="nc" id="L70">        return (Docente) jdbcTemplate.query(quer, (ResultSet rs) -&gt; {</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">            if (rs.next()) {</span>
-<span class="nc" id="L72">                doc.setNombre(rs.getString(&quot;nombre&quot;));</span>
-<span class="nc" id="L73">                doc.setApellido(rs.getString(&quot;apellido&quot;));</span>
-<span class="nc" id="L74">                doc.setCorreoElectronico(rs.getString(&quot;correoElectronico&quot;));</span>
+<span class="nc" id="L71">        final Docente doc = new Docente();</span>
+<span class="nc" id="L72">        String quer = &quot;SELECT * FROM docente WHERE identificacion=?&quot; + identificacion;</span>
+<span class="nc" id="L73">        return (Docente) jdbcTemplate.query(quer, (ResultSet rs) -&gt; {</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            if (rs.next()) {</span>
+<span class="nc" id="L75">                doc.setNombre(rs.getString(&quot;nombre&quot;));</span>
+<span class="nc" id="L76">                doc.setApellido(rs.getString(&quot;apellido&quot;));</span>
+<span class="nc" id="L77">                doc.setCorreoElectronico(rs.getString(&quot;correoElectronico&quot;));</span>
             }
-<span class="nc" id="L76">            return doc;</span>
+<span class="nc" id="L79">            return doc;</span>
         });
     }
     
@@ -82,9 +85,9 @@ public class CRUDDocente {
      * @return lista total de docente
      */
     public List consultarTodos(){
-<span class="nc" id="L85">        this.sql = &quot;select * from docentes order by identificacion desc&quot;;</span>
-<span class="nc" id="L86">        List datos = this.jdbcTemplate.queryForList(sql);</span>
-<span class="nc" id="L87">        return datos;</span>
+<span class="nc" id="L88">        this.sql = &quot;select * from docentes order by identificacion desc&quot;;</span>
+<span class="nc" id="L89">        List datos = this.jdbcTemplate.queryForList(sql);</span>
+<span class="nc" id="L90">        return datos;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

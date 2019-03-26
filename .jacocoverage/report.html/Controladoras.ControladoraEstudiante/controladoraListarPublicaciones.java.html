@@ -22,21 +22,26 @@ import org.springframework.web.servlet.ModelAndView;
     
     OperacionResponderInquietud respuestaInquietud;
     
+    /**
+     * Metodo para redireccionar a la vista solicitada
+     * @param request
+     * @return redireccionamiento a la vista misPublicaciones
+     */
     @RequestMapping(value = &quot;misPublicaciones.htm&quot;, method = RequestMethod.GET)
     public ModelAndView home(HttpServletRequest request){
         
-<span class="nc" id="L28">        this.respuestaInquietud= new OperacionResponderInquietud();</span>
-<span class="nc" id="L29">        ModelAndView mav = new ModelAndView();</span>
-<span class="nc" id="L30">        List respuestas = respuestaInquietud.consultarRespuestas(Integer.parseInt(request.getParameter(&quot;codigo&quot;)));</span>
-<span class="nc" id="L31">        mav.setViewName(&quot;misPublicaciones&quot;);</span>
-<span class="nc bnc" id="L32" title="All 2 branches missed.">        if(respuestas!=null){</span>
-<span class="nc" id="L33">            mav.addObject(&quot;respuestas&quot;, respuestas);</span>
+<span class="nc" id="L33">        this.respuestaInquietud= new OperacionResponderInquietud();</span>
+<span class="nc" id="L34">        ModelAndView mav = new ModelAndView();</span>
+<span class="nc" id="L35">        List respuestas = respuestaInquietud.consultarRespuestas(Integer.parseInt(request.getParameter(&quot;codigo&quot;)));</span>
+<span class="nc" id="L36">        mav.setViewName(&quot;misPublicaciones&quot;);</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if(respuestas!=null){</span>
+<span class="nc" id="L38">            mav.addObject(&quot;respuestas&quot;, respuestas);</span>
         }
         else{
-<span class="nc" id="L36">            mav.addObject(&quot;error&quot;,&quot;No has publicado nada aun&quot;);</span>
+<span class="nc" id="L41">            mav.addObject(&quot;error&quot;,&quot;No has publicado nada aun&quot;);</span>
         }
-<span class="nc" id="L38">        mav.addObject(&quot;codigo&quot;,request.getParameter(&quot;codigo&quot;));</span>
-<span class="nc" id="L39">        return mav;</span>
+<span class="nc" id="L43">        mav.addObject(&quot;codigo&quot;,request.getParameter(&quot;codigo&quot;));</span>
+<span class="nc" id="L44">        return mav;</span>
     }
     
 }

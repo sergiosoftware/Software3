@@ -68,6 +68,7 @@
                 <prop key="getAsesoriaAsignatura.htm">controladoraSolicitarAsesoria</prop>
                 <prop key="getTodasAsesorias.htm">controladoraSolicitarAsesoria</prop>
                 <prop key="agregarAsesoria.htm">controladoraSolicitarAsesoria</prop>
+                <prop key="getAsesoriaJSP.htm">controladoraSolicitarAsesoria</prop>
                 
                 <prop key="getRespuestaAsesoria.htm">controladoraResponderAsesoria</prop>
                 <prop key="getRespuestaAsignatura.htm">controladoraResponderAsesoria</prop>

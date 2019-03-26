@@ -30,48 +30,54 @@ public class CRUDSesiones {
 <span class="nc" id="L30">    }</span>
     
 
+    /**
+     * Metodo para verificar los datos de un usuario que desea acceder al sistema 
+     * @param username nombre del usuario 
+     * @param newpass contraseña del usuario
+     * @return estudiante con todos sus datos registrados en el sistema
+     */
     public Estudiante consultar(String username, String newpass) {
         Estudiante user;
-<span class="nc" id="L35">        this.sql=&quot;SELECT * FROM login WHERE username=&quot; +&quot;'&quot;+username+&quot;'&quot;+&quot; AND pass=&quot; +&quot;'&quot;+newpass+&quot;'&quot;+&quot;;&quot;;</span>
-<span class="nc" id="L36">        Estudiante buscado=(Estudiante)this.jdbcTemplate.query(sql,new ResultSetExtractor&lt;Estudiante&gt;() {</span>
+<span class="nc" id="L41">        this.sql=&quot;SELECT * FROM login WHERE username=&quot; +&quot;'&quot;+username+&quot;'&quot;+&quot; AND pass=&quot; +&quot;'&quot;+newpass+&quot;'&quot;+&quot;;&quot;;</span>
+<span class="nc" id="L42">        Estudiante buscado=(Estudiante)this.jdbcTemplate.query(sql,new ResultSetExtractor&lt;Estudiante&gt;() {</span>
             @Override
             public Estudiante extractData(ResultSet rs) throws SQLException, DataAccessException {
-<span class="nc bnc" id="L39" title="All 2 branches missed.">                if(rs.next()){</span>
-<span class="nc" id="L40">                        Estudiante aux = new Estudiante();</span>
-<span class="nc" id="L41">                        aux.setCorreo(rs.getString(1));</span>
-<span class="nc" id="L42">                        return aux;</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">                if(rs.next()){</span>
+<span class="nc" id="L46">                        Estudiante aux = new Estudiante();</span>
+<span class="nc" id="L47">                        aux.setCorreo(rs.getString(1));</span>
+<span class="nc" id="L48">                        return aux;</span>
                     }
-<span class="nc" id="L44">                    return null;</span>
+<span class="nc" id="L50">                    return null;</span>
             }
         });
-<span class="nc bnc" id="L47" title="All 2 branches missed.">        if(buscado==null){</span>
-<span class="nc" id="L48">            user=null;</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if(buscado==null){</span>
+<span class="nc" id="L54">            user=null;</span>
         }
         else{
-<span class="nc" id="L51">            this.sql=&quot;SELECT * FROM estudiante WHERE correo=&quot;+&quot;'&quot;+username+&quot;'&quot;;</span>
-<span class="nc" id="L52">            user=(Estudiante) this.jdbcTemplate.query(sql, new ResultSetExtractor&lt;Estudiante&gt;() {</span>
+<span class="nc" id="L57">            this.sql=&quot;SELECT * FROM estudiante WHERE correo=&quot;+&quot;'&quot;+username+&quot;'&quot;;</span>
+<span class="nc" id="L58">            user=(Estudiante) this.jdbcTemplate.query(sql, new ResultSetExtractor&lt;Estudiante&gt;() {</span>
                 @Override
                 public Estudiante extractData(ResultSet rs) throws SQLException, DataAccessException {
-<span class="nc bnc" id="L55" title="All 2 branches missed.">                     if(rs.next()){</span>
-<span class="nc" id="L56">                        Estudiante aux = new Estudiante();</span>
-<span class="nc" id="L57">                        aux.setCodigo(rs.getInt(1));</span>
-<span class="nc" id="L58">                        aux.setNombre(rs.getString(2));</span>
-<span class="nc" id="L59">                        aux.setApellido(rs.getString(3));</span>
-<span class="nc" id="L60">                        aux.setCorreo(rs.getString(5));</span>
-<span class="nc bnc" id="L61" title="All 2 branches missed.">                        if(rs.getNString(7).equals(&quot;S&quot;)){</span>
-<span class="nc" id="L62">                            aux.setMonitor(true);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">                     if(rs.next()){</span>
+<span class="nc" id="L62">                        Estudiante aux = new Estudiante();</span>
+<span class="nc" id="L63">                        aux.setCodigo(rs.getInt(1));</span>
+<span class="nc" id="L64">                        aux.setNombre(rs.getString(2));</span>
+<span class="nc" id="L65">                        aux.setApellido(rs.getString(3));</span>
+<span class="nc" id="L66">                        aux.setCorreo(rs.getString(5));</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">                        if(rs.getNString(7).equals(&quot;S&quot;)){</span>
+<span class="nc" id="L68">                            aux.setMonitor(true);</span>
                         }
                         else{
-<span class="nc" id="L65">                            aux.setMonitor(false);</span>
+<span class="nc" id="L71">                            aux.setMonitor(false);</span>
                         }
                         
-<span class="nc" id="L68">                        return aux;</span>
+<span class="nc" id="L74">                        return aux;</span>
                     }
-<span class="nc" id="L70">                    return null;</span>
+<span class="nc" id="L76">                    return null;</span>
                 }
             });
         }
-<span class="nc" id="L74">        return user;</span>
+<span class="nc" id="L80">        return user;</span>
     }
     
 }

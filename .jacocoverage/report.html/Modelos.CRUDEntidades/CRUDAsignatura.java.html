@@ -28,19 +28,21 @@ public class CRUDAsignatura {
     /**
      * Funcion para registrar asignatura en la base de datos
      * @param a Asignatura que se quiere registrar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int registrarAsignatura(Asignatura a){
-<span class="nc" id="L34">        return jdbcTemplate.update(&quot;INSERT INTO asignatura(codigo, nombre, creditos) &quot;</span>
-<span class="nc" id="L35">                + &quot;VALUES (?,?,?)&quot;, a.getCodigo(), a.getNombre(), a.getCreditos());</span>
+<span class="nc" id="L35">        return jdbcTemplate.update(&quot;INSERT INTO asignatura(codigo, nombre, creditos) &quot;</span>
+<span class="nc" id="L36">                + &quot;VALUES (?,?,?)&quot;, a.getCodigo(), a.getNombre(), a.getCreditos());</span>
     }
     /**
      * elimina una asignatura de la base de datos
      * @param codigo de la asignatura que se quiere eliminar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int eliminarAsignatura(String codigo) {
-<span class="nc" id="L43">        return jdbcTemplate.update(&quot;delete from asignatura &quot;</span>
+<span class="nc" id="L45">        return jdbcTemplate.update(&quot;delete from asignatura &quot;</span>
                 + &quot;where &quot;
                 + &quot;codigo=?;&quot;, codigo);
     }
@@ -48,13 +50,14 @@ public class CRUDAsignatura {
      * edita los datos de una asignatura en la base de datos
      * @param a asignatura a modificar con los datos que se quieren cambiar
      * @param codigo de la asignatura que se quiere cambiar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int editarAsignatura(Asignatura a, String codigo) {
-<span class="nc" id="L54">        return jdbcTemplate.update(&quot;update asignatura&quot;</span>
+<span class="nc" id="L57">        return jdbcTemplate.update(&quot;update asignatura&quot;</span>
                 + &quot;nombre =?,&quot;
                 + &quot;creditos=?,&quot;
-<span class="nc" id="L57">                + &quot;where codigo=?&quot;, a.getNombre(), a.getCreditos(), a.getCodigo());</span>
+<span class="nc" id="L60">                + &quot;where codigo=?&quot;, a.getNombre(), a.getCreditos(), a.getCodigo());</span>
     }
      /**
      * captura los datos de una asignatura de la base de datos
@@ -62,16 +65,16 @@ public class CRUDAsignatura {
      * @return retorna una asignatura
      */
     public Asignatura seleccionarAsignatura(String Codigo) {
-<span class="fc" id="L65">        final Asignatura asig = new Asignatura();</span>
-<span class="fc" id="L66">        String quer = &quot;SELECT * FROM asignatura WHERE codigo=&quot; +'&quot;'+ Codigo+'&quot;'+&quot;;&quot;;</span>
-<span class="fc" id="L67">        return (Asignatura) jdbcTemplate.query(quer, new ResultSetExtractor&lt;Asignatura&gt;() {</span>
+<span class="fc" id="L68">        final Asignatura asig = new Asignatura();</span>
+<span class="fc" id="L69">        String quer = &quot;SELECT * FROM asignatura WHERE codigo=&quot; +'&quot;'+ Codigo+'&quot;'+&quot;;&quot;;</span>
+<span class="fc" id="L70">        return (Asignatura) jdbcTemplate.query(quer, new ResultSetExtractor&lt;Asignatura&gt;() {</span>
             public Asignatura extractData(ResultSet rs) throws SQLException, DataAccessException {
-<span class="fc bfc" id="L69" title="All 2 branches covered.">                if (rs.next()) {</span>
-<span class="fc" id="L70">                    asig.setCodigo(rs.getString(&quot;codigo&quot;));</span>
-<span class="fc" id="L71">                    asig.setNombre(rs.getString(&quot;nombre&quot;));</span>
-<span class="fc" id="L72">                    asig.setCreditos (Integer.parseInt(rs.getString(&quot;creditos&quot;)));</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">                if (rs.next()) {</span>
+<span class="fc" id="L73">                    asig.setCodigo(rs.getString(&quot;codigo&quot;));</span>
+<span class="fc" id="L74">                    asig.setNombre(rs.getString(&quot;nombre&quot;));</span>
+<span class="fc" id="L75">                    asig.setCreditos (Integer.parseInt(rs.getString(&quot;creditos&quot;)));</span>
                 }
-<span class="fc" id="L74">                return asig;</span>
+<span class="fc" id="L77">                return asig;</span>
             }
 
         }

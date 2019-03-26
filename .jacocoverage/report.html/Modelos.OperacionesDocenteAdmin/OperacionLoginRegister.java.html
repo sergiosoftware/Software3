@@ -23,31 +23,42 @@ public class OperacionLoginRegister {
 <span class="nc" id="L23">    }</span>
     
 
+    /**
+     * Método para verificar la existencia de un usuario en los registros del sistema
+     * @param username nombre de usuario para cual se va a iniciar la sesion
+     * @param password contraseña del usuario que desea acceder al sistema
+     * @return informacion del estudiante que se encuentra registrada en el sistema para tener acceso al mismo
+     */
     public Estudiante iniciarSesion(String username, String password) {
-<span class="nc" id="L27">        String newpass=encriptar(password);</span>
-<span class="nc" id="L28">        session= new CRUDSesiones();</span>
-<span class="nc" id="L29">        Estudiante estudiante=session.consultar(username,newpass);</span>
-<span class="nc" id="L30">        System.out.println(&quot;&quot;);</span>
-<span class="nc" id="L31">        return estudiante;</span>
+<span class="nc" id="L33">        String newpass=encriptar(password);</span>
+<span class="nc" id="L34">        session= new CRUDSesiones();</span>
+<span class="nc" id="L35">        Estudiante estudiante=session.consultar(username,newpass);</span>
+<span class="nc" id="L36">        System.out.println(&quot;&quot;);</span>
+<span class="nc" id="L37">        return estudiante;</span>
     }
 
+    /**
+     * Método para encriptar la contraseña de un usuario
+     * @param password contraseña que se va a encriptar
+     * @return password encriptado en formato MD5
+     */
     private String encriptar(String password) {
-<span class="nc" id="L35">        String newpass=&quot;&quot;;</span>
+<span class="nc" id="L46">        String newpass=&quot;&quot;;</span>
         try {
-<span class="nc" id="L37">            MessageDigest encryp= MessageDigest.getInstance(&quot;MD5&quot;);</span>
-<span class="nc" id="L38">            encryp.update(password.getBytes());</span>
-<span class="nc" id="L39">            byte[] bytes=encryp.digest();</span>
-<span class="nc" id="L40">            StringBuilder sb = new StringBuilder();</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">            for(int i=0; i&lt; bytes.length ;i++)</span>
+<span class="nc" id="L48">            MessageDigest encryp= MessageDigest.getInstance(&quot;MD5&quot;);</span>
+<span class="nc" id="L49">            encryp.update(password.getBytes());</span>
+<span class="nc" id="L50">            byte[] bytes=encryp.digest();</span>
+<span class="nc" id="L51">            StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            for(int i=0; i&lt; bytes.length ;i++)</span>
             {
-<span class="nc" id="L43">                sb.append(Integer.toString((bytes[i] &amp; 0xff) + 0x100, 16).substring(1));</span>
+<span class="nc" id="L54">                sb.append(Integer.toString((bytes[i] &amp; 0xff) + 0x100, 16).substring(1));</span>
             }
-<span class="nc" id="L45">            newpass=sb.toString();</span>
-<span class="nc" id="L46">        } catch (NoSuchAlgorithmException ex) {</span>
-<span class="nc" id="L47">            Logger.getLogger(OperacionLoginRegister.class.getName()).log(Level.SEVERE, null, ex);</span>
-<span class="nc" id="L48">        }</span>
-<span class="nc" id="L49">        System.out.println(&quot;Pass encriptada: &quot;+newpass);</span>
-<span class="nc" id="L50">        return newpass;</span>
+<span class="nc" id="L56">            newpass=sb.toString();</span>
+<span class="nc" id="L57">        } catch (NoSuchAlgorithmException ex) {</span>
+<span class="nc" id="L58">            Logger.getLogger(OperacionLoginRegister.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L59">        }</span>
+<span class="nc" id="L60">        System.out.println(&quot;Pass encriptada: &quot;+newpass);</span>
+<span class="nc" id="L61">        return newpass;</span>
     }
     
 }

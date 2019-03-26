@@ -21,50 +21,54 @@ import java.util.Date;
      * metodo para agregar una pregunta a la base de datos
      * @param p corresponde a un objeto de tipo pregunta para ingreso de preguntas al sistema
      * @param a corresponde a un objeto de tipo asignatura para ingreso de preguntas al sistema
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */   
     public int ingresarPregunta(Pregunta p, Asignatura a)
     {
-<span class="nc" id="L28">        CRUDPregunta crudPregunta = new CRUDPregunta();</span>
-<span class="nc" id="L29">        int result = crudPregunta.registrarPregunta(p, a);</span>
-<span class="nc" id="L30">        return result;</span>
+<span class="nc" id="L29">        CRUDPregunta crudPregunta = new CRUDPregunta();</span>
+<span class="nc" id="L30">        int result = crudPregunta.registrarPregunta(p, a);</span>
+<span class="nc" id="L31">        return result;</span>
     }
     
     /**
      * metodo para ingresar respuesta a la base de datos
      * @param r objeto de tipo respuesta que tiene idRespuesta,descripcionRespuesta y opcionCorrecta
      * @param p objeto de tipo pregunta que tiene como finalidad proveer idPregunta para la respuesta a ingresar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int ingresarRespuesta(Respuesta r, Pregunta p)
     {
-<span class="nc" id="L41">        CRUDRespuesta crudRespuesta = new CRUDRespuesta();</span>
-<span class="nc" id="L42">        int result = crudRespuesta.registrarRespuesta(r, p);</span>
-<span class="nc" id="L43">        return result;</span>
+<span class="nc" id="L43">        CRUDRespuesta crudRespuesta = new CRUDRespuesta();</span>
+<span class="nc" id="L44">        int result = crudRespuesta.registrarRespuesta(r, p);</span>
+<span class="nc" id="L45">        return result;</span>
     }
     
     /**
      * metodo para borrar una pregunta
      * @param idPregunta es el único identificador de cada pregunta, con el cual se hace el borrado de la pregunta de la base de datos
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int eliminarPregunta(int idPregunta)
     {
-<span class="nc" id="L53">        CRUDPregunta crudPregunta = new CRUDPregunta();</span>
-<span class="nc" id="L54">        int result = crudPregunta.eliminarPregunta(idPregunta);</span>
-<span class="nc" id="L55">        return result;</span>
+<span class="nc" id="L56">        CRUDPregunta crudPregunta = new CRUDPregunta();</span>
+<span class="nc" id="L57">        int result = crudPregunta.eliminarPregunta(idPregunta);</span>
+<span class="nc" id="L58">        return result;</span>
     }
     
     /**
      * funcion para eliminar Respuestas del sistema
      * @param idRespuesta identificador unico de respuesta que permite hacer el borrado de las respuestas de la base de datos
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int eliminarRespuesta(int idRespuesta)
     {
-<span class="nc" id="L65">        CRUDRespuesta crudRespuesta = new CRUDRespuesta();</span>
-<span class="nc" id="L66">        int result = crudRespuesta.eliminarRespuesta(idRespuesta);</span>
-<span class="nc" id="L67">        return result;</span>
+<span class="nc" id="L69">        CRUDRespuesta crudRespuesta = new CRUDRespuesta();</span>
+<span class="nc" id="L70">        int result = crudRespuesta.eliminarRespuesta(idRespuesta);</span>
+<span class="nc" id="L71">        return result;</span>
     }
     
     

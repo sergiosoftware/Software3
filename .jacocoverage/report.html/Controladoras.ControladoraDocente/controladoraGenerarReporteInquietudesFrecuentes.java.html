@@ -8,6 +8,7 @@ package Controladoras.ControladoraDocente;
 import Modelos.Entidades.Inquietud;
 import Modelos.Entidades.RespuestaInquietud;
 import Modelos.CRUDEntidades.CRUDInquietud;
+import Modelos.OperacionesEstudianteMonitor.OperacionInquietud;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -21,42 +22,21 @@ import org.springframework.web.servlet.ModelAndView;
  * @author sergioandres
  */
 @Controller
-<span class="nc" id="L24">public class controladoraGenerarReporteInquietudesFrecuentes {</span>
-    private CRUDInquietud crudInq;
-    
+<span class="nc" id="L25">public class controladoraGenerarReporteInquietudesFrecuentes {</span>
+
+    private OperacionInquietud crudInq;
+
     @RequestMapping(value = &quot;generarReporteInquietudesFrecuentes.htm&quot;, method = RequestMethod.GET)
-    public ModelAndView form(HttpServletRequest request)
-    {
-<span class="nc" id="L30">        this.crudInq = new CRUDInquietud();</span>
-<span class="nc" id="L31">        ModelAndView mav = new ModelAndView();</span>
-<span class="nc" id="L32">        Inquietud nueva = new Inquietud();</span>
-<span class="nc" id="L33">        nueva.setCodigoEstudiante(1234);</span>
-<span class="nc" id="L34">        nueva.setCodigoidAsignatura(&quot;12345&quot;);</span>
-<span class="nc" id="L35">        nueva.setDescripcion(&quot;Hola&quot;);</span>
-        //nueva.setFechaPublicacion(&quot;25 enero 2017&quot;);
-<span class="nc" id="L37">        nueva.setIdInquietud(12);</span>
-<span class="nc" id="L38">        nueva.setTema(&quot;este&quot;);</span>
-<span class="nc" id="L39">        Inquietud nueva2 = new Inquietud();</span>
-<span class="nc" id="L40">        nueva2.setCodigoEstudiante(1234);</span>
-<span class="nc" id="L41">        nueva2.setCodigoidAsignatura(&quot;12345&quot;);</span>
-<span class="nc" id="L42">        nueva2.setDescripcion(&quot;Hola&quot;);</span>
-        //nueva.setFechaPublicacion(&quot;25 enero 2017&quot;);
-<span class="nc" id="L44">        nueva2.setIdInquietud(12);</span>
-<span class="nc" id="L45">        nueva2.setTema(&quot;este&quot;);</span>
-<span class="nc" id="L46">        LinkedList&lt;Inquietud&gt; uno = new LinkedList&lt;&gt;();</span>
-<span class="nc" id="L47">        uno.add(nueva);</span>
-<span class="nc" id="L48">        uno.add(nueva2);</span>
-        List&lt;Inquietud&gt; datos;
-//        uno.add(&quot;1&quot;);
-//        uno.add(&quot;lenguajes&quot;);
-//        uno.add(&quot;Lexico&quot;);
-//        uno.add(&quot;duro&quot;);
-//        uno.add(&quot;nulo&quot;);
-<span class="nc" id="L55">        datos = this.crudInq.reporteInquietudesFrecuentes();</span>
-<span class="nc" id="L56">        mav.addObject(&quot;inquietudesFrecuentes&quot;, datos);</span>
-<span class="nc" id="L57">        mav.setViewName(&quot;generarReporteInquietudesFrecuentes&quot;);</span>
-<span class="nc" id="L58">        return mav;</span>
+    public ModelAndView form(HttpServletRequest request) {
+<span class="nc" id="L31">        this.crudInq = new OperacionInquietud();</span>
+<span class="nc" id="L32">        ModelAndView mav = new ModelAndView();</span>
+<span class="nc" id="L33">        String asignatura = request.getParameter(&quot;asignatura&quot;);</span>
+<span class="nc" id="L34">        String tema = request.getParameter(&quot;tema&quot;);</span>
+<span class="nc" id="L35">        List&lt;Inquietud&gt; datos = crudInq.generarReporte(asignatura, tema);</span>
+<span class="nc" id="L36">        mav.addObject(&quot;inquietudesFrecuentes&quot;, datos);</span>
+<span class="nc" id="L37">        mav.setViewName(&quot;generarReporteInquietudesFrecuentes&quot;);</span>
+<span class="nc" id="L38">        return mav;</span>
     }
-    
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

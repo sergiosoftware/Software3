@@ -72,20 +72,10 @@ public class CRUDAsesoria {
      * @param asignatura la asignatura a la que se le desea consultar las asesorias programadas
      * @return asesoria con toda la informacion registrada en el sistema
      */
-    public Asesoria consultarUnaPorAsignatura(String asignatura) {
-        this.sql = "select * from asesoria where idasesoria=" + asignatura + ";";
-        return (Asesoria) this.jdbcTemplate.query(sql, (ResultSet rs) -> {
-            if (rs.next()) {
-                Asesoria aux = new Asesoria();
-                aux.setIdasesoria(rs.getInt(1));
-                aux.setCodigoEstudiante(rs.getInt(2));
-                aux.setCodigoAsignatura(rs.getString(3));
-                aux.setTema(rs.getString(4));
-                aux.setFechaPublicacion(rs.getDate(5));
-                return aux;
-            }
-            return null;
-        });
+    public List consultarPorAsignatura(String asignatura) {
+        this.sql = "select * from asesoria inner join estudiante on codigoEstudiante=codigo where codigoAsignatura="+ asignatura+"order by idasesoria desc";
+        List datos = this.jdbcTemplate.queryForList(sql);
+        return datos;
     }
     
     /**
@@ -94,6 +84,12 @@ public class CRUDAsesoria {
      */
     public List consultarTodas() {
         this.sql = "select * from asesoria inner join estudiante on codigoEstudiante=codigo order by idasesoria desc";
+        List datos = this.jdbcTemplate.queryForList(sql);
+        return datos;
+    }
+
+    public List consultarunaEstudiante(int codigoEstudiante) {
+        this.sql = "select * from asesoria codigoEstudiante="+codigoEstudiante+ ";";
         List datos = this.jdbcTemplate.queryForList(sql);
         return datos;
     }

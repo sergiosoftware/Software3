@@ -52,8 +52,8 @@ public class controladoraSolicitarAsesoria {
 //                Logger.getLogger(controladoraSolicitarAsesoria.class.getName()).log(Level.SEVERE, null, ex);
 //            }
 //        }
-        mav.setViewName("respuesta");
-        mav.addObject("respuestas",respuesta);
+        mav.setViewName("respuestaAsesorias");
+        //mav.addObject("respuestas",respuesta);
         return mav;
     }
     

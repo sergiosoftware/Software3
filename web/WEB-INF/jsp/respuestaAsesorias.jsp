@@ -5,6 +5,14 @@
 --%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="json" uri="http://www.atg.com/taglibs/json" %>
 <%@page contentType="text/html; charset=UTF-8"%>
-<%@page import="org.json.JSONObject"%>
-<c:out value="${respuestas}"></c:out>
+
+<json:object>
+    <json:property name="asesoria" value="asesoria1"/>
+    <json:object name="cuerpo">
+        <json:property name="estudiante" value="Sergio Cardona"/>
+        <json:property name="codigo" value="1701311587"/>
+        <json:property name="correo" value="sergio@correo.com"/>
+    </json:object>
+</json:object>

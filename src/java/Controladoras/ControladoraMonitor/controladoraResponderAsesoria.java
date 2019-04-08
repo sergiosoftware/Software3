@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -55,7 +56,7 @@ public class controladoraResponderAsesoria {
     }
 
     @RequestMapping(value = "agregarRespuesta.htm", method = RequestMethod.GET,headers="Accept=application/json")
-    public int agregarAsesoria(HttpServletRequest request) {
+    public ModelAndView agregarAsesoria(HttpServletRequest request) {
         Date format = new Date();
         Date time = new Date();
         Time tiempo= new Time(1);
@@ -75,7 +76,10 @@ public class controladoraResponderAsesoria {
             Logger.getLogger(controladoraResponderAsesoria.class.getName()).log(Level.SEVERE, null, ex);
         }
         int respuesta = respuestas.IngresarRespuestaAsesoria(idInquietud, codigoEstudiante, format, tiempo);
-        return respuesta;
+        ModelAndView def = new ModelAndView();
+        def.setViewName("respuestaResponderAsesoria");
+        def.addObject("respuestas",respuesta);
+        return def;
     }
 
 }

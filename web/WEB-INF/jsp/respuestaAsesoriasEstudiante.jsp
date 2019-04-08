@@ -9,6 +9,7 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 
 <c:forEach items="${respuestas}" var="respuestas">
+    <p>
 <json:object>
     <json:property name="idasesoria" value="${respuestas.idasesoria}"/>
     <json:property name="Asignatura" value="${respuestas.nombre}"/>
@@ -17,4 +18,5 @@
     <json:property name="fechaPublicacion" value="${respuestas.fechaPublicacion}"/>
     <json:property name="estudiante" value="${respuestas.codigoEstudiante}"/>
 </json:object>
+    </p>
 </c:forEach>

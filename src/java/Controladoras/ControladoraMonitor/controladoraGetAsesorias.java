@@ -52,7 +52,7 @@ public class controladoraGetAsesorias {
         int estudiante=Integer.parseInt(request.getParameter("codigoEstudiante"));
         List respuesta = asesorias.consultarunaEstudiante(estudiante);
         ModelAndView def= new ModelAndView();
-        def.setViewName("respuestaAsesoriasXAsignatura");
+        def.setViewName("respuestaTodasAsesorias");
         def.addObject("respuestas",respuesta);
         return def;
     }

@@ -4,6 +4,6 @@
     Author     : JulianCamilo
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="json" uri="http://www.atg.com/taglibs/json" %>
 <%@page contentType="text/html; charset=UTF-8"%>
-<%@page import="org.json.JSONObject"%>
-<c:out value="${respuestas}"></c:out>
+<c:out value="${respuestas}"/>

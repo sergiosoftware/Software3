@@ -30,11 +30,30 @@ public class controladoraGetAsesorias {
     
     @RequestMapping(value = "getAsesoriaAsignatura.htm", method = RequestMethod.GET)
     public ModelAndView home(HttpServletRequest request){
-        //String asignatura=request.getParameter("asignatura");
-        //List respuesta = asesorias.consultarPorAsignatura(asignatura);
+        String asignatura=request.getParameter("asignatura");
+        List respuesta = asesorias.consultarPorAsignatura(asignatura);
         ModelAndView def= new ModelAndView();
-        def.setViewName("respuestaAsesorias");
-        //def.addObject("respuestas",respuesta);
+        def.setViewName("respuestaAsesoriasXAsignatura");
+        def.addObject("respuestas",respuesta);
+        return def;
+    }
+    
+    @RequestMapping(value = "getTodasAsesorias.htm", method = RequestMethod.GET)
+    public ModelAndView getTodas(){
+        List respuesta = asesorias.consultarTodas();
+        ModelAndView def= new ModelAndView();
+        def.setViewName("respuestaTodasAsesorias");
+        def.addObject("respuestas",respuesta);
+        return def;
+    }
+    
+    @RequestMapping(value = "getAsesoriasEstudiante.htm", method = RequestMethod.GET)
+    public ModelAndView getXEstudiante(HttpServletRequest request){
+        int estudiante=Integer.parseInt(request.getParameter("codigoEstudiante"));
+        List respuesta = asesorias.consultarunaEstudiante(estudiante);
+        ModelAndView def= new ModelAndView();
+        def.setViewName("respuestaAsesoriasXAsignatura");
+        def.addObject("respuestas",respuesta);
         return def;
     }
     

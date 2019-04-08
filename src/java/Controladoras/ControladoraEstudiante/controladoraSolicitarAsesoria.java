@@ -33,9 +33,6 @@ public class controladoraSolicitarAsesoria {
     
     @RequestMapping(value = "getAsesoriaJSP.htm", method = RequestMethod.GET)
     public ModelAndView home(HttpServletRequest request){
-        //List respuest=asesorias.consultarTodas();
-        JSONObject json = new JSONObject();
-        //System.out.println(respuest.toString());
         System.out.println("Puerto remoto:"+request.getRemotePort());
         System.out.println("Puerto del servidor:"+request.getLocalPort());
         int codigoEstudiante=Integer.parseInt(request.getParameter("codigoEstudiante"));
@@ -43,27 +40,18 @@ public class controladoraSolicitarAsesoria {
         String tema=request.getParameter("tema");
         int respuesta = asesorias.IngresarAsesoria(codigoEstudiante, asignatura, tema);
         ModelAndView mav = new ModelAndView();
-//        int cont=0;
-//        for (Object object : respuest) {
-//            cont++;
-//            try {
-//                json.put("asesoria"+cont, object);
-//            } catch (JSONException ex) {
-//                Logger.getLogger(controladoraSolicitarAsesoria.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-        mav.setViewName("respuestaAsesorias");
-        //mav.addObject("respuestas",respuesta);
+        mav.setViewName("respuestaAgregarAsesoria");
+        mav.addObject("respuestas",respuesta);
         return mav;
     }
     
-    @RequestMapping(value = "getAsesoria.htm", method = RequestMethod.GET,headers="Accept=application/json")
+    @RequestMapping(value = "getAsesoria.htm", method = RequestMethod.GET)
     public ModelAndView getRespuesta(HttpServletRequest request){
         int idAsesoria=Integer.parseInt(request.getParameter("idAsesoria"));
         Asesoria respuesta = asesorias.consultaruna(idAsesoria);
         ModelAndView def= new ModelAndView();
+        def.setViewName("respuestaAsesoria");
         def.addObject("respuesta",respuesta);
-        def.setViewName("respuesta");
         return def;
     }
     

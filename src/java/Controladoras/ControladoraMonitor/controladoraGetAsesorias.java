@@ -6,7 +6,9 @@
 package Controladoras.ControladoraMonitor;
 
 import Modelos.CRUDEntidades.CRUDAsesoria;
+import Modelos.CRUDEntidades.CRUDAsignatura;
 import Modelos.Entidades.Asesoria;
+import Modelos.Entidades.Asignatura;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -32,9 +34,12 @@ public class controladoraGetAsesorias {
     public ModelAndView home(HttpServletRequest request){
         String asignatura=request.getParameter("asignatura");
         List respuesta = asesorias.consultarPorAsignatura(asignatura);
+        CRUDAsignatura asig= new CRUDAsignatura();
+        Asignatura asigna= asig.seleccionarAsignatura(asignatura);
         ModelAndView def= new ModelAndView();
         def.setViewName("respuestaAsesoriasXAsignatura");
         def.addObject("respuestas",respuesta);
+        def.addObject("asignatura",asigna);
         return def;
     }
     

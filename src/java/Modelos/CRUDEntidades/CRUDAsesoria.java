@@ -73,7 +73,7 @@ public class CRUDAsesoria {
      * @return asesoria con toda la informacion registrada en el sistema
      */
     public List consultarPorAsignatura(String asignatura) {
-        this.sql = "select * from asesoria inner join estudiante on codigoEstudiante=codigo where codigoAsignatura="+ asignatura+"order by idasesoria desc";
+        this.sql = "select * from asesoria inner join estudiante on codigoEstudiante=codigo where codigoAsignatura="+ asignatura+"order by idasesoria;";
         List datos = this.jdbcTemplate.queryForList(sql);
         return datos;
     }

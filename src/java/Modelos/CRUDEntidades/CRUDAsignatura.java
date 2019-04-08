@@ -66,19 +66,15 @@ public class CRUDAsignatura {
      */
     public Asignatura seleccionarAsignatura(String Codigo) {
         final Asignatura asig = new Asignatura();
-        String quer = "SELECT * FROM asignatura WHERE codigo=" +'"'+ Codigo+'"'+";";
-        return (Asignatura) jdbcTemplate.query(quer, new ResultSetExtractor<Asignatura>() {
-            public Asignatura extractData(ResultSet rs) throws SQLException, DataAccessException {
-                if (rs.next()) {
-                    asig.setCodigo(rs.getString("codigo"));
-                    asig.setNombre(rs.getString("nombre"));
-                    asig.setCreditos (Integer.parseInt(rs.getString("creditos")));
-                }
-                return asig;
+        String quer = "SELECT * FROM asignatura WHERE codigo=" + Codigo+";";
+        return (Asignatura) jdbcTemplate.query(quer, (ResultSet rs) -> {
+            if (rs.next()) {
+                asig.setCodigo(rs.getString("codigo"));
+                asig.setNombre(rs.getString("nombre"));
+                asig.setCreditos (Integer.parseInt(rs.getString("creditos")));
             }
-
-        }
-        );
+            return asig;
+        });
     }   
     
 }

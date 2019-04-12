@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CRUDAsesoria.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProyectoIngenieriaSoftwareII&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Modelos.CRUDEntidades</a> &gt; <span class="el_source">CRUDAsesoria.java</span></div><h1>CRUDAsesoria.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelos.CRUDEntidades;
+
+import Conexión.conexion;
+import Modelos.Entidades.Asesoria;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+
+/**
+ *
+ * @author JulianCamilo
+ */
+public class CRUDAsesoria {
+    
+    private conexion conectar;
+    private String sql;
+    private JdbcTemplate jdbcTemplate;
+
+<span class="nc" id="L27">    public CRUDAsesoria() {</span>
+<span class="nc" id="L28">        this.conectar = new conexion();</span>
+<span class="nc" id="L29">        this.jdbcTemplate = new JdbcTemplate(conectar.conectar());</span>
+<span class="nc" id="L30">        this.sql = &quot;&quot;;</span>
+<span class="nc" id="L31">    }</span>
+    
+    /**
+     * Método para registrar una nueva asesoria en el sistema
+     * @param codigoestudiante Identificador del estudiante que esta realizando la asesoria
+     * @param codigoasignatura Identificador de la asignatura para la cual se esta registrando la asesoria
+     * @param tema Tema de asesoria registrada
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
+     */
+    public int IngresarAsesoria(int codigoestudiante, String codigoasignatura, String tema) {
+<span class="nc" id="L42">        Asesoria nuevainquietud = new Asesoria(codigoestudiante, codigoasignatura, tema);</span>
+<span class="nc" id="L43">        this.sql = &quot;insert into asesoria(codigoEstudiante,codigoAsignatura,tema) values (&quot;</span>
+<span class="nc" id="L44">                + nuevainquietud.getCodigoEstudiante() + &quot;,&quot;+'&quot;' + nuevainquietud.getCodigoAsignatura()+ '&quot;'+&quot;,&quot;+'&quot;' + nuevainquietud.getTema() + '&quot;'+&quot;);&quot;;</span>
+<span class="nc" id="L45">        int resul = this.jdbcTemplate.update(sql);</span>
+<span class="nc" id="L46">        return resul;</span>
+    }
+
+    /**
+     * Método para consultar una unica asesoria dado su idee¿ntificador
+     * @param idAsesoria identificador de la asesoria en la bd
+     * @return asesoria con toda la informacion registrada en el sistema
+     */
+    public Asesoria consultaruna(int idAsesoria) {
+<span class="nc" id="L55">        this.sql = &quot;select * from asesoria where idasesoria=&quot; + idAsesoria + &quot;;&quot;;</span>
+<span class="nc" id="L56">        return (Asesoria) this.jdbcTemplate.query(sql, (ResultSet rs) -&gt; {</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            if (rs.next()) {</span>
+<span class="nc" id="L58">                Asesoria aux = new Asesoria();</span>
+<span class="nc" id="L59">                aux.setIdasesoria(rs.getInt(1));</span>
+<span class="nc" id="L60">                aux.setCodigoEstudiante(rs.getInt(2));</span>
+<span class="nc" id="L61">                aux.setCodigoAsignatura(rs.getString(3));</span>
+<span class="nc" id="L62">                aux.setTema(rs.getString(4));</span>
+<span class="nc" id="L63">                aux.setFechaPublicacion(rs.getDate(5));</span>
+<span class="nc" id="L64">                return aux;</span>
+            }
+<span class="nc" id="L66">            return null;</span>
+        });
+    }
+
+    /**
+     * Método para consultar una unica asesoria dado su idee¿ntificador
+     * @param asignatura la asignatura a la que se le desea consultar las asesorias programadas
+     * @return asesoria con toda la informacion registrada en el sistema
+     */
+    public Asesoria consultarUnaPorAsignatura(String asignatura) {
+<span class="nc" id="L76">        this.sql = &quot;select * from asesoria where idasesoria=&quot; + asignatura + &quot;;&quot;;</span>
+<span class="nc" id="L77">        return (Asesoria) this.jdbcTemplate.query(sql, (ResultSet rs) -&gt; {</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (rs.next()) {</span>
+<span class="nc" id="L79">                Asesoria aux = new Asesoria();</span>
+<span class="nc" id="L80">                aux.setIdasesoria(rs.getInt(1));</span>
+<span class="nc" id="L81">                aux.setCodigoEstudiante(rs.getInt(2));</span>
+<span class="nc" id="L82">                aux.setCodigoAsignatura(rs.getString(3));</span>
+<span class="nc" id="L83">                aux.setTema(rs.getString(4));</span>
+<span class="nc" id="L84">                aux.setFechaPublicacion(rs.getDate(5));</span>
+<span class="nc" id="L85">                return aux;</span>
+            }
+<span class="nc" id="L87">            return null;</span>
+        });
+    }
+    
+    /**
+     * Método para generar un reporte con todas las asesorias registradas en el sistema
+     * @return lista con todas las asesorias registrada en el sistema
+     */
+    public List consultarTodas() {
+<span class="nc" id="L96">        this.sql = &quot;select * from asesoria inner join estudiante on codigoEstudiante=codigo order by idasesoria desc&quot;;</span>
+<span class="nc" id="L97">        List datos = this.jdbcTemplate.queryForList(sql);</span>
+<span class="nc" id="L98">        return datos;</span>
+    }
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

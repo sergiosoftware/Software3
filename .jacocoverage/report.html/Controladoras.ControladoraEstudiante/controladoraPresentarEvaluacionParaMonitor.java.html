@@ -45,18 +45,27 @@ public class controladoraPresentarEvaluacionParaMonitor
 <span class="nc" id="L45">        return new Respuesta();</span>
     }
     
+    /**
+     * Metodo para redireccionar a la vista solicitada
+     * @return redireccionar a la vista PresentarEvalaucaionesParaMonitor
+     */
     @RequestMapping(value = &quot;PresentarEvaluacionParaMonitor.htm&quot;, method = RequestMethod.GET)
     public ModelAndView form() {
-<span class="nc" id="L50">        ModelAndView mav = new ModelAndView();</span>
-<span class="nc" id="L51">        mav.setViewName(&quot;PresentarEvaluacionParaMonitor&quot;);</span>
-<span class="nc" id="L52">        mav.addObject(&quot;pregunta&quot;, new Pregunta());</span>
-<span class="nc" id="L53">        return mav;</span>
+<span class="nc" id="L54">        ModelAndView mav = new ModelAndView();</span>
+<span class="nc" id="L55">        mav.setViewName(&quot;PresentarEvaluacionParaMonitor&quot;);</span>
+<span class="nc" id="L56">        mav.addObject(&quot;pregunta&quot;, new Pregunta());</span>
+<span class="nc" id="L57">        return mav;</span>
     }
     
+    /**
+     * Metodo para redirecionar a la vista solicitada
+     * @param model
+     * @return redireccionamiento a la vista PresentarEvaluacionParaMonitor
+     */
     @RequestMapping(value = &quot;PresentarEvaluacionParaMonitor.htm&quot;,method = RequestMethod.GET)
     public String addInquietud(ModelMap model){
-<span class="nc" id="L58">        model.addAttribute(&quot;pregunta&quot;, new Pregunta());</span>
-<span class="nc" id="L59">        return &quot;pregunta&quot;;</span>
+<span class="nc" id="L67">        model.addAttribute(&quot;pregunta&quot;, new Pregunta());</span>
+<span class="nc" id="L68">        return &quot;pregunta&quot;;</span>
     }
  
     /**
@@ -74,8 +83,8 @@ public class controladoraPresentarEvaluacionParaMonitor
     ) {
        
             //System.out.println(&quot;Entre&quot;);
-<span class="nc" id="L77">            this.pregunta.seleccionarPregunta(pregunta.getIdPregunta());</span>
-<span class="nc" id="L78">            return new ModelAndView(&quot;&quot;);</span>
+<span class="nc" id="L86">            this.pregunta.seleccionarPregunta(pregunta.getIdPregunta());</span>
+<span class="nc" id="L87">            return new ModelAndView(&quot;&quot;);</span>
         }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

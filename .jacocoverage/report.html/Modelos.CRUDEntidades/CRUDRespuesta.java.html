@@ -30,23 +30,25 @@ public class CRUDRespuesta {
      * funcoin para registrar una respuesta a una pregunta
      * @param r respuesta definida
      * @param p pregunta para asociar la respuesta
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     
     public int registrarRespuesta(Respuesta r, Pregunta p){
-<span class="pc" id="L37">        return jdbcTemplate.update(&quot;INSERT INTO respuesta (idRespuesta,descripcionRespuesta,correcta,idPregunta)&quot;</span>
-<span class="fc" id="L38">        + &quot;VALUES (?,?,?,?)&quot;,r.getIdRespuesta(),r.getDescripcionRespuesta(),r.getCorrecta(),p.getIdPregunta());</span>
+<span class="pc" id="L38">        return jdbcTemplate.update(&quot;INSERT INTO respuesta (idRespuesta,descripcionRespuesta,correcta,idPregunta)&quot;</span>
+<span class="fc" id="L39">        + &quot;VALUES (?,?,?,?)&quot;,r.getIdRespuesta(),r.getDescripcionRespuesta(),r.getCorrecta(),p.getIdPregunta());</span>
     }
     
     /**
      * funcion para eliminar una respuesta de la base de datos dado su id
      * @param idRespuesta identificador de la respuesta que se desea eliminar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int eliminarRespuesta(int idRespuesta){
-<span class="pc" id="L47">        return jdbcTemplate.update(&quot;DELETE from respuesta &quot;</span>
+<span class="pc" id="L49">        return jdbcTemplate.update(&quot;DELETE from respuesta &quot;</span>
                 + &quot;WHERE &quot;
-<span class="fc" id="L49">                + &quot;idRespuesta=?;&quot;,idRespuesta);</span>
+<span class="fc" id="L51">                + &quot;idRespuesta=?;&quot;,idRespuesta);</span>
     }
     
     /**
@@ -54,12 +56,13 @@ public class CRUDRespuesta {
      * @param r Objeto con los nuevos datos de la respuesta
      * @param p pregunta que se le esta modificando una respuesta
      * @param idRespuesta  Identificador de la respuesta que se desea aditar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int editarPregunta(Respuesta r, Pregunta p, int idRespuesta){
-<span class="nc" id="L60">        return jdbcTemplate.update(&quot;UPDATE respuesta&quot;</span>
+<span class="nc" id="L63">        return jdbcTemplate.update(&quot;UPDATE respuesta&quot;</span>
                 + &quot;descripcionRespuesta=?,&quot;
-<span class="nc" id="L62">                + &quot;correcta=?&quot;, r.getDescripcionRespuesta(),r.getCorrecta(),idRespuesta);</span>
+<span class="nc" id="L65">                + &quot;correcta=?&quot;, r.getDescripcionRespuesta(),r.getCorrecta(),idRespuesta);</span>
     }
     
     /**
@@ -68,17 +71,17 @@ public class CRUDRespuesta {
      * @return una respuesta con todos sus valores
      */
     public Respuesta seleccionarRespuesta(int idRespuesta) {
-<span class="fc" id="L71">        final Respuesta res = new Respuesta();</span>
-<span class="fc" id="L72">        String quer = &quot;SELECT * FROM respuesta WHERE idRespuesta=?&quot; + idRespuesta;</span>
-<span class="pc" id="L73">        return (Respuesta) jdbcTemplate.query(quer, new ResultSetExtractor&lt;Respuesta&gt;() {</span>
+<span class="fc" id="L74">        final Respuesta res = new Respuesta();</span>
+<span class="fc" id="L75">        String quer = &quot;SELECT * FROM respuesta WHERE idRespuesta=?&quot; + idRespuesta;</span>
+<span class="pc" id="L76">        return (Respuesta) jdbcTemplate.query(quer, new ResultSetExtractor&lt;Respuesta&gt;() {</span>
             @Override
             public Respuesta extractData(ResultSet rs) throws SQLException, DataAccessException {
-<span class="nc bnc" id="L76" title="All 2 branches missed.">                if (rs.next()) {</span>
-<span class="nc" id="L77">                    res.setDescripcionRespuesta(rs.getString(2));</span>
-<span class="nc" id="L78">                    char c = rs.getString(3).charAt(0);</span>
-<span class="nc" id="L79">                    res.setCorrecta(c);</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">                if (rs.next()) {</span>
+<span class="nc" id="L80">                    res.setDescripcionRespuesta(rs.getString(2));</span>
+<span class="nc" id="L81">                    char c = rs.getString(3).charAt(0);</span>
+<span class="nc" id="L82">                    res.setCorrecta(c);</span>
                 }
-<span class="nc" id="L81">                return res;</span>
+<span class="nc" id="L84">                return res;</span>
             }
         });
     }

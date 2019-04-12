@@ -29,22 +29,25 @@ public class CRUDPregunta {
      * funcion para crear una pregunta en la base de datos
      * @param p Pregunta que se desea registrar
      * @param a Asignatura a la que se va a registrar una nueva pregunta
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     
     public int registrarPregunta(Pregunta p, Asignatura a){
-<span class="pc" id="L35">        return jdbcTemplate.update(&quot;INSERT INTO pregunta (idPregunta,enunciado,rutaImagen,codigoAsignatura)&quot;</span>
-<span class="fc" id="L36">        + &quot;VALUES (?,?,?,?)&quot;,p.getIdPregunta(),p.getEnunciado(),p.getRutaImagen(),a.getCodigo());</span>
+<span class="pc" id="L37">        return jdbcTemplate.update(&quot;INSERT INTO pregunta (idPregunta,enunciado,rutaImagen,codigoAsignatura)&quot;</span>
+<span class="fc" id="L38">        + &quot;VALUES (?,?,?,?)&quot;,p.getIdPregunta(),p.getEnunciado(),p.getRutaImagen(),a.getCodigo());</span>
     }
     
     /**
      * funcion para eliminar una pregunta de la base de datos dado su id
      * @param idPregunta identificador de la pregunta que se desea eliminar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int eliminarPregunta(int idPregunta){
-<span class="pc" id="L45">        return jdbcTemplate.update(&quot;DELETE from pregunta &quot;</span>
+<span class="pc" id="L48">        return jdbcTemplate.update(&quot;DELETE from pregunta &quot;</span>
                 + &quot;WHERE &quot;
-<span class="fc" id="L47">                + &quot;idPregunta=?;&quot;,idPregunta);</span>
+<span class="fc" id="L50">                + &quot;idPregunta=?;&quot;,idPregunta);</span>
     }
     
     /**
@@ -52,14 +55,15 @@ public class CRUDPregunta {
      * @param p Onjeto con los nuevos datos de la pregunta
      * @param a Asignatura que se le esta modificando una pregunta
      * @param idPregunta Identificado de la pregunta que se desea editar
-     * @return 
+     * @return retorna un valor entero, si es 0 es que hubo algun error
+     *                                  si es 1 es que fue correcto
      */
     public int editarPregunta(Pregunta p, Asignatura a, int idPregunta){
-<span class="nc" id="L58">        return jdbcTemplate.update(&quot;UPDATE pregunta&quot;</span>
+<span class="nc" id="L62">        return jdbcTemplate.update(&quot;UPDATE pregunta&quot;</span>
                 + &quot;enunciado=?,&quot;
                 + &quot;rutaImagen=?&quot;
                 + &quot;codigoAsignatura=?,&quot;
-<span class="nc" id="L62">                + &quot;WHERE idPregunta=?&quot;, p.getEnunciado(),p.getRutaImagen(),a.getCodigo(),idPregunta);</span>
+<span class="nc" id="L66">                + &quot;WHERE idPregunta=?&quot;, p.getEnunciado(),p.getRutaImagen(),a.getCodigo(),idPregunta);</span>
     }
     
     /**
@@ -68,14 +72,14 @@ public class CRUDPregunta {
      * @return una pregunta con todos sus valores
      */
     public Pregunta seleccionarPregunta(int idPregunta) {
-<span class="fc" id="L71">        final Pregunta pre = new Pregunta();</span>
-<span class="fc" id="L72">        String quer = &quot;SELECT * FROM pregunta WHERE idPregunta=?&quot; + idPregunta;</span>
-<span class="nc" id="L73">        return (Pregunta) jdbcTemplate.query(quer, (ResultSet rs) -&gt; {</span>
-<span class="nc bnc" id="L74" title="All 2 branches missed.">            if (rs.next()) {</span>
-<span class="nc" id="L75">                pre.setEnunciado(rs.getString(&quot;enunciado&quot;));</span>
-<span class="nc" id="L76">                pre.setRutaImagen((rs.getString(&quot;rutaImagen&quot;)));</span>
+<span class="fc" id="L75">        final Pregunta pre = new Pregunta();</span>
+<span class="fc" id="L76">        String quer = &quot;SELECT * FROM pregunta WHERE idPregunta=?&quot; + idPregunta;</span>
+<span class="nc" id="L77">        return (Pregunta) jdbcTemplate.query(quer, (ResultSet rs) -&gt; {</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (rs.next()) {</span>
+<span class="nc" id="L79">                pre.setEnunciado(rs.getString(&quot;enunciado&quot;));</span>
+<span class="nc" id="L80">                pre.setRutaImagen((rs.getString(&quot;rutaImagen&quot;)));</span>
             }
-<span class="nc" id="L78">            return pre;</span>
+<span class="nc" id="L82">            return pre;</span>
         });
     }
     
@@ -84,9 +88,9 @@ public class CRUDPregunta {
      * @return lista total de preguntas
      */
     public List consultarTodas(){
-<span class="nc" id="L87">        this.sql = &quot;select * from preguntas order by idpregunta desc&quot;;</span>
-<span class="nc" id="L88">        List datos = this.jdbcTemplate.queryForList(sql);</span>
-<span class="nc" id="L89">        return datos;</span>
+<span class="nc" id="L91">        this.sql = &quot;select * from preguntas order by idpregunta desc&quot;;</span>
+<span class="nc" id="L92">        List datos = this.jdbcTemplate.queryForList(sql);</span>
+<span class="nc" id="L93">        return datos;</span>
     }
     
     /**
@@ -94,9 +98,9 @@ public class CRUDPregunta {
      * @return preguntas aleatorias
      */
     public List consultarAleatorio(){
-<span class="nc" id="L97">        this.sql = &quot;SELECT * FROM preguntas ORDER BY RAND() LIMIT 10&quot;;</span>
-<span class="nc" id="L98">        List datos = this.jdbcTemplate.queryForList(sql);</span>
-<span class="nc" id="L99">        return datos;</span>
+<span class="nc" id="L101">        this.sql = &quot;SELECT * FROM preguntas ORDER BY RAND() LIMIT 10&quot;;</span>
+<span class="nc" id="L102">        List datos = this.jdbcTemplate.queryForList(sql);</span>
+<span class="nc" id="L103">        return datos;</span>
     }
     
     

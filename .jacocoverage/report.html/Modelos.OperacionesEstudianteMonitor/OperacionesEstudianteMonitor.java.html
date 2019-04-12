@@ -36,12 +36,17 @@ import java.util.List;
 <span class="nc" id="L36">        return monitores;</span>
     }
 
+    /**
+     * Método para onsultar la informacion registrada de un estudiante
+     * @param codigoEstudiante codigo del estudiante para el cual se va a generar el reporte con la informacion solicitada
+     * @return informacion asociada a un estudiante registrado en el sistema
+     */
     public Estudiante consultarEstudiante(int codigoEstudiante) {
-<span class="nc" id="L40">        Estudiante usuario=estudiantes.consultar(codigoEstudiante);</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">        if(usuario.getNombre()==null){</span>
-<span class="nc" id="L42">            usuario=null;</span>
+<span class="nc" id="L45">        Estudiante usuario=estudiantes.consultar(codigoEstudiante);</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        if(usuario.getNombre()==null){</span>
+<span class="nc" id="L47">            usuario=null;</span>
         }
-<span class="nc" id="L44">        return usuario;</span>
+<span class="nc" id="L49">        return usuario;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -5,6 +5,8 @@
  */
 package Modelos.Entidades;
 
+import java.beans.PropertyChangeSupport;
+
 /**
  *
  * @author JulianCamilo
@@ -14,34 +16,55 @@ public class PreguntaRespondida {
     private Estudiante monitorRespondio;
     private int idInquietud;
 
-<span class="nc" id="L17">    public PreguntaRespondida() {</span>
-<span class="nc" id="L18">    }</span>
+<span class="nc" id="L19">    public PreguntaRespondida() {</span>
+<span class="nc" id="L20">    }</span>
 
-<span class="nc" id="L20">    public PreguntaRespondida(Estudiante monitorRespondio, int idInquietud) {</span>
-<span class="nc" id="L21">        this.monitorRespondio = monitorRespondio;</span>
-<span class="nc" id="L22">        this.idInquietud = idInquietud;</span>
-<span class="nc" id="L23">    }</span>
+<span class="nc" id="L22">    public PreguntaRespondida(Estudiante monitorRespondio, int idInquietud) {</span>
+<span class="nc" id="L23">        this.monitorRespondio = monitorRespondio;</span>
+<span class="nc" id="L24">        this.idInquietud = idInquietud;</span>
+<span class="nc" id="L25">    }</span>
 
     @Override
     public String toString() {
-<span class="nc" id="L27">        return super.toString(); //To change body of generated methods, choose Tools | Templates.</span>
+<span class="nc" id="L29">        return super.toString(); //To change body of generated methods, choose Tools | Templates.</span>
     }
 
-    public int getIdInquietud() {
-<span class="nc" id="L31">        return idInquietud;</span>
-    }
-
+    /**
+     * @return the monitorRespondio
+     */
     public Estudiante getMonitorRespondio() {
-<span class="nc" id="L35">        return monitorRespondio;</span>
+<span class="nc" id="L36">        return monitorRespondio;</span>
     }
 
-    public void setIdInquietud(int idInquietud) {
-<span class="nc" id="L39">        this.idInquietud = idInquietud;</span>
-<span class="nc" id="L40">    }</span>
-
+    /**
+     * @param monitorRespondio the monitorRespondio to set
+     */
     public void setMonitorRespondio(Estudiante monitorRespondio) {
-<span class="nc" id="L43">        this.monitorRespondio = monitorRespondio;</span>
-<span class="nc" id="L44">    }</span>
+<span class="nc" id="L43">        Modelos.Entidades.Estudiante oldMonitorRespondio = this.monitorRespondio;</span>
+<span class="nc" id="L44">        this.monitorRespondio = monitorRespondio;</span>
+<span class="nc" id="L45">        propertyChangeSupport.firePropertyChange(PROP_MONITORRESPONDIO, oldMonitorRespondio, monitorRespondio);</span>
+<span class="nc" id="L46">    }</span>
+
+    /**
+     * @return the idInquietud
+     */
+    public int getIdInquietud() {
+<span class="nc" id="L52">        return idInquietud;</span>
+    }
+
+    /**
+     * @param idInquietud the idInquietud to set
+     */
+    public void setIdInquietud(int idInquietud) {
+<span class="nc" id="L59">        int oldIdInquietud = this.idInquietud;</span>
+<span class="nc" id="L60">        this.idInquietud = idInquietud;</span>
+<span class="nc" id="L61">        propertyChangeSupport.firePropertyChange(PROP_IDINQUIETUD, oldIdInquietud, idInquietud);</span>
+<span class="nc" id="L62">    }</span>
+<span class="nc" id="L63">    private final transient PropertyChangeSupport propertyChangeSupport = new java.beans.PropertyChangeSupport(this);</span>
+    public static final String PROP_MONITORRESPONDIO = &quot;monitorRespondio&quot;;
+    public static final String PROP_IDINQUIETUD = &quot;idInquietud&quot;;
+
+    
     
     
     

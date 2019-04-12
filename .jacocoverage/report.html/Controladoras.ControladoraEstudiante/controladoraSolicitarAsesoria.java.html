@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>controladoraSolicitarAsesoria.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProyectoIngenieriaSoftwareII&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controladoras.ControladoraEstudiante</a> &gt; <span class="el_source">controladoraSolicitarAsesoria.java</span></div><h1>controladoraSolicitarAsesoria.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controladoras.ControladoraEstudiante;
+
+import Modelos.CRUDEntidades.CRUDAsesoria;
+import Modelos.Entidades.Asesoria;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+/**
+ *
+ * @author JulianCamilo
+ */
+@Controller
+public class controladoraSolicitarAsesoria {
+    
+    private CRUDAsesoria asesorias;
+
+<span class="nc" id="L26">    public controladoraSolicitarAsesoria() {</span>
+<span class="nc" id="L27">        this.asesorias=new CRUDAsesoria();</span>
+<span class="nc" id="L28">    }</span>
+    
+    @RequestMapping(value = &quot;getAsesoriaJSP.htm&quot;, method = RequestMethod.GET)
+    public ModelAndView home(HttpServletRequest request){
+<span class="nc" id="L32">        ModelAndView mav = new ModelAndView();</span>
+<span class="nc" id="L33">        mav.setViewName(&quot;respuesta&quot;);</span>
+<span class="nc" id="L34">        return mav;</span>
+    }
+    
+    @RequestMapping(value = &quot;getAsesoria.htm&quot;, method = RequestMethod.GET,headers=&quot;Accept=application/json&quot;)
+    public ModelAndView getRespuesta(HttpServletRequest request){
+<span class="nc" id="L39">        int idAsesoria=Integer.parseInt(request.getParameter(&quot;idAsesoria&quot;));</span>
+<span class="nc" id="L40">        Asesoria respuesta = asesorias.consultaruna(idAsesoria);</span>
+<span class="nc" id="L41">        ModelAndView def= new ModelAndView();</span>
+<span class="nc" id="L42">        def.addObject(respuesta);</span>
+<span class="nc" id="L43">        ModelAndView mav = new ModelAndView();</span>
+<span class="nc" id="L44">        mav.setViewName(&quot;respuesta&quot;);</span>
+<span class="nc" id="L45">        return mav;</span>
+    }
+    
+    @RequestMapping(value = &quot;getAsesoriaAsignatura.htm&quot;, method = RequestMethod.GET,headers=&quot;Accept=application/json&quot;)
+    public Asesoria getRespuestaAsignatura(HttpServletRequest request){
+<span class="nc" id="L50">        String asignatura=request.getParameter(&quot;asignatura&quot;);</span>
+<span class="nc" id="L51">        Asesoria respuesta = asesorias.consultarUnaPorAsignatura(asignatura);</span>
+<span class="nc" id="L52">        return respuesta;</span>
+    }
+    
+    @RequestMapping(value = &quot;getTodasAsesorias.htm&quot;, method = RequestMethod.GET,headers=&quot;Accept=application/json&quot;)
+    public List getTodas(){
+<span class="nc" id="L57">        List respuest=asesorias.consultarTodas();</span>
+<span class="nc" id="L58">        System.out.println(respuest.toString());</span>
+<span class="nc" id="L59">        return respuest;</span>
+    }
+    
+    @RequestMapping(value = &quot;agregarAsesoria.htm&quot;, method = RequestMethod.GET,headers=&quot;Accept=application/json&quot;)
+    public int agregarAsesoria(HttpServletRequest request){
+<span class="nc" id="L64">        int codigoEstudiante=Integer.parseInt(request.getParameter(&quot;codigoEstudiante&quot;));</span>
+<span class="nc" id="L65">        String asignatura=request.getParameter(&quot;asignatura&quot;);</span>
+<span class="nc" id="L66">        String tema=request.getParameter(&quot;tema&quot;);</span>
+<span class="nc" id="L67">        int respuesta = asesorias.IngresarAsesoria(codigoEstudiante, asignatura, tema);</span>
+<span class="nc" id="L68">        return respuesta;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

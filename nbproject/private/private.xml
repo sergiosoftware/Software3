@@ -4,13 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/web/WEB-INF/jsp/respuestaResponderAsesoria.jsp</file>
-            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/web/WEB-INF/jsp/respuestaAsesoriasXAsignatura.jsp</file>
-            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/web/WEB-INF/jsp/respuestaAsesoria.jsp</file>
-            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Controladoras/ControladoraEstudiante/controladoraSolicitarAsesoria.java</file>
-            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Modelos/CRUDEntidades/CRUDRespuestaAsesoria.java</file>
             <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/web/WEB-INF/jsp/respuestaAgregarAsesoria.jsp</file>
-            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/web/WEB-INF/jsp/visualizarNotaInforme.jsp</file>
-            <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/web/WEB-INF/jsp/respuestaTodasAsesorias.jsp</file>
             <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Controladoras/ControladoraMonitor/controladoraResponderAsesoria.java</file>
             <file>file:/C:/Users/JulianCamilo/Documents/NetBeansProjects/Software3/src/java/Controladoras/ControladoraMonitor/controladoraAgregarRespuesta.java</file>
         </group>

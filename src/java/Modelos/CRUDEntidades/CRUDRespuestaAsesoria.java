@@ -92,7 +92,18 @@ public class CRUDRespuestaAsesoria {
      * @return lista con todas las respuestas asesorias registrada en el sistema
      */
     public List consultarTodas() {
-        this.sql = "select * from respuestaasesoria inner join estudiante on codigoMonitor=codigo order by idRespuesta desc";
+        this.sql = "select * from respuestaasesoria inner join estudiante on codigoMonitor=codigo order by idRespuesta";
+        List datos = this.jdbcTemplate.queryForList(sql);
+        return datos;
+    }
+    
+     /**
+     * Método para generar un reporte con una respuesta que fue dada por el monitor
+     * @param idAsesoria el identificador de la asesoria propia a consultar
+     * @return lista con todas las respuestas asesorias registrada en el sistema
+     */
+    public List consultarIdConMonitor(int idAsesoria) {
+        this.sql = "select * from respuestaasesoria inner join estudiante on codigoMonitor=codigo where idAsesoria="+idAsesoria+";";
         List datos = this.jdbcTemplate.queryForList(sql);
         return datos;
     }

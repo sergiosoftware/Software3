@@ -5,19 +5,10 @@
  */
 package Controladoras.ControladoraMonitor;
 
-import Modelos.CRUDEntidades.CRUDAsesoria;
 import Modelos.CRUDEntidades.CRUDRespuestaAsesoria;
 import Modelos.Entidades.RespuestaAsesoria;
-import Modelos.OperacionesEstudianteMonitor.OperacionResponderInquietud;
 import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,8 +45,19 @@ public class controladoraAgregarRespuesta {
         return def;
     }
     
-    @RequestMapping(value = "getRespuestaAsesoria.htm", method = RequestMethod.GET,headers="Accept=application/json")
-    public RespuestaAsesoria getRespuesta(HttpServletRequest request) {
+    @RequestMapping(value = "getDetallesAsesoria.htm", method = RequestMethod.GET)
+    public ModelAndView getMasDetalles(HttpServletRequest request){
+        int idAsesoria=Integer.parseInt(request.getParameter("idAsesoria"));
+        List respuesta=respuestaAsesorias.consultarIdConMonitor(idAsesoria);
+        ModelAndView def= new ModelAndView();
+        def.setViewName("respuestaMasDetalles");
+        def.addObject("respuestas",respuesta);
+       
+        return def;
+    }
+    
+    @RequestMapping(value = "getRespuestaAsesoria.htm", method = RequestMethod.GET)
+    public RespuestaAsesoria getRespuestaId(HttpServletRequest request) {
         int idRespuesta = Integer.parseInt(request.getParameter("idAsesoria"));
         RespuestaAsesoria respuesta = respuestaAsesorias.consultaruna(idRespuesta);
         return respuesta;
